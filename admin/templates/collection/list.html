@@ -1,0 +1,72 @@
+<aside class="right-side">                
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            QUẢN LÝ BỘ SƯU TẬP
+                    </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#/"><i class="fa fa-dashboard"></i> Trang Chủ</a></li>
+                    <li><a href="#/">Bộ Sưu Tập</a></li>
+                    <li class="active">Quản Lý Bộ Sưu Tập</li>
+                </ol>
+    </section>
+    <section class="content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!-- general form elements -->
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title">Danh Sách Các Bộ Sưu Tập</h3>
+                                </div><!-- /.box-header -->
+                                <div my-collection  class="box-body">
+                                <table class="table table-bordered table-hover">
+                                        <tbody>
+                                        <tr>
+                                            <th style="text-align:center">Ảnh Đại Diện</th>
+                                            <th>Tên Bộ Sưu Tập</th>
+                                            <th>Ngày Tạo</th>
+                                            <th style="text-align:center">Chỉnh Sửa</th>
+                                            <th style="">Xóa</th>
+                                            </tr>
+
+                                            <tr ng-repeat="item in table">
+                                                <td style="text-align:center"><img style="width:50px" src="{{baseUrl}}/{{item.collection_featured_image}}" ></td>
+                                                <td>{{item.collection_name}}</td>
+                                                <td>{{item.collection_date_created}}</td>
+                                                <td style="text-align:center"><a href="#/collection/{{item.collection_id}}"><button class="btn btn-primary btn-sm">Chỉnh Sửa</button></</a></td>
+                                               <td style="text-align:center"><button ng-click="btnDelete(item.collection_id)" class="btn btn-danger btn-sm">Xóa</button></td>
+                                            </tr>
+                                        </tbody>
+                                </table>
+                                <div ng-controller="CollectionListController">
+                                    <pagination  total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="false"></pagination>
+                                    <pre>Trang: {{bigCurrentPage}} / {{numPages}}</pre>
+                                </div>
+
+                                </div>
+                            </div><!-- /.box -->
+                            
+                        </div>
+                    </div>
+
+                </section><!-- /.content -->
+</aside>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Thông Báo</h4>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có chắc chắn muốn xóa lựa chọn này ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+        <button ng-click="deleteSelected()" type="button" class="btn btn-danger">Xóa</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

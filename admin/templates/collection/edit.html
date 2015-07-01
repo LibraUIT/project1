@@ -1,0 +1,109 @@
+<aside class="right-side">                
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            CHỈNH SỬA BỘ SƯU TẬP
+                    </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#/"><i class="fa fa-dashboard"></i> Trang Chủ</a></li>
+                    <li><a href="#/">Bộ Sưu Tập</a></li>
+                    <li class="active">Chỉnh Sửa Bộ Sưu Tập</li>
+                </ol>
+    </section>
+    <section class="content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!-- general form elements -->
+                            <span ng-click="btnBack()" style="margin-bottom:20px;" class="btn btn-default">
+                                                <i class="glyphicon glyphicon-chevron-left"></i>
+                                                <span>Trở Lại</span> 
+                            </span> 
+
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title">Thông Tin Bộ Sưu Tập</h3>
+                                </div><!-- /.box-header -->
+                                <!-- form start -->
+                                <form edit-collection role="form">
+                                    <div class="box-body">
+                                        <div ng-if="message_error" class="alert alert-danger alert-dismissable alert-error">
+                                        <i class="fa fa-ban"></i>
+                                        <span>{{message_error}}</span>
+                                        </div>
+                                        <div ng-if="message_success" class="alert alert-success alert-dismissable alert-success">
+                                        <i class="fa fa-ban"></i>
+                                        <span>{{message_success}}</span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tên Bộ Sưu Tập</label>
+                                            <input ng-model="title" type="text" class="form-control" id="title" placeholder="Tên Bộ Sưu Tập">
+                                        </div>
+                                        <div class="form-group">
+                                        <label>Ảnh Đại Diện Cho Bộ Sưu Tập</label>
+                                            <img style="display:block" width="100px" id="blah" src="{{baseUrl}}/{{featuredImage}}" alt="your image" />
+                                        </div>
+                                        <div class="form-group">
+                                        
+                                        <span class="btn btn-success fileinput-button">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                            <span>Đổi Ảnh...</span> 
+                                            <!-- The file input field used as target for the file upload widget -->
+
+                                            <input id="fileupload" type="file" name="files1[]" multiple>
+                                        </span>
+                                        ( Kích thước tốt nhất : 126px X 612px ) 
+                                        </div>
+                                        <div class="form-group">
+
+                                        <label>Ảnh Của Bộ Sưu Tập</label>
+                                        <br />
+                                        ( Click vào ảnh đã tải lên để xóa )
+                                        </div>
+                                        <div ng-if="check" class="form-group">
+                                          
+                                            <div style="width:190px;float:left" ng-repeat="item in imageArray">
+                                            <img  ng-click="removeUpload(item)"  style="display:block" width="190px" src="{{baseUrl}}/{{item}}" alt="your image" />
+                                            </div>
+                                        </div>
+                                        <div style="clear:left" class="form-group">
+                                         
+
+                                          <br>
+                                            <span class="btn btn-success fileinput-button">
+                                                <i class="glyphicon glyphicon-plus"></i>
+                                                <span>Thêm Nhiều Ảnh...</span> 
+                                                <!-- The file input field used as target for the file upload widget -->
+
+                                                <input id="morefileupload" type="file" name="files2[]" multiple>
+                                            </span>
+                                            ( Kích thước tốt nhất : 683px X 1024px ) 
+                                        </div>
+                                        <div class="form-group">
+                                            ( Click vào ảnh nếu không muốn tải lên )
+                                            <div id="more"></div>
+                                            <img class="blah2" style="display:none" width="200px" id="blah2" src="#" alt="your image" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Trạng Thái Tải Ảnh</label>
+                                            <div class="progress sm progress-striped active">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                                    <span class="sr-only">20% Hoàn Thành</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button ng-click="btnCollectionUpload()" type="submit" class="btn btn-primary">Tải Hình Mới Lên</button>
+                                        </div>      
+                                    </div><!-- /.box-body -->
+                                    <div class="box-footer">
+                                        <button ng-click="btnCollectionUpdate()" type="submit" class="btn btn-success">Lưu Bộ Sưu Tập</button>
+                                        <button ng-click="btnCollectionCancle()" type="submit" class="btn btn-danger">Hủy</button>
+                                        
+                                    </div>
+                                </form>
+                            </div><!-- /.box -->
+                        </div>
+                    </div>
+
+                </section><!-- /.content -->
+</aside>
