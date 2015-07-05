@@ -212,7 +212,7 @@ configControllers.controller('CollectionListController', ['$scope', '$rootScope'
                         for(var i = 0; i < res.data.length; i++)
                         {
                             tableHtml += '<tr>';
-                            tableHtml += '<td style="text-align:center"><img style="width:50px" src="'+baseUrl+'/'+res.data[i].collection_featured_image+'" ></td>';
+                            tableHtml += '<td style="text-align:center;height:260px"><img style="width:50px" src="'+baseUrl+'/'+res.data[i].collection_featured_image+'" ></td>';
                             tableHtml += '<td>'+res.data[i].collection_name+'</td>';
                             tableHtml += '<td>'+res.data[i].collection_date_created+'</td>';
                             tableHtml += '<td style="text-align:center"><a href="#/collection/'+res.data[i].collection_id+'"><button class="btn btn-primary btn-sm">Chỉnh Sửa</button></</a></td>';

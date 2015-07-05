@@ -53,7 +53,8 @@ configApp.factory("ProductService", function($http) {
     },
     updateById : function(data)
     {
-      var urlConfig = [baseUrl, 'admin','category_update_get_by_id'].join('/');
+
+      var urlConfig = [baseUrl, 'admin','product_update_get_by_id'].join('/');
       return $http({
         method: 'POST',
         url: urlConfig,
@@ -154,6 +155,11 @@ configControllers.controller('ProductController', ['$scope', '$rootScope','$rout
            };
          }
          ProductService.save(data).success(function(res){
+            productImg = [];
+            imageArray = [];
+            uploadComplete = 0;
+            per = 0;
+            status  = 0;
             $location.path("/product_list");
          });
          
@@ -193,18 +199,30 @@ configControllers.controller('ProductListController', ['$scope', '$rootScope','$
                                             '</tr>';
                         for(var i = 0; i < res.data.length; i++)
                         {
+                            if(res.data[i].price_new == null)
+                            {
+                              var price_new = '';
+                            }else
+                            {
+                              var price_new = res.data[i].price_new;
+                            }
                             tableHtml += '<tr style="height:100px">';
                             tableHtml += '<td style="text-align:center"><img style="width:50px" src="'+baseUrl+'/'+res.data[i].image+'" ></td>';
                             tableHtml += '<td>'+res.data[i].name+'</td>';
                             tableHtml += '<td>'+res.data[i].category_name+'</td>';
                             tableHtml += '<td>'+res.data[i].price+'</td>';
-                            tableHtml += '<td>'+res.data[i].price_new+'</td>';
+                            tableHtml += '<td>'+price_new+'</td>';
                             tableHtml += '<td>'+res.data[i].date_created+'</td>';
                             tableHtml += '<td style="text-align:center"><a href="#/product/'+res.data[i].id+'"><button class="btn btn-primary btn-sm">Chỉnh Sửa</button></</a></td>';
-                            tableHtml += '<td style="text-align:center"><button ng-click="btnDelete('+res.data[i].id+')" class="btn btn-danger btn-sm">Xóa</button></td>';
+                            tableHtml += '<td style="text-align:center"><button id="'+res.data[i].id+'" ng-click="btnDelete('+res.data[i].id+')" class="btn btn-danger btn-sm btnDelete">Xóa</button></td>';
                             tableHtml += '</tr>';
-                        }                    
-                        $('.table').html(tableHtml);                    
+                        } 
+
+                        $('.table').html(tableHtml); 
+                        $('.btnDelete').on('click', function(){
+                            $('#myModal').modal('show') ;
+                            $scope.product_id = $(this).attr('id');
+                        });                    
                     });
                 }
               });
@@ -217,10 +235,10 @@ configControllers.controller('ProductListController', ['$scope', '$rootScope','$
     $scope.deleteSelected = function()
       {
           ProductService.deleteById($scope.product_id).success(function(res){
-              
-              $route.reload();
               $('#myModal').modal('hide') ;
               $('.fade').removeClass('in').addClass('out');
+              $route.reload();
+              
           });
       }
 
@@ -286,28 +304,67 @@ configControllers.controller('ProductListController', ['$scope', '$rootScope','$
 	    	{
 	    		$location.path("/product_list");
 	    	}
-	    	scope.btnEditCategory = function()
+	    	scope.btnUpdateProduct = function()
 	    	{
-		    	if(scope.title != '')
-		    	{
-		    		var data = {
-		    			"id" : cateId,
-		    			"name" : scope.title
-		    		};
-		    		CategoryService.updateById(data).success(function(res){
-		    			if(res == "FALSE")
-		    			{
-		    				scope.message_error = 'Tên này đã tồn tại.';
-		    			}else
-		    			{
-		    				$route.reload();
-		    			}
-		    		});
-		    	}else
-		    	{
-		    		scope.message_error = "Vui lòng nhập vào tên của category";
-		    	}	
-	    	}
+		    	 scope.message_error = '';
+           if(scope.title == '')
+           {
+              scope.message_error = 'Vui lòng nhập vào tên cho sản phẩm';
+           }else if(scope.category_id == undefined)
+           {
+              scope.message_error = 'Vui lòng nhập chọn category cho sản phẩm';
+           }else if(scope.description == '')
+           {
+              scope.message_error = 'Vui lòng nhập vào mô tả cho sản phẩm';
+           }else if(scope.price == '')
+           {
+              scope.message_error = "Vui lòng nhập vào giá cho sản phẩm"; 
+           }else if(validatePrice(scope.price) == false)
+           {
+              scope.message_error = "Gía của sản phẩm phải là số"; 
+           }else if(scope.price_new && validatePrice(scope.price_new) == false)
+           {
+              scope.message_error = "Gía mới của sản phẩm phải là số"; 
+           }else if(imageArray.length == 0)
+           {
+              scope.message_error = "Vui lòng tải lên hình ảnh cho sản phẩm"; 
+           }else
+           {
+              if(! scope.price_new)
+               {
+                  var data = {
+                    "id" : pId,
+                    "name" : scope.title,
+                    "category_id" : scope.category_id,
+                    "description" : scope.description,
+                    "price" : scope.price,
+                    "images" : JSON.stringify(imageArray)
+                 };
+               }else
+               {
+                  var data = {
+                    "id" : pId,
+                    "name" : scope.title,
+                    "category_id" : scope.category_id,
+                    "description" : scope.description,
+                    "price" : scope.price,
+                    "price_new" : scope.price_new,
+                    "images" : JSON.stringify(imageArray)
+                 };
+               }
+               ProductService.updateById(data).success(function(res){
+                  if(res == "TRUE")
+                    {
+                      productImg = [];
+                      imageArray = [];
+                      uploadComplete = 0;
+                      per = 0;
+                      status  = 0;
+                      $route.reload();
+                    }
+               });
+           }
+        }
 	    }
 	}
 });

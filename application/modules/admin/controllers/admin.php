@@ -551,4 +551,37 @@
 		header('Content-Type: application/json');
  		echo json_encode($data);
 	}
+	public function product_update_get_by_id()
+	{
+		$data = $this->input->post('data');
+		$id = $data['id'];
+		$name = $data['name'];
+		$category_id = $data['category_id'];
+		$description = $data['description'];
+		$price = $data['price'];
+		$images = $data['images'];
+		if($data['price_new'])
+		{
+			$price_new = $data['price_new'];
+			$update = array(
+					"name" => $name,
+					"category_id" => $category_id,
+					"description" => $description,
+					"price" => $price,
+					"price_new" => $price_new,
+					"images" => $images
+				);
+		}else
+		{
+			$update = array(
+					"name" => $name,
+					"category_id" => $category_id,
+					"description" => $description,
+					"price" => $price,
+					"images" => $images
+				);
+		}
+		$this->Product_model->updateItemById($id, $update);
+		echo "TRUE";
+	}
  }
