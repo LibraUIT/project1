@@ -101,6 +101,47 @@ $(window).bind("load", function() {
         $('.show-collection').css({"display" : "block"});
         $('.show-collection').addClass('fadeInUp');
         $('.show-collection').removeClass('fadeOutUp');
+        $.ajax({
+          method: "POST",
+          url: base_url+['portfolio', 'get_collection_by_id'].join('/'),
+          data: { collect_id : collect_id }
+          })
+          .done(function( res ) {
+                $('#title-content-collection').text(res.collection_name);
+                var collections = JSON.parse(res.collection_image_list);
+                $('#show-image').attr('src', base_url+collections[0]);
+                var listImage = '';
+                var count = 0;
+                $.each( collections, function( key, value ) {
+                    if(count == 0)
+                    {
+                       listImage += '<li><img class="clickImage" onclick="clickImage('+count+')" style="width:52px;height:78px;-webkit-filter: grayscale(0%);" src="'+base_url+value+'"></li>'; 
+                    }
+                    else
+                    {
+                        listImage += '<li><img class="clickImage" onclick="clickImage('+count+')" style="width:52px;height:78px" src="'+base_url+value+'"></li>';
+                    }
+                    count++;
+                });
+                $('#gallery-collection').html(listImage);
+          });
+    });
+    $('.latest-collection').on('click', function(){
+        basePageId = 2;
+        loadPage(basePageId)
+        clearArticle();
+        $('.collection').css({"display" : "block"});
+        $('.collection-title').css({"display" : "block"});
+        $('.collection-title').addClass('slideInLeft');
+        $('.list-collection').css({"display" : "block"});
+        $('.list-collection').addClass('slideInUp');
+        var collect_id = 'collect_43';
+        $('.collection-title').fadeOut();
+        $('.list-collection').fadeOut();
+        $('.show-collection').css({"display" : "block"});
+        $('.show-collection').addClass('fadeInUp');
+        $('.show-collection').removeClass('fadeOutUp');
+        getCollection(collect_id);
     });
     $('.view-gallary').on('click', function(){
         var collect_id = $(this).parent().attr('class');
@@ -109,6 +150,30 @@ $(window).bind("load", function() {
         $('.show-collection').css({"display" : "block"});
         $('.show-collection').addClass('fadeInUp');
         $('.show-collection').removeClass('fadeOutUp');
+        $.ajax({
+          method: "POST",
+          url: base_url+['portfolio', 'get_collection_by_id'].join('/'),
+          data: { collect_id : collect_id }
+          })
+          .done(function( res ) {
+                $('#title-content-collection').text(res.collection_name);
+                var collections = JSON.parse(res.collection_image_list);
+                $('#show-image').attr('src', base_url+collections[0]);
+                var listImage = '';
+                var count = 0;
+                $.each( collections, function( key, value ) {
+                    if(count == 0)
+                    {
+                       listImage += '<li><img class="clickImage" onclick="clickImage('+count+')" style="width:52px;height:78px;-webkit-filter: grayscale(0%);" src="'+base_url+value+'"></li>'; 
+                    }
+                    else
+                    {
+                        listImage += '<li><img class="clickImage" onclick="clickImage('+count+')" style="width:52px;height:78px" src="'+base_url+value+'"></li>';
+                    }
+                    count++;
+                });
+                $('#gallery-collection').html(listImage);
+          });
     });
     $('.back-to-all').on('click', function(){
         $('.collection-title').fadeIn();
@@ -152,4 +217,48 @@ $(window).bind("load", function() {
         $('.article3').addClass('slideInUp');
         $('body').css({"background-image" : "url('"+base_url+"public/portfolio/img/contact/contact.jpg')"});
     });
+
+
 });
+function clickImage(img)
+{
+  // $('.clickImage').css({"-webkit-filter":"grayscale(0%)"});
+   $( ".clickImage" ).each(function( index ) {
+        if(index == img)
+        {
+            $(this).css({"-webkit-filter":"grayscale(0%)"});
+            var img_url = $(this).attr('src');
+            $('#show-image').attr('src',img_url);
+        }else
+        {
+           $(this).css({"-webkit-filter":"grayscale(100%)"}); 
+        }
+    });     
+}
+function getCollection(collect_id)
+{
+   $.ajax({
+          method: "POST",
+          url: base_url+['portfolio', 'get_collection_by_id'].join('/'),
+          data: { collect_id : collect_id }
+          })
+          .done(function( res ) {
+                $('#title-content-collection').text(res.collection_name);
+                var collections = JSON.parse(res.collection_image_list);
+                $('#show-image').attr('src', base_url+collections[0]);
+                var listImage = '';
+                var count = 0;
+                $.each( collections, function( key, value ) {
+                    if(count == 0)
+                    {
+                       listImage += '<li><img class="clickImage" onclick="clickImage('+count+')" style="width:52px;height:78px;-webkit-filter: grayscale(0%);" src="'+base_url+value+'"></li>'; 
+                    }
+                    else
+                    {
+                        listImage += '<li><img class="clickImage" onclick="clickImage('+count+')" style="width:52px;height:78px" src="'+base_url+value+'"></li>';
+                    }
+                    count++;
+                });
+                $('#gallery-collection').html(listImage);
+          }); 
+}

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+-<!DOCTYPE html>
 <html>
 <head>
 	<title><?php echo $site_title; ?></title>
@@ -35,7 +35,7 @@
 	</div>
 </header>
 <article class="article1 animated slideInUp">
-	<div class="article hvr-shutter-out-vertical">
+	<div class="article hvr-shutter-out-vertical latest-collection">
 		<h1>The latest looks</h1>
 		<h4>View the fall 2015 collection</h4>
 	</div>
@@ -107,8 +107,8 @@
 </div>
 <div class="collection-title animated">
 		<ul>
-			<h1>COLLECTIONS</h1>
-			<li>
+			<h1>BỘ SƯU TẬP</h1>
+			<!--<li>
 				<span>2015</span>
 				<ul>
 					
@@ -124,12 +124,22 @@
 			</li>
 			<li>
 				<span class="collectid" id="collect_3">BRIDAL</span>
+			</li>-->
+			<?php
+				foreach($collections as $collection)
+				{
+			?>
+			<li>
+				<span class="collectid" id="collect_<?php echo $collection['collection_id']; ?>"><?php echo $collection['collection_name']; ?></span>
 			</li>
+			<?php				
+				}
+			?>
 		</ul>
 </div>
 <div class="list-collection animated">
 	<ul>
-		<li class="collect_1"><img height="500" src="<?php echo base_url(); ?>public/portfolio/img/collections/nav/nav7.jpg"><div class="view-gallary hvr-bounce-to-right">View Gallary</div></li>
+		<!--<li class="collect_1"><img height="500" src="<?php echo base_url(); ?>public/portfolio/img/collections/nav/nav7.jpg"><div class="view-gallary hvr-bounce-to-right">View Gallary</div></li>
 		<li class="collect_2"><img height="500" src="<?php echo base_url(); ?>public/portfolio/img/collections/nav/nav11.jpg"><div class="view-gallary hvr-bounce-to-right">View Gallary</div></li>
 		<li class="collect_3"><img height="500" src="<?php echo base_url(); ?>public/portfolio/img/collections/nav/nav12.jpg"><div class="view-gallary hvr-bounce-to-right">View Gallary</div></li>
 		<li class="collect_4"><img height="500" src="<?php echo base_url(); ?>public/portfolio/img/collections/nav/nav13.jpg"><div class="view-gallary hvr-bounce-to-right">View Gallary</div></li>
@@ -137,20 +147,28 @@
 		<li><img height="500" src="<?php echo base_url(); ?>public/portfolio/img/collections/nav/nav15.jpg"><div class="view-gallary hvr-bounce-to-right">View Gallary</div></li>
 		<li><img height="500" src="<?php echo base_url(); ?>public/portfolio/img/collections/nav/nav16.jpg"><div class="view-gallary hvr-bounce-to-right">View Gallary</div></li>
 		<li><img height="500" src="<?php echo base_url(); ?>public/portfolio/img/collections/nav/nav17.jpg"><div class="view-gallary hvr-bounce-to-right">View Gallary</div></li>
-		<li><img height="500" src="<?php echo base_url(); ?>public/portfolio/img/collections/nav/nav18.jpg"><div class="view-gallary hvr-bounce-to-right">View Gallary</div></li>
+		<li><img height="500" src="<?php echo base_url(); ?>public/portfolio/img/collections/nav/nav18.jpg"><div class="view-gallary hvr-bounce-to-right">View Gallary</div></li>-->
+		<?php
+			foreach($collections as $collection)
+			{
+		?>
+		<li class="collect_<?php echo $collection['collection_id']; ?>"><img style="width:103px" height="500" src="<?php echo base_url().$collection['collection_featured_image']; ?>"><div class="view-gallary hvr-bounce-to-right">Xem Bộ Sưu Tập</div></li>
+		<?php				
+			}
+		?>
 	</ul>
 </div>
 <div class="show-collection animated">
 	<div class="title-content-collection">
-		<h1>2015 <i>Pre fall</i></h1>
+		<h1 ><i id="title-content-collection"></i></h1>
 	</div>
 	<div class="content-collection">
 		<div class="show-image">
-			<img height="505" src="<?php echo base_url(); ?>public/portfolio/img/collections/aw2015/CSAW2015_1.jpg">
+			<img id="show-image" style="width:337px" height="505" src="">
 		</div>
 		<div class="gallery-collection">
-			<ul>
-				<li><img src="<?php echo base_url(); ?>public/portfolio/img/collections/aw2015/thumb/CSAW2015_10th.jpg"></li>
+			<ul id="gallery-collection">
+				<!--<li><img src="<?php echo base_url(); ?>public/portfolio/img/collections/aw2015/thumb/CSAW2015_10th.jpg"></li>
 				<li><img src="<?php echo base_url(); ?>public/portfolio/img/collections/aw2015/thumb/CSAW2015_9th.jpg"></li>
 				<li><img src="<?php echo base_url(); ?>public/portfolio/img/collections/aw2015/thumb/CSAW2015_8th.jpg"></li>
 				<li><img src="<?php echo base_url(); ?>public/portfolio/img/collections/aw2015/thumb/CSAW2015_7th.jpg"></li>
@@ -161,12 +179,12 @@
 				<li><img src="<?php echo base_url(); ?>public/portfolio/img/collections/aw2015/thumb/CSAW2015_2th.jpg"></li>
 				<li><img src="<?php echo base_url(); ?>public/portfolio/img/collections/aw2015/thumb/CSAW2015_1th.jpg"></li>
 				<li><img src="<?php echo base_url(); ?>public/portfolio/img/collections/aw2015/thumb/CSAW2015_10th.jpg"></li>
-				<li><img src="<?php echo base_url(); ?>public/portfolio/img/collections/aw2015/thumb/CSAW2015_9th.jpg"></li>
+				<li><img src="<?php echo base_url(); ?>public/portfolio/img/collections/aw2015/thumb/CSAW2015_9th.jpg"></li>-->
 
 			</ul>
 		</div>
 	</div>
-	<div class="back-to-all animated"><b>Back to</b> all Collections</div>
+	<div class="back-to-all animated"><b>Trở về </b><br /> bộ sưu tập</div>
 </div>
 <footer>
 	<ul class="animated slideInLeft">

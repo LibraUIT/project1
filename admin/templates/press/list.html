@@ -2,12 +2,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            QUẢN LÝ CATEGORY
+            QUẢN LÝ PRESS
                     </h1>
                 <ol class="breadcrumb">
                     <li><a href="#/"><i class="fa fa-dashboard"></i> Trang Chủ</a></li>
-                    <li><a href="#/">Category</a></li>
-                    <li class="active">Quản Lý Category</li>
+                    <li><a href="#/">Press</a></li>
+                    <li class="active">Quản Lý Press</li>
                 </ol>
     </section>
     <section class="content">
@@ -22,18 +22,29 @@
                                 <table class="table table-bordered table-hover">
                                         <tbody>
                                         <tr>
-                                            <th style="width:60%">Tên</th>
-                                            <th style="text-align:center;width:20%">Chỉnh Sửa</th>
-                                            <th style="text-align:center;width:20%">Xóa</th>
+                                            <th style="text-align:center">Ảnh Đại Diện</th>
+                                            <th style="text-align:center">Ảnh Chính</th>
+                                            <th>Tên</th>
+                                            <th>Ngày Tạo</th>
+                                            <th style="text-align:center">Chỉnh Sửa</th>
+                                            <th style="text-align:center">Xóa</th>
                                             </tr>
 
                                             <tr ng-repeat="item in table">
-                                                <td>{{item.category_name}}</td>
-                                                <td style="text-align:center"><a href="#/category/{{item.category_id}}"><button class="btn btn-primary btn-sm">Chỉnh Sửa</button></</a></td>
-                                               <td style="text-align:center"><button ng-click="btnDelete(item.category_id)" class="btn btn-danger btn-sm">Xóa</button></td>
+                                                <td style="text-align:center"><img style="width:150px;height:100px" src="{{baseUrl}}{{item.press_image_1}}" ></td>
+                                                <td style="text-align:center"><img style="width:150px;height:100px" src="{{baseUrl}}{{item.press_image_2}}" ></td>
+                                                <td>{{item.press_name}}</td>
+                                                <td>{{item.date_created}}</td>
+                                                <td style="text-align:center"><a href="#/press/{{item.press_id}}"><button class="btn btn-primary btn-sm">Chỉnh Sửa</button></</a></td>
+                                               <td style="text-align:center"><button ng-click="btnDelete(item.press_id)" class="btn btn-danger btn-sm">Xóa</button></td>
                                             </tr>
                                         </tbody>
                                 </table>
+                                <div ng-controller="PressListController">
+                                    <pagination  total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="false"></pagination>
+                                    <pre>Trang: {{bigCurrentPage}} / {{numPages}}</pre>
+                                </div>
+
                                 </div>
                             </div><!-- /.box -->
                             

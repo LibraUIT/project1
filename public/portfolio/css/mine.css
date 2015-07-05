@@ -41,7 +41,7 @@
 	}
 	.nav-menu > ul > li
 	{
-		height: 100%;
+		height: 20%;
 		float: left;
 		margin-right: 1%;
 		font-size: 10px;
@@ -250,10 +250,11 @@
 	}
 	.collection-title span	
 	{
-		font-size: 24px;
+		font-size: 20px;
 		color: #000;
 		font-weight: normal;
 		opacity: 0.5;
+		margin-top: 20px;
 		font-family: "Times New Roman", Georgia, Serif;
 	}
 	.collection-title > ul > li > ul

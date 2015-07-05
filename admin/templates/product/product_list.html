@@ -2,12 +2,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            QUẢN LÝ CATEGORY
+            QUẢN LÝ SẢN PHẨM
                     </h1>
                 <ol class="breadcrumb">
                     <li><a href="#/"><i class="fa fa-dashboard"></i> Trang Chủ</a></li>
-                    <li><a href="#/">Category</a></li>
-                    <li class="active">Quản Lý Category</li>
+                    <li><a href="#/">Sản Phẩm</a></li>
+                    <li class="active">Quản Lý Sản Phẩm</li>
                 </ol>
     </section>
     <section class="content">
@@ -16,24 +16,39 @@
                             <!-- general form elements -->
                             <div class="box box-primary">
                                 <div class="box-header">
-                                    <h3 class="box-title">Danh Sách</h3>
+                                    <h3 class="box-title">Danh Sách Các Sản Phẩm</h3>
                                 </div><!-- /.box-header -->
-                                <div my-press  class="box-body">
+                                <div my-collection  class="box-body">
                                 <table class="table table-bordered table-hover">
                                         <tbody>
                                         <tr>
-                                            <th style="width:60%">Tên</th>
-                                            <th style="text-align:center;width:20%">Chỉnh Sửa</th>
-                                            <th style="text-align:center;width:20%">Xóa</th>
+                                            <th style="text-align:center">Ảnh Đại Diện</th>
+                                            <th>Tên Sản Phẩm</th>
+                                            <th>Category</th>
+                                            <th>Giá</th>
+                                            <th>Giá Mới</th>
+                                            <th>Ngày Tạo</th>
+                                            <th style="text-align:center">Chỉnh Sửa</th>
+                                            <th style="">Xóa</th>
                                             </tr>
 
-                                            <tr ng-repeat="item in table">
+                                            <tr style="height:100px" ng-repeat="item in table">
+                                                <td style="text-align:center"><img style="width:50px" src="{{baseUrl}}/{{item.image}}" ></td>
+                                                <td>{{item.name}}</td>
                                                 <td>{{item.category_name}}</td>
-                                                <td style="text-align:center"><a href="#/category/{{item.category_id}}"><button class="btn btn-primary btn-sm">Chỉnh Sửa</button></</a></td>
-                                               <td style="text-align:center"><button ng-click="btnDelete(item.category_id)" class="btn btn-danger btn-sm">Xóa</button></td>
+                                                <td>{{item.price}}</td>
+                                                <td>{{item.price_new}}</td>
+                                                <td>{{item.date_created}}</td>
+                                                <td style="text-align:center"><a href="#/product/{{item.id}}"><button class="btn btn-primary btn-sm">Chỉnh Sửa</button></</a></td>
+                                               <td style="text-align:center"><button ng-click="btnDelete(item.id)" class="btn btn-danger btn-sm">Xóa</button></td>
                                             </tr>
                                         </tbody>
                                 </table>
+                                <div ng-controller="ProductListController">
+                                    <pagination  total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="false"></pagination>
+                                    <pre>Trang: {{bigCurrentPage}} / {{numPages}}</pre>
+                                </div>
+
                                 </div>
                             </div><!-- /.box -->
                             
