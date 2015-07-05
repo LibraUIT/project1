@@ -83,7 +83,7 @@ configControllers.controller('CollectionController', ['$scope', '$rootScope','$r
                 }
     $scope.btnCollectionUpload = function()
     {
-       collection = removeEmptyArrayElements(collection);
+       
        if(featured.length == 0)
        {
           $scope.message_error = "Vui lòng chọn ảnh đại diện cho bộ sưu tập";
@@ -107,8 +107,9 @@ configControllers.controller('CollectionController', ['$scope', '$rootScope','$r
                 }
               }
           });
-          doUpload(collection);
-          doUpload2(featured);
+          collection = removeEmptyArrayElements(collection);
+          doUploaded(collection);
+          doUploaded2(featured);
           /*setInterval(function(){
               if(status == 1)
               {
@@ -214,8 +215,8 @@ configControllers.controller('CollectionListController', ['$scope', '$rootScope'
                             tableHtml += '<td style="text-align:center"><img style="width:50px" src="'+baseUrl+'/'+res.data[i].collection_featured_image+'" ></td>';
                             tableHtml += '<td>'+res.data[i].collection_name+'</td>';
                             tableHtml += '<td>'+res.data[i].collection_date_created+'</td>';
-                            tableHtml += '<td>'+res.data[i].collection_name+'</td>';
-                            tableHtml += '<td>'+res.data[i].collection_name+'</td>';
+                            tableHtml += '<td style="text-align:center"><a href="#/collection/'+res.data[i].collection_id+'"><button class="btn btn-primary btn-sm">Chỉnh Sửa</button></</a></td>';
+                            tableHtml += '<td style="text-align:center"><button ng-click="btnDelete('+res.data[i].collection_id+')" class="btn btn-danger btn-sm">Xóa</button></td>';
                             tableHtml += '</tr>';
                         }                    
                         $('.table').html(tableHtml);                    
@@ -268,7 +269,7 @@ configControllers.controller('CollectionListController', ['$scope', '$rootScope'
                 scope.removeUpload = function(item)
                 {
                   scope.imageArray = removeItemByValue(item, scope.imageArray, item);
-                  imageArray = scope,imageArray;
+                  imageArray = scope.imageArray;
                 }
                 $('#fileupload').change(function(){
                     readURL(this);
@@ -297,20 +298,22 @@ configControllers.controller('CollectionListController', ['$scope', '$rootScope'
                         }
                     });
                     collection = removeEmptyArrayElements(collection);
-                    if(featured  == "")
+                    if(featured.length == 0)
                     {
                         console.log("Khong co file de up");
                     }else
                     {
-                        doUpload2(featured);
+                        doUploaded2(featured);
                         
                     }
                     if(collection.length > 0)
                     {
-                        doUpload(collection);
+                        doUploaded(collection);
+                        console.log(collection.length);
                     }else
                     {
                         console.log("Khong co file de up");
+                        console.log(collection.length);
                     }
                     
 
@@ -340,6 +343,8 @@ configControllers.controller('CollectionListController', ['$scope', '$rootScope'
 
                    /*if(edit == 1)
                    {*/
+                    if(scope.title != '')
+                    {  
                       var data = {
                         "id" : collectionId,
                         "name" : scope.title,
@@ -352,6 +357,10 @@ configControllers.controller('CollectionListController', ['$scope', '$rootScope'
                             $route.reload();
                           }
                       });
+                    }else
+                    {
+                      scope.message_error = "Vui lòng nhập vào tên cho bộ sưu tập";
+                    }
                   /*}else
                    {
                       console.log('Khong update hinh anh');
@@ -397,7 +406,7 @@ function readURL2(input) {
 
         reader.onload = function (e) {
             collection.push(document.getElementById("morefileupload").files[0]);
-           $('#more').append('<img class=" blah2" width="200px" id="'+i+'" src="'+e.target.result+'" alt="your image" />');
+           $('#more').append('<img class=" blah2" width="190px" id="'+i+'" src="'+e.target.result+'" alt="your image" />');
             i++;
         }
         reader.readAsDataURL(input.files[0]);
@@ -414,7 +423,7 @@ var featuredImage = '';
 var uploadComplete = 0;
 var per = 0;
 var status  = 0;
-function doUpload(imgUpload)
+function doUploaded(imgUpload)
 {
   for(var i=0; i<collection.length; i++)
   {
@@ -438,7 +447,7 @@ function doUpload(imgUpload)
                 imageArray.push(data);
               }
               uploadComplete++;
-              completeBar(uploadComplete);
+              completeBared(uploadComplete);
           },
           error: function(jqXHR, textStatus, errorThrown)
           {
@@ -450,7 +459,7 @@ function doUpload(imgUpload)
   }
   
 }
-function doUpload2(imgUpload)
+function doUploaded2(imgUpload)
 {
     var data = new FormData();
     data.append('filename', imgUpload.name);
@@ -466,7 +475,7 @@ function doUpload2(imgUpload)
           {
               featuredImage = data;
               uploadComplete++;
-              completeBar(uploadComplete);
+              completeBared(uploadComplete);
           },
           error: function(jqXHR, textStatus, errorThrown)
           {
@@ -476,7 +485,7 @@ function doUpload2(imgUpload)
           }
       });    
 }
-function completeBar(complete)
+function completeBared(complete)
 {
    
    var total = collection.length + 1;

@@ -50,6 +50,42 @@ configApp.config(['$routeProvider',
         templateUrl : 'templates/collection/edit.html',
         controller : 'CollectionListController'
       }).
+      when('/press_create', {
+        templateUrl : 'templates/press/create.html',
+        controller : 'PressController'
+      }).
+      when('/press_list', {
+        templateUrl : 'templates/press/list.html',
+        controller : 'PressListController'
+      }).
+      when('/press/:id', {
+        templateUrl : 'templates/press/edit.html',
+        controller : 'PressListController'
+      }).
+      when('/category_create',{
+        templateUrl : 'templates/category/create.html',
+        controller : 'CategoryController'
+      }).
+      when('/category_list', {
+        templateUrl : 'templates/category/main.html',
+        controller : 'CategoryListController'
+      }).
+      when('/category/:id', {
+        templateUrl : 'templates/category/edit.html',
+        controller : 'CategoryController'
+      }).
+      when('/product_create', {
+        templateUrl : 'templates/product/create.html',
+        controller : 'ProductController'
+      }).
+      when('/product_list', {
+        templateUrl : 'templates/product/product_list.html',
+        controller : 'ProductListController'
+      }).
+      when('/product/:id', {
+        templateUrl : 'templates/product/edit.html',
+        controller : 'ProductController'
+      }).
       otherwise({
           redirectTo: '/'
       });
