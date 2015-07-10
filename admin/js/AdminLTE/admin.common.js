@@ -8,7 +8,7 @@ var configApp = angular.module('quannguyen', [
   'configControllers'
 ]);
 
-var baseUrl = "http://localhost/project_shopping";
+var baseUrl = "http://localhost/project1";
 function isAdminLogin()
 {
     var isAdminLogin = localStorage.getItem("isAdminLogin");

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Home / Magic fashion </title>
+	<title><?php echo $title; ?></title>
 	<meta charset="UTF-8">
 	<meta name="author" content="Christian Siriano">
 	<meta name="description" content="Designer clothing, accessories, and gift items.">
@@ -26,7 +26,7 @@
 <!-- Main -->
 <div id="content" class="strip">
       <div class="canvas fade_in">
-      		<?php $this->load->view('home'); ?>
+      		<?php $this->load->view($template,$data); ?>
       </div>
 </div>      
 <!-- End Main -->
