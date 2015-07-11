@@ -29,6 +29,7 @@
  		$contact = $this->Page_model->getItemById(1);
  		$home = $this->Homesetting_model->getItemById(1);
  		$collections = $this->Collection_model->getListLimit(0, 9);
+ 		$data['last_collection'] = $collections[0]['collection_id'];
  		$press = $this->Press_model->getList();
  		$data['about_title'] = $about['page_name'];
  		$data['about_content'] = $about['page_content'];

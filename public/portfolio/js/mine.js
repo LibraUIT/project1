@@ -143,7 +143,7 @@ $(window).bind("load", function() {
         $('.collection-title').addClass('slideInLeft');
         $('.list-collection').css({"display" : "block"});
         $('.list-collection').addClass('slideInUp');
-        var collect_id = 'collect_43';
+        var collect_id = 'collect_'+last_collection;
         $('.collection-title').fadeOut();
         $('.list-collection').fadeOut();
         $('.show-collection').css({"display" : "block"});

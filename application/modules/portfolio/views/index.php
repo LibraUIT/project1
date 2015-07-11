@@ -17,6 +17,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<script type="text/javascript">
 			var base_url = "<?php echo base_url(); ?>";
+			var last_collection = "<?php echo $last_collection; ?>";
 	</script>
 	<link href="<?php echo base_url(); ?>public/portfolio/lightbox/ekko-lightbox.css" rel="stylesheet">
 	<script src="<?php echo base_url(); ?>public/portfolio/lightbox/ekko-lightbox.js"></script>
