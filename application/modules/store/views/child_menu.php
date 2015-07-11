@@ -1,5 +1,5 @@
 <aside class="category_nav">
-	<nav class="category_nav">
+	<nav class="categories">
 		<h3>Products</h3>
 		<ul>
 			<li class="selected">
@@ -28,7 +28,16 @@
 				<a href="/category/bottoms" title="View Bottoms">Bottoms</a>
 			</li>
 			<li class="page">
-				<a href="/category/accessories" title="View Accessories">Accessories</a>
+				<a href="/category/shoes" title="View Shoes">Shoes</a>
+			</li>
+			<li class="page">
+				<a href="/category/sketches" title="View Sketches">Sketches</a>
+			</li>
+			<li class="page">
+				<a href="/category/gifts" title="View Gifts">Gifts</a>
+			</li>
+			<li class="page">
+				<a href="/category/under-150" title="View Under $150">Under $150</a>
 			</li>
 		</ul>
 	</nav>

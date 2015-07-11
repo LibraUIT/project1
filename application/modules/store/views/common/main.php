@@ -19,14 +19,26 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/store/stylesheet.css">
 	<!-- end -->
 </head>
-<body id="home_page" class="theme">
+<body id="<?php switch ($template['id']) {
+	case 'product_page':
+		echo 'product_page';
+		break;
+	default:
+		echo 'home_page';;
+		break;
+} ?>" class="theme no_transition">
 <!-- Header -->
 <?php $this->load->view("common/header"); ?>
 <!-- End Header -->
 <!-- Main -->
 <div id="content" class="strip">
       <div class="canvas fade_in">
-      		<?php $this->load->view($template,$data); ?>
+      		<?php
+      			if(isset($template['child_menu']) && $template['child_menu'] == "true"){
+				    $this->load->view("child_menu");
+				}
+      			$this->load->view($template['page'],$data); 
+      		?>
       </div>
 </div>      
 <!-- End Main -->

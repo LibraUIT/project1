@@ -8,9 +8,13 @@
  	{
  		$this->load->model("Product_model");
  		$products['pro'] = $this->Product_model->listProduct();
+ 		$template = array(
+ 			"id" => "home_page",
+ 			"page" => "home",
+ 		);
  		$view = array(
  			"title" => "Home page / Magic fashion",
- 			"template" => "home",
+ 			"template" => $template,
  			"data" => $products
  		);
  		$this->load->view("common/main",$view);
@@ -21,11 +25,30 @@
  		$result = $this->Product_model->detailProduct($id);
  		$detail['pro'] = $result['0'];
  		$title = $detail['pro']['name'];
+ 		$template = array(
+ 			"id" => "product_page",
+ 			"page" => "product_detail"
+ 		);
  		$view = array(
  			"title" => $title,
- 			"template" => "product_detail",
+ 			"template" => $template,
  			"data" => $detail
  		);
  		$this->load->view("common/main", $view);
+ 	}
+ 	public function products(){
+ 		$this->load->model("Product_model");
+ 		$products['pro'] = $this->Product_model->listProduct();
+ 		$template = array(
+ 			"id" => "home_page",
+ 			"child_menu" => "true",
+ 			"page" => "home"
+ 		);
+ 		$view = array(
+ 			"title" => "Products / Christian Siriano",
+ 			"template" => $template,
+ 			"data" => $products
+ 		);
+ 		$this->load->view("common/main",$view);
  	}
  }
