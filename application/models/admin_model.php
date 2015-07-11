@@ -26,4 +26,16 @@ class Admin_model extends CI_Model{
         $query = $this->db->get($this->_user);
         return $query->row_array();
     }
+    public function getUser($u_id, $u_email, $u_password)
+    {
+        $this->db->select('*');
+        $where =array(
+                "u_id" => $u_id,
+                "u_email" => $u_email,
+                "u_password" => $u_password
+            );
+        $this->db->where($where);
+        $query = $this->db->get($this->_user);
+        return $query->row_array();
+    }
 }

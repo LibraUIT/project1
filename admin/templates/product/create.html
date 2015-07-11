@@ -2,12 +2,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Sản Phẩm
+            {{text_menu_product_manament}}
                     </h1>
                 <ol class="breadcrumb">
-                    <li><a href="#/"><i class="fa fa-dashboard"></i> Trang Chủ</a></li>
-                    <li><a href="#/category_list">Sản Phẩm</a></li>
-                    <li class="active">Tạo Mới</li>
+                    <li><a href="#/"><i class="fa fa-dashboard"></i>{{text_menu_dashboard}}</a></li>
+                    <li><a href="#/category_list">{{text_menu_product_manament}}</a></li>
+                    <li class="active">{{text_menu_create_new}}</li>
                 </ol>
     </section>
     <section class="content">
@@ -16,12 +16,12 @@
                             <!-- general form elements -->
                             <span ng-click="btnBack()" style="margin-bottom:20px;" class="btn btn-default">
                                                 <i class="glyphicon glyphicon-chevron-left"></i>
-                                                <span>Trở Lại</span> 
+                                                <span>{{btn_back}}</span> 
                             </span> 
 
                             <div class="box box-primary">
                                 <div class="box-header">
-                                    <h3 class="box-title">Tạo Mới Sản Phẩm</h3>
+                                    <h3 class="box-title">{{text_menu_create_new}}</h3>
                                 </div><!-- /.box-header -->
                                 <!-- form start -->
                                 <form role="form">
@@ -31,60 +31,60 @@
                                         {{message_error}}
                                         </div>
                                         <div class="form-group">
-                                            <label>Tên</label>
-                                            <input ng-model="title" type="text" class="form-control" id="title" placeholder="Tên">
+                                            <label>{{text_name}}</label>
+                                            <input ng-model="title" type="text" class="form-control" id="title" placeholder="{{text_name}}">
                                         </div>
                                         <div class="form-group">
-                                            <label>Category</label>
+                                            <label>{{column_category}}</label>
                                             <select class="form-control" ng-model="category_id">
                                                 <option value="{{item.category_id}}" ng-repeat="item in category">{{item.category_name}}</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label>Mô Tả</label>
-                                            <textarea ng-model="description" class="form-control" rows="10" placeholder="Mô Tả ..."></textarea>
+                                            <label>{{text_description}}</label>
+                                            <textarea ng-model="description" class="form-control" rows="10" placeholder="{{text_description}} ..."></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label>Giá</label>
-                                            <input ng-model="price" type="text" class="form-control" placeholder="Giá">
+                                            <label>{{price}}</label>
+                                            <input ng-model="price" type="text" class="form-control" placeholder="{{price}}">
                                         </div>
                                         <div class="form-group">
-                                            <label>Giá đã khuyến mãi</label>
-                                            <input ng-model="price_new" type="text" class="form-control" placeholder="Gái đã khuyến mãi">
+                                            <label>{{price_new}}</label>
+                                            <input ng-model="price_new" type="text" class="form-control" placeholder="{{price_new}}">
                                         </div>
                                         <div class="form-group">
-                                         <label>Tải Lên Ảnh Của Bộ Sưu Tập</label>
+                                         <label>{{text_photo_gallery}}</label>
                                           <br>
                                             <span class="btn btn-success fileinput-button">
                                                 <i class="glyphicon glyphicon-plus"></i>
-                                                <span>Thêm Nhiều Ảnh...</span> 
+                                                <span>{{text_add_photo}}...</span> 
                                                 <!-- The file input field used as target for the file upload widget -->
 
                                                 <input id="productfileupload" type="file" name="files2[]" multiple>
                                             </span>
-                                            ( Kích thước tốt nhất : 683px X 1024px ) 
+                                            ( 683px X 1024px ) 
                                         </div>
                                         <div class="form-group">
-                                            ( Click vào ảnh nếu không muốn tải lên )
+                                            ( {{text_click_to_remove}})
                                             <div id="more"></div>
                                             <img style="display:none" width="200px" id="blah2" src="#" alt="your image" />
                                         </div>
                                         <div class="form-group">
-                                            <label>Trạng Thái Tải Ảnh</label>
+                                            <label>{{text_upload_status}}</label>
                                             <div class="progress sm progress-striped active">
                                                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
                                                     <span class="sr-only">20% Hoàn Thành</span>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                            <button ng-click="btnProductUpload()" type="submit" class="btn btn-primary">Tải Hình Mới Lên</button>
+                                            <button ng-click="btnProductUpload()" type="submit" class="btn btn-primary">{{text_upload_new_image}}</button>
                                         </div> 
                                         </div>   
                                     </div><!-- /.box-body -->
 
                                     <div class="box-footer">
-                                        <button ng-click="btnCreateProduct()" type="submit" class="btn btn-primary">Lưu</button>
-                                        <button ng-click="btnCancle()" type="submit" class="btn btn-danger">Hủy</button>
+                                        <button ng-click="btnCreateProduct()" type="submit" class="btn btn-primary">{{btn_save}}</button>
+                                        <button ng-click="btnCancle()" type="submit" class="btn btn-danger">{{btn_cancle}}</button>
                                     </div>
                                 </form>
                             </div><!-- /.box -->

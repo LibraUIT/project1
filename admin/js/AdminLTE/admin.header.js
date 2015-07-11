@@ -7,7 +7,7 @@ configApp.factory("HeaderService", function($http) {
       return $http({
         method: 'POST',
         url: urlConfig,
-        data: $.param({ id : sendData}),
+        data: $.param({ id : sendData, email : localStorage.getItem("isAdminemail"), pass : localStorage.getItem("isAdminpass")}),
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       });
     },
@@ -23,7 +23,15 @@ configControllers.controller('headerController', ['$scope', '$rootScope','$route
   	if(isAdminLogin() !== false)
     {
 	  	 HeaderService.user(isAdminLogin()).success(function(res){
-	  	 	$scope.userLoginName = res.u_email;  	 	
+        if(res != "FALSE")
+        {
+
+	  	  	 $scope.userLoginName = res.u_email;
+        }else
+        {
+          window.location.href = [baseUrl, 'admin', 'logout'].join('/');
+        }
+
 	  	 });
 	     $scope.SignOut = function()
 	     {

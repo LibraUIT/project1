@@ -41,7 +41,8 @@ configApp.factory("SettingHomeService", function($http) {
 });
 configControllers.controller('HomePageController', ['$scope', '$rootScope','$routeParams', '$location','$http', '$state', 'SettingHomeService', '$route',
   function($scope, $rootScope, $routeParams, $location, $http, $state, SettingHomeService, $route) {
-    document.title = 'AdminLTE | Trang chủ';
+    document.title = 'AdminLTE ';
+    checkLogin();
     $('#message_success').hide();
     SettingHomeService.settingHome().success(function(res){
       $scope.link_1_title = res.link_1_title;
@@ -50,6 +51,17 @@ configControllers.controller('HomePageController', ['$scope', '$rootScope','$rou
       $scope.link_2_title = res.link_2_title;
       $scope.link_2_small_title = res.link_2_small_title;
       $scope.link_2_url = res.link_2_url;
+      $scope.text_menu_settings_title = langArray.text_menu_settings_title;
+      $scope.text_menu_dashboard = langArray.text_menu_dashboard;
+      $scope.text_menu_home = langArray.text_menu_home;
+      $scope.btn_save = langArray.btn_save;
+      $scope.message_update_success = langArray.message_update_success;
+      $scope.text_title_link_1 = langArray.text_title_link_1;
+      $scope.text_title_link_2 = langArray.text_title_link_2;
+      $scope.text_small_title_link_1 = langArray.text_small_title_link_1;
+      $scope.text_small_title_link_2 = langArray.text_small_title_link_2;
+      $scope.text_url_link_1 =langArray.text_url_link_1;
+      $scope.text_url_link_2 =langArray.text_url_link_2;
     });
     $scope.btnSettingHomeSave = function()
     {
@@ -63,7 +75,7 @@ configControllers.controller('HomePageController', ['$scope', '$rootScope','$rou
       };
 
       SettingHomeService.save(data).success(function(res){
-          $scope.message_success = "Cập nhật thành công";
+          $scope.message_success = $scope.message_update_success;
       });
     }
 }]);

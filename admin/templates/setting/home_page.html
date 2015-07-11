@@ -2,12 +2,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            CÀI ĐẶT  
+            {{text_menu_settings_title}}  
                     </h1>
                 <ol class="breadcrumb">
-                    <li><a href="#/"><i class="fa fa-dashboard"></i> Trang Chủ</a></li>
-                    <li><a href="#/">Cài Đặt</a></li>
-                    <li class="active">Trang Chủ</li>
+                    <li><a href="#/"><i class="fa fa-dashboard"></i>{{text_menu_dashboard}}</a></li>
+                    <li><a href="#/">{{text_menu_settings_title}}</a></li>
+                    <li class="active">{{text_menu_home}}</li>
                 </ol>
     </section>
     <section class="content">
@@ -16,7 +16,7 @@
                             <!-- general form elements -->
                             <div class="box box-primary">
                                 <div class="box-header">
-                                    <h3 class="box-title">Trang Chủ</h3>
+                                    <h3 class="box-title">{{text_menu_home}}</h3>
                                 </div><!-- /.box-header -->
                                 <!-- form start -->
                                 <form role="form">
@@ -30,33 +30,33 @@
                                         <span>{{message_success}}</span>
                                         </div>
                                         <div class="form-group">
-                                            <label>Tiêu đề link thứ nhất</label>
-                                            <input ng-model="link_1_title" type="text" class="form-control" id="title" placeholder="Tiêu đề link thứ nhất">
+                                            <label>{{text_title_link_1}}</label>
+                                            <input ng-model="link_1_title" type="text" class="form-control" id="title" placeholder="{{text_title_link_1}}">
                                         </div>
                                         <div class="form-group">
-                                            <label>Tiêu đề nhỏ link thứ nhất</label>
-                                            <input ng-model="link_1_small_title" type="text" class="form-control" id="title" placeholder="Tiêu đề nhỏ link thứ nhất">
+                                            <label>{{text_small_title_link_1}}</label>
+                                            <input ng-model="link_1_small_title" type="text" class="form-control" id="title" placeholder="{{text_small_title_link_1}}">
                                         </div>
                                         <div class="form-group">
-                                            <label>Url của link thứ nhất</label>
-                                            <input ng-model="link_1_url" type="text" class="form-control" id="title" placeholder="Url của link thứ nhất">
+                                            <label>{{text_url_link_1}}</label>
+                                            <input ng-model="link_1_url" type="text" class="form-control" id="title" placeholder="{{text_url_link_1}}">
                                         </div>
                                         <div class="form-group">
-                                            <label>Tiêu đề link thứ hai</label>
-                                            <input  ng-model="link_2_title" type="text" class="form-control" id="title" placeholder="Tiêu đề link thứ hai">
+                                            <label>{{text_title_link_2}}</label>
+                                            <input  ng-model="link_2_title" type="text" class="form-control" id="title" placeholder="{{text_title_link_2}}">
                                         </div>
                                         <div class="form-group">
-                                            <label>Tiêu đề nhỏ link thứ hai</label>
-                                            <input ng-model="link_2_small_title" type="text" class="form-control" id="title" placeholder="Tiêu đề nhỏ link thứ hai">
+                                            <label>{{text_small_title_link_2}}</label>
+                                            <input ng-model="link_2_small_title" type="text" class="form-control" id="title" placeholder="{{text_small_title_link_2}}">
                                         </div>
                                         <div class="form-group">
-                                            <label>Url của link thứ hai</label>
-                                            <input ng-model="link_2_url" type="text" class="form-control" id="title" placeholder="Url của link thứ hai">
+                                            <label>{{text_url_link_2}}</label>
+                                            <input ng-model="link_2_url" type="text" class="form-control" id="title" placeholder="{{text_url_link_2}}">
                                         </div>
                                     </div><!-- /.box-body -->
 
                                     <div class="box-footer">
-                                        <button ng-click="btnSettingHomeSave()" type="submit" class="btn btn-primary">Lưu</button>
+                                        <button ng-click="btnSettingHomeSave()" type="submit" class="btn btn-primary">{{btn_save}}</button>
                                         
                                     </div>
                                 </form>

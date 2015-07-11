@@ -5,7 +5,12 @@
  	}
  	public function index()
  	{
- 		$this->load->view("common/main");
+ 		$view = array(
+ 				"title" => "Title Pgae",
+ 				"template" => "home"
+ 			);
+ 		$this->load->view("common/main", $view);
+
  	}
  	
  }

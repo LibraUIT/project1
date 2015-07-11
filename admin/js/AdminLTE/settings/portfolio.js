@@ -40,9 +40,10 @@ configApp.factory("SettingPortfolioService", function($http) {
   }
 });
 
-configControllers.controller('SettingPortfolioController', ['$scope', '$rootScope','$routeParams', '$location','$http', '$state', 'SettingPortfolioService', '$route',
+configControllers.controller('SettingPortfolioController', ['$scope', '$rootScope','$routeParams', '$location','$http', '$state', 'SettingPortfolioService', '$route', 
   function($scope, $rootScope, $routeParams, $location, $http, $state, SettingPortfolioService, $route) {
-    document.title = 'AdminLTE | Cài đặt chung';
+    document.title = 'AdminLTE';
+    checkLogin();
     $('#message_success').hide();
      SettingPortfolioService.settingPortfolio().success(function(res){
           if(res)
@@ -55,6 +56,16 @@ configControllers.controller('SettingPortfolioController', ['$scope', '$rootScop
               $scope.twitter = res.twitter;
               $scope.tumblr = res.tumblr;
               $scope.footer = res.footer;
+              $scope.text_menu_settings_title = langArray.text_menu_settings_title;
+              $scope.text_site_name = langArray.text_site_name;
+              $scope.text_key_word = langArray.text_key_word;
+              $scope.text_description= langArray.text_description;
+              $scope.text_coppy_right = langArray.text_coppy_right;
+              $scope.btn_save = langArray.btn_save;
+              $scope.text_menu_general = langArray.text_menu_general;
+              $scope.text_menu_dashboard = langArray.text_menu_dashboard;
+              $scope.text_menu_settings_title= langArray.text_menu_settings_title;
+              $scope.message_update_success= langArray.message_update_success;
           }  
            
       }); 
@@ -75,7 +86,7 @@ configControllers.controller('SettingPortfolioController', ['$scope', '$rootScop
     			"footer" : $scope.footer
     		};
     		SettingPortfolioService.save(data).success(function(res){
-            $scope.message_success = 'Cập nhật thành công';
+            $scope.message_success = $scope.message_update_success;
 		        
 		       
 		    });

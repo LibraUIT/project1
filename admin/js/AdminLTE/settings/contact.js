@@ -41,12 +41,19 @@ configApp.factory("ContactPageService", function($http) {
 
 configControllers.controller('ContactPageController', ['$scope', '$rootScope','$routeParams', '$location','$http', '$state', 'ContactPageService', '$route',
   function($scope, $rootScope, $routeParams, $location, $http, $state, ContactPageService, $route) {
-    document.title = 'AdminLTE | Thông tin liên hệ';
+    document.title = 'AdminLTE ';
+    checkLogin();
     ContactPageService.getContactPage().success(function(res){
           if(res)
           {
               $scope.page_name = res.page_name;
               $scope.contact_page = res.page_content;
+              $scope.text_menu_settings_title = langArray.text_menu_settings_title;
+              $scope.text_menu_dashboard = langArray.text_menu_dashboard;
+              $scope.text_contact_info = langArray.text_contact_info;
+              $scope.text_title = langArray.text_title;
+              $scope.btn_save = langArray.btn_save;
+              $scope.message_update_success = langArray.message_update_success;
           }  
            
       }); 
@@ -63,7 +70,7 @@ configControllers.controller('ContactPageController', ['$scope', '$rootScope','$
           if(res == "TRUE")
           {
 
-              $scope.message_success = 'Cập nhật thành công';
+              $scope.message_success = $scope.message_update_success;
           }    
 		    });
     	}

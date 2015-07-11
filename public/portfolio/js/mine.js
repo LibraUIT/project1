@@ -45,6 +45,9 @@ $(window).bind("load", function() {
             case 3:
                 $('li#3').css({"background-color" : "#CFD8DC", "color" : "#000"});
                 break;
+            case 4:
+                $('li#4').css({"background-color" : "#CFD8DC", "color" : "#000"});
+                break;    
             case 7:
                 $('li#7').css({"background-color" : "#CFD8DC", "color" : "#000"});
                 break;         
@@ -53,14 +56,19 @@ $(window).bind("load", function() {
     }
     function clearArticle()
     {
+        $('link[rel=stylesheet][href~="'+base_url+'public/bootstrap/css/bootstrap.min.css'+'"]').remove();
         $('.collection').css({"display" : "none"});
         $('.article1').removeClass('slideInUp').addClass('fadeOutUpBig');
         $('.article2').removeClass('slideInUp').addClass('fadeOutUpBig');
         $('.article3').removeClass('slideInUp').addClass('fadeOutUpBig');
         $('.collection-title').removeClass('slideInLeft').addClass('fadeOutUpBig');
         $('.list-collection').removeClass('slideInUp').addClass('fadeOutUpBig');
+        $('.press-title').removeClass('slideInLeft').addClass('fadeOutUpBig');
+        $('.list-press').removeClass('slideInUp').addClass('fadeOutUpBig');
+        $('.press').fadeOut();
         $('.show-collection').fadeOut();
         $('.cb-slideshow').show();
+
     }
     function mouseleaveImage()
     {
@@ -207,6 +215,32 @@ $(window).bind("load", function() {
         $('.article2').css({"display" : "block"});
         $('.article2').addClass('slideInUp');
         $('body').css({"background-image" : "url('"+base_url+"public/portfolio/img/about/about.jpg')"});
+    });
+    $("#4").on("click", function(){
+        basePageId = 4;
+        loadPage(basePageId)
+        clearArticle();
+        $('.press').css({"display" : "block"});
+        $('.press-title').css({"display" : "block"});
+        $('.press-title').addClass('slideInLeft');
+        $('.list-press').css({"display" : "block"});
+        $('.list-press').addClass('slideInUp');
+        //Load css script
+        //http://stackoverflow.com/questions/574944/how-to-load-up-css-files-using-javascript
+        var cssId = 'myCss';  // you could encode the css path itself to generate id..
+        if (!document.getElementById(cssId))
+        {
+            var head  = document.getElementsByTagName('head')[0];
+            var link  = document.createElement('link');
+            link.id   = cssId;
+            link.rel  = 'stylesheet';
+            link.type = 'text/css';
+            link.href = base_url+'public/bootstrap/css/bootstrap.min.css';
+            link.media = 'all';
+            head.appendChild(link);
+        }
+        $('.modal-content').css({"background-color":"transparent !important"});
+        //end
     });
     $("#7").on("click", function(){
         basePageId = 7;

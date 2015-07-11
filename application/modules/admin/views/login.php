@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>AdminLTE - Log in</title>
+    <title>AdminLTE - <?php echo $this->lang->line('text_heading_title'); ?></title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.4 -->
     <link href="<?php echo base_url(); ?>public/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -40,8 +40,11 @@
             <div class="col-xs-8">    
               <div class="checkbox icheck">
                 <label>
-                  <input type="checkbox"> <?php echo $this->lang->line('text_login_form_remember_title'); ?>
+                  <!--<input type="checkbox"> <?php echo $this->lang->line('text_login_form_remember_title'); ?>-->
+                  <a href="<?php echo base_url(); ?>admin/set_lang/en"><img src="<?php echo base_url(); ?>public/icon/US.png"></a>
+                 <a href="<?php echo base_url(); ?>admin/set_lang/vi"><img src="<?php echo base_url(); ?>public/icon/VI.png"></a>
                 </label>
+               
               </div>                        
             </div><!-- /.col -->
             <div class="col-xs-4">

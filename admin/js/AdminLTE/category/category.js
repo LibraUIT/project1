@@ -55,7 +55,9 @@ configApp.factory("CategoryService", function($http) {
 });
 configControllers.controller('CategoryController', ['$scope', '$rootScope','$routeParams', '$location','$http', '$state', '$route', 'CategoryService',
   function($scope, $rootScope, $routeParams, $location, $http, $state, $route, CategoryService) {
-    document.title = 'AdminLTE | Tạo mới';
+    document.title = 'AdminLTE';
+    checkLogin();
+
     $scope.btnCancle = function()
     {
     	$location.path("/category_list");
@@ -74,7 +76,7 @@ configControllers.controller('CategoryController', ['$scope', '$rootScope','$rou
     		CategoryService.save(data).success(function(res){
     			if(res == "FALSE")
     			{
-    				$scope.message_error = 'Tên này đã tồn tại.';
+    				$scope.message_error = langArray.message_error_exits_name;
     			}else
     			{
     				$location.path("/category_list");
@@ -82,18 +84,37 @@ configControllers.controller('CategoryController', ['$scope', '$rootScope','$rou
     		});
     	}else
     	{
-    		$scope.message_error = "Vui lòng nhập vào tên của category";
+    		$scope.message_error = langArray.message_error_category_name;
     	}
     }
+    $scope.text_name = langArray.text_name;
+    $scope.btn_save = langArray.btn_save;
+    $scope.btn_cancle = langArray.btn_cancle;
+    $scope.text_menu_create_new = langArray.text_menu_create_new;
+    $scope.text_menu_dashboard = langArray.text_menu_dashboard;
+    $scope.text_menu_category_manament = langArray.text_menu_category_manament;
+    $scope.btn_back = langArray.btn_back;
 }]);
 configControllers.controller('CategoryListController', ['$scope', '$rootScope','$routeParams', '$location','$http', '$state', 'CategoryService', '$route',
   function($scope, $rootScope, $routeParams, $location, $http, $state, CategoryService, $route) {
-    document.title = 'AdminLTE | Quản lý category';
+    document.title = 'AdminLTE';
+    checkLogin();
     CategoryService.list().success(function(res){
     	if(res)
     	{
     		$scope.table = res;
     	}
+      $scope.text_menu_category_manament = langArray.text_menu_category_manament;
+      $scope.text_menu_dashboard = langArray.text_menu_dashboard;
+      $scope.text_menu_list_category = langArray.text_menu_list_category;
+      $scope.comlumn_name= langArray.comlumn_name;
+      $scope.comlumn_edit = langArray.comlumn_edit;
+      $scope.comlumn_delete = langArray.comlumn_delete;
+      $scope.btn_edit = langArray.btn_edit;
+      $scope.btn_delete = langArray.btn_delete;
+      $scope.btn_cancle = langArray.btn_cancle;
+      $scope.modal_title = langArray.modal_title;
+      $scope.modal_message_delete_comfirm = langArray.modal_message_delete_comfirm;
     });
     $scope.btnDelete = function(id)
       {
@@ -104,7 +125,7 @@ configControllers.controller('CategoryListController', ['$scope', '$rootScope','
       {
           CategoryService.deleteById($scope.category_id).success(function(res){
               $('#myModal').modal('hide') ;
-              $('.fade').removeClass('in').addClass('out');
+              $('.fade').removeClass('in').addClass('out').hide();
               $route.reload();
           });
       }
@@ -113,7 +134,15 @@ configControllers.controller('CategoryListController', ['$scope', '$rootScope','
     	restrict: 'A',
     	link : function(scope, elem, attrs)
 	    {
-	    	document.title = 'AdminLTE | Chỉnh sửa category';
+	    	document.title = 'AdminLTE ';
+        checkLogin();
+        scope.text_menu_category_manament = langArray.text_menu_category_manament;
+        scope.text_menu_dashboard = langArray.text_menu_dashboard;
+        scope.edit_category = langArray.edit_category;
+        scope.btn_back = langArray.btn_back;
+        scope.text_name= langArray.text_name;
+        scope.btn_save= langArray.btn_save;
+        scope.btn_cancle = langArray.btn_cancle;
 	    	var cateId = $routeParams.id;
 	    	CategoryService.getById(cateId).success(function(res){
 	    		if(res)
@@ -136,7 +165,7 @@ configControllers.controller('CategoryListController', ['$scope', '$rootScope','
 		    		CategoryService.updateById(data).success(function(res){
 		    			if(res == "FALSE")
 		    			{
-		    				scope.message_error = 'Tên này đã tồn tại.';
+		    				scope.message_error = langArray.message_error_exits_name;
 		    			}else
 		    			{
 		    				$route.reload();
@@ -144,7 +173,7 @@ configControllers.controller('CategoryListController', ['$scope', '$rootScope','
 		    		});
 		    	}else
 		    	{
-		    		scope.message_error = "Vui lòng nhập vào tên của category";
+		    		scope.message_error = langArray.message_error_category_name;
 		    	}	
 	    	}
 	    }

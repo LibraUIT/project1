@@ -18,17 +18,21 @@
 	<script type="text/javascript">
 			var base_url = "<?php echo base_url(); ?>";
 	</script>
+	<link href="<?php echo base_url(); ?>public/portfolio/lightbox/ekko-lightbox.css" rel="stylesheet">
+	<script src="<?php echo base_url(); ?>public/portfolio/lightbox/ekko-lightbox.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>public/portfolio/js/jquery.lazyload.js"></script>
+	<!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">-->
 </head>
 <body>
 <header class="animated slideInDown">
 	<div class="web-name"><h1 style="text-transform: uppercase"><?php echo $site_title; ?></h1></div>
 	<div class="nav-menu">
 		<ul>
-			<li id="1" class="hvr-sweep-to-top">Trang Chủ</li>
-			<li id="2" class="hvr-sweep-to-top">Bộ Sưu Tập</li>
-			<li id="3" class="hvr-sweep-to-top">Giới Thiệu</li>
-			<li id="4" class="hvr-sweep-to-top">Press</li>
-			<li id="5" class="hvr-sweep-to-top">Online Store</li>
+			<li id="1" class="hvr-sweep-to-top"><?php echo $this->lang->line('portfolio_menu_home'); ?></li>
+			<li id="2" class="hvr-sweep-to-top"><?php echo $this->lang->line('portfolio_menu_collection'); ?></li>
+			<li id="3" class="hvr-sweep-to-top"><?php echo $this->lang->line('portfolio_menu_about'); ?></li>
+			<li id="4" class="hvr-sweep-to-top"><?php echo $this->lang->line('portfolio_menu_press'); ?></li>
+			<li id="5" class="hvr-sweep-to-top"><a href="<?php echo base_url(); ?>store" target="_blank"><?php echo $this->lang->line('portfolio_menu_store'); ?></a></li>
 			<!--<li id="6" class="hvr-sweep-to-top">Retailers</li>-->
 			<!--<li id="7" class="hvr-sweep-to-top">Contact</li>-->
 		</ul>
@@ -37,7 +41,7 @@
 <article class="article1 animated slideInUp">
 	<div class="article hvr-shutter-out-vertical latest-collection">
 		<h1>The latest looks</h1>
-		<h4>View the fall 2015 collection</h4>
+		<h4>View the collection</h4>
 	</div>
 	<?php
 		if($link_1_title != '')
@@ -107,7 +111,7 @@
 </div>
 <div class="collection-title animated">
 		<ul>
-			<h1>BỘ SƯU TẬP</h1>
+			<h1 style="text-transform: uppercase;"><?php echo $this->lang->line('portfolio_menu_collection'); ?></h1>
 			<!--<li>
 				<span>2015</span>
 				<ul>
@@ -126,6 +130,8 @@
 				<span class="collectid" id="collect_3">BRIDAL</span>
 			</li>-->
 			<?php
+			if(count($collections) > 0)
+			{
 				foreach($collections as $collection)
 				{
 			?>
@@ -134,6 +140,7 @@
 			</li>
 			<?php				
 				}
+			}
 			?>
 		</ul>
 </div>
@@ -149,12 +156,15 @@
 		<li><img height="500" src="<?php echo base_url(); ?>public/portfolio/img/collections/nav/nav17.jpg"><div class="view-gallary hvr-bounce-to-right">View Gallary</div></li>
 		<li><img height="500" src="<?php echo base_url(); ?>public/portfolio/img/collections/nav/nav18.jpg"><div class="view-gallary hvr-bounce-to-right">View Gallary</div></li>-->
 		<?php
+		if(count($collections) > 0)
+		{
 			foreach($collections as $collection)
 			{
 		?>
 		<li class="collect_<?php echo $collection['collection_id']; ?>"><img style="width:103px" height="500" src="<?php echo base_url().$collection['collection_featured_image']; ?>"><div class="view-gallary hvr-bounce-to-right">Xem Bộ Sưu Tập</div></li>
 		<?php				
 			}
+		}
 		?>
 	</ul>
 </div>
@@ -184,7 +194,28 @@
 			</ul>
 		</div>
 	</div>
-	<div class="back-to-all animated"><b>Trở về </b><br /> bộ sưu tập</div>
+	<div class="back-to-all animated"><b><?php echo $this->lang->line('portfolio_back'); ?> </b><br /> <?php echo $this->lang->line('portfolio_menu_collection'); ?></div>
+</div>
+<div class="press" >
+</div>
+<div class="press-title animated">
+<h4>Press</h4>
+</div>
+<div  class="list-press animated row">
+	 <div style="margin-left:5%;width:95%;height:100%;overflow: scroll;overflow-x:hidden" class="class-press">
+	 <?php
+	 echo '<div class="row">';
+	 foreach ($press as $key => $value) {
+	 ?>
+	 <a href="<?php echo base_url().$value['press_image_2']; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $value['press_name']; ?>" class="col-sm-3">
+     <img data-original="<?php echo base_url().$value['press_image_2']; ?>" class="thumb-press lazy img-responsive">
+     </a>
+	 <?php
+	 }
+	 echo '</div>';
+	 ?>
+		  		
+	 </div>
 </div>
 <footer>
 	<ul class="animated slideInLeft">
@@ -196,6 +227,11 @@
 		<li><a href="<?php echo $instagram; ?>">Instagram</a></li>
 		<li><a href="<?php echo $twitter; ?>">Twitter</a></li>
 		<li><a href="<?php echo $tumblr; ?>">Tumblr</a></li>
+	</div>
+	<div class="lang">
+		 <a href="<?php echo base_url(); ?>portfolio/set_lang/en"><?php echo $this->lang->line('en'); ?></a>
+		 /
+         <a href="<?php echo base_url(); ?>portfolio/set_lang/vi"><?php echo $this->lang->line('vi'); ?></a>
 	</div>
 </footer>
 <!-- BackgroundSlide -->
@@ -210,3 +246,66 @@
 <!-- End -->
 </body>
 </html>
+ <script src="<?php echo base_url(); ?>public/bootstrap/js/bootstrap.min.js"></script>
+ <script type="text/javascript">
+			$(function() {
+			    $("img.lazy").lazyload();
+			});
+            $(document).ready(function ($) {
+                // delegate calls to data-toggle="lightbox"
+                $(document).delegate('*[data-toggle="lightbox"]:not([data-gallery="navigateTo"])', 'click', function(event) {
+                    event.preventDefault();
+                    return $(this).ekkoLightbox({
+                        onShown: function() {
+                            if (window.console) {
+                                return console.log('Checking our the events huh?');
+
+                            }
+                        },
+						onNavigate: function(direction, itemIndex) {
+                            if (window.console) {
+                                return console.log('Navigating '+direction+'. Current item: '+itemIndex);
+                            }
+						}
+                    });
+                });
+
+                //Programatically call
+                $('#open-image').click(function (e) {
+                    e.preventDefault();
+                    $(this).ekkoLightbox();
+
+
+                });
+                $('#open-youtube').click(function (e) {
+                    e.preventDefault();
+                    $(this).ekkoLightbox();
+                });
+
+				// navigateTo
+                $(document).delegate('*[data-gallery="navigateTo"]', 'click', function(event) {
+
+                    event.preventDefault();
+
+                    return $(this).ekkoLightbox({
+                        onShown: function() {
+
+							var a = this.modal_content.find('.modal-footer a');
+							if(a.length > 0) {
+
+								a.click(function(e) {
+
+									e.preventDefault();
+									this.navigateTo(2);
+
+								}.bind(this));
+
+							}
+
+                        }
+                    });
+                });
+
+
+            });
+        </script>

@@ -11,7 +11,9 @@ var configApp = angular.module('quannguyen', [
 var baseUrl = "http://localhost/project_shopping";
 function isAdminLogin()
 {
+    
     var isAdminLogin = localStorage.getItem("isAdminLogin");
+    
     isAdminLogin = (typeof isAdminLogin !== "undefined" && isAdminLogin !== null) ? isAdminLogin : false;
     return isAdminLogin;
 }
@@ -37,6 +39,10 @@ configApp.config(['$routeProvider',
       when('/setting_home_page', {
         templateUrl : 'templates/setting/home_page.html',
         controller : 'HomePageController'
+      }).
+      when('/setting_language',{
+        templateUrl : 'templates/setting/language.html',
+        controller : 'LanguageController'
       }).
       when('/collection_create', {
         templateUrl : 'templates/collection/create.html',
@@ -111,6 +117,7 @@ configApp.factory("LangService", function($http) {
   }
 });
 
+var langArray;
 var configControllers = angular.module('configControllers', ['ui.bootstrap']);
 
 configControllers.controller('BaseController', ['$scope', '$rootScope','$routeParams', '$location','$http', '$state', 'LangService', '$route',
@@ -119,16 +126,46 @@ configControllers.controller('BaseController', ['$scope', '$rootScope','$routePa
     if(isAdminLogin() === false)
     {
         //$location.path('/sign');
-        window.location.href = [baseUrl, 'admin', 'login'].join('/');
+       window.location.href = [baseUrl, 'admin', 'login'].join('/');
     }else
     {
       LangService.user('en').success(function(res){
-        
-        settingLayout();  
+          settingLayout(); 
+          langArray = res;
+          
       });
+
     }
     
-}]);
+}]).directive('menuController', function( $routeParams, $route, $location, LangService) {
+  return {
+      restrict: 'A',
+      link : function(scope, elem, attrs)
+      {
+          LangService.user('en').success(function(res){
+            langArray = res;
+            scope.text_menu_dashboard = langArray.text_menu_dashboard;
+            scope.text_menu_product_manament = langArray.text_menu_product_manament;
+            scope.text_menu_collection_manament = langArray.text_menu_collection_manament;
+            scope.text_menu_press_manament = langArray.text_menu_press_manament;
+            scope.text_menu_category_manament = langArray.text_menu_category_manament;
+            scope.text_menu_list_product = langArray.text_menu_list_product;
+            scope.text_menu_create_new = langArray.text_menu_create_new;
+            scope.text_menu_list_collection = langArray.text_menu_list_collection;
+            scope.text_menu_list_press = langArray.text_menu_list_press;
+            scope.text_menu_list_category = langArray.text_menu_list_category;
+            scope.text_menu_general  = langArray.text_menu_general;
+            scope.text_menu_contact_info = langArray.text_menu_contact_info;
+            scope.text_menu_about = langArray.text_menu_about;
+            scope.text_menu_home = langArray.text_menu_home;
+            scope.text_menu_settings_title = langArray.text_menu_settings_title; 
+            scope.text_menu_language = langArray.text_menu_language;
+          });
+         
+          
+      }
+  }
+});
 function settingLayout()
 {
     $("body").removeClass("skin-blue skin-black");
@@ -157,4 +194,13 @@ function removeItemByValue(value, array, removeItem)
       return value != removeItem;
     });
     return array;
+}
+function checkLogin()
+
+{
+  if(isAdminLogin() === false)
+    {
+        //$location.path('/sign');
+        window.location.href = [baseUrl, 'admin', 'login'].join('/');
+    }
 }

@@ -302,21 +302,21 @@
                         </div>
                     </div>
                     <!-- sidebar menu: : style can be found in sidebar.less -->
-                    <ul class="sidebar-menu">
+                    <ul menu-controller class="sidebar-menu">
                         <li class="active">
                             <a  href="#/">
-                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                                <i class="fa fa-dashboard"></i> <span>{{text_menu_dashboard}}</span>
                             </a>
                         </li>
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-th"></i>
-                                <span>Quản Lý Sản Phẩm</span>
+                                <span>{{text_menu_product_manament}}</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#/product_list"><i class="fa fa-angle-double-right"></i>Danh sách sản phẩm</a></li>
-                                <li><a href="#/product_create"><i class="fa fa-angle-double-right"></i> Tạo mới</a></li>
+                                <li><a href="#/product_list"><i class="fa fa-angle-double-right"></i>{{text_menu_product_manament}}</a></li>
+                                <li><a href="#/product_create"><i class="fa fa-angle-double-right"></i>{{text_menu_create_new}}</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
@@ -333,47 +333,48 @@
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-picture-o"></i>
-                                <span>Quản Lý Bộ Sưu Tập</span>
+                                <span>{{text_menu_collection_manament}}</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#/collection_list"><i class="fa fa-angle-double-right"></i>Danh Sách Bộ Sưu Tập</a></li>
-                                <li><a href="#/collection_create"><i class="fa fa-angle-double-right"></i> Tạo Mới Bộ Sưu Tập</a></li>
+                                <li><a href="#/collection_list"><i class="fa fa-angle-double-right"></i>{{text_menu_list_collection}}</a></li>
+                                <li><a href="#/collection_create"><i class="fa fa-angle-double-right"></i>{{text_menu_create_new}}</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-book"></i>
-                                <span>Quản Lý Press</span>
+                                <span>{{text_menu_press_manament}}</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#/press_list"><i class="fa fa-angle-double-right"></i>Danh Sách </a></li>
-                                <li><a href="#/press_create"><i class="fa fa-angle-double-right"></i> Tạo Mới</a></li>
+                                <li><a href="#/press_list"><i class="fa fa-angle-double-right"></i>{{text_menu_list_press}}</a></li>
+                                <li><a href="#/press_create"><i class="fa fa-angle-double-right"></i>{{text_menu_create_new}}</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-folder"></i>
-                                <span>Quản Lý Category</span>
+                                <span>{{text_menu_category_manament}}</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#/category_list"><i class="fa fa-angle-double-right"></i>Danh Sách </a></li>
-                                <li><a href="#/category_create"><i class="fa fa-angle-double-right"></i> Tạo Mới</a></li>
+                                <li><a href="#/category_list"><i class="fa fa-angle-double-right"></i>{{text_menu_list_category}} </a></li>
+                                <li><a href="#/category_create"><i class="fa fa-angle-double-right"></i>{{text_menu_create_new}}</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-cog"></i>
-                                <span>Cài Đặt</span>
+                                <span>{{text_menu_settings_title}}</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#/setting_portfolio"><i class="fa fa-angle-double-right"></i>Cài Đặt Chung</a></li>
-                                <li><a href="#/setting_contact_page"><i class="fa fa-angle-double-right"></i>Thông Tin Liên Hệ</a></li>
-                                <li><a href="#/setting_about_page"><i class="fa fa-angle-double-right"></i> Giới Thiệu</a></li>
-                                <li><a href="#/setting_home_page"><i class="fa fa-angle-double-right"></i> Trang Chủ</a></li>
+                                <li><a href="#/setting_portfolio"><i class="fa fa-angle-double-right"></i>{{text_menu_general}}</a></li>
+                                <li><a href="#/setting_contact_page"><i class="fa fa-angle-double-right"></i>{{text_menu_contact_info}}</a></li>
+                                <li><a href="#/setting_about_page"><i class="fa fa-angle-double-right"></i>{{text_menu_about}}</a></li>
+                                <li><a href="#/setting_home_page"><i class="fa fa-angle-double-right"></i>{{text_menu_home}}</a></li>
+                                <li><a href="#/setting_language"><i class="fa fa-angle-double-right"></i>{{text_menu_language}}</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -443,6 +444,7 @@
         <script src="js/AdminLTE/settings/contact.js" type="text/javascript"></script>
         <script src="js/AdminLTE/settings/about.js" type="text/javascript"></script>
         <script src="js/AdminLTE/settings/home.js" type="text/javascript"></script>
+        <script src="js/AdminLTE/settings/language.js" type="text/javascript"></script>
         <script src="js/AdminLTE/collection/collection.js" type="text/javascript"></script>
         <script src="js/AdminLTE/press/press.js" type="text/javascript"></script>
         <script src="js/AdminLTE/category/category.js" type="text/javascript"></script>

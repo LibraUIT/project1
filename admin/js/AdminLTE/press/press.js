@@ -66,9 +66,23 @@ configApp.factory("PressService", function($http) {
 var featuredPress = [], featuredPress9 = [], listPress = [];
 configControllers.controller('PressController', ['$scope', '$rootScope','$routeParams', '$location','$http', '$state', 'PressService', '$route',
   function($scope, $rootScope, $routeParams, $location, $http, $state, PressService, $route) {
-    document.title = 'AdminLTE | Tạo mới';
+    document.title = 'AdminLTE';
+    checkLogin();
+    $scope.text_menu_dashboard = langArray.text_menu_dashboard;
+    $scope.text_menu_press_manament = langArray.text_menu_press_manament;
+    $scope.text_menu_create_new = langArray.text_menu_create_new;
+    $scope.btn_back = langArray.btn_back;
+    $scope.text_information = langArray.text_information;
+    $scope.text_name= langArray.text_name;
+    $scope.text_featured_image = langArray.text_featured_image;
+    $scope.text_add_photo = langArray.text_add_photo;
+    $scope.text_click_to_remove = langArray.text_click_to_remove;
+    $scope.text_photo = langArray.text_photo;
+    $scope.text_upload_status = langArray.text_upload_status;
+    $scope.text_upload_new_image = langArray.text_upload_new_image;
+    $scope.btn_save = langArray.btn_save;
     $('#fileupload').change(function(){
-        readURL(this);
+        readURL1(this);
     });
     $('#fileupload9').change(function(){
         readURL9(this);
@@ -89,10 +103,10 @@ configControllers.controller('PressController', ['$scope', '$rootScope','$routeP
     {
     	if(featuredPress.length == 0)
     	{
-    		$scope.message_error = "Vui lòng chọn ảnh đại diện";
+    		$scope.message_error = langArray.message_error_select_featured_image;
     	}else if(featuredPress9.length == 0)
     	{
-    		$scope.message_error = "Vui lòng chọn ảnh chính";
+    		$scope.message_error = langArray.message_error_select_image;
     	}else
     	{
     		listPress.push(featuredPress);
@@ -105,10 +119,10 @@ configControllers.controller('PressController', ['$scope', '$rootScope','$routeP
     {
     	if($scope.title == undefined )
     	{
-    		$scope.message_error = "Vui lòng nhập vào tên";
+    		$scope.message_error = langArray.message_error_name;
     	}else if(imageArray.length < 2)
     	{
-    		$scope.message_error = "Vui lòng tải hình ảnh lên";
+    		$scope.message_error = langArray.message_error_upload_image;
     	}else
     	{
     		var data = {
@@ -132,7 +146,23 @@ configControllers.controller('PressController', ['$scope', '$rootScope','$routeP
 }]);
 configControllers.controller('PressListController', ['$scope', '$rootScope','$routeParams', '$location','$http', '$state', 'PressService', '$route',
   function($scope, $rootScope, $routeParams, $location, $http, $state, PressService, $route) {
-    document.title = 'AdminLTE | Quản lý press';
+    document.title = 'AdminLTE';
+      checkLogin();
+      $scope.text_menu_press_manament = langArray.text_menu_press_manament;
+      $scope.text_menu_dashboard = langArray.text_menu_dashboard;
+      $scope.text_menu_list_press = langArray.text_menu_list_press;
+      $scope.text_featured_image = langArray.text_featured_image;
+      $scope.text_photo = langArray.text_photo;
+      $scope.comlumn_name = langArray.comlumn_name;
+      $scope.comlumn_edit = langArray.comlumn_edit;
+      $scope.comlumn_date_created = langArray.comlumn_date_created;
+      $scope.comlumn_delete = langArray.comlumn_delete;
+      $scope.btn_edit = langArray.btn_edit;
+      $scope.btn_delete = langArray.btn_delete;
+      $scope.text_page = langArray.text_page;
+      $scope.modal_title = langArray.modal_title;
+      $scope.modal_message_delete_comfirm = langArray.modal_message_delete_comfirm;
+      $scope.btn_cancle = langArray.btn_cancle;
       $scope.currentPage = 1;
       $scope.baseUrl = baseUrl;
       $scope.btnDelete = function(id)
@@ -144,7 +174,7 @@ configControllers.controller('PressListController', ['$scope', '$rootScope','$ro
       {
           PressService.deletePressById($scope.press_id).success(function(res){
               $('#myModal').modal('hide') ;
-              $('.fade').removeClass('in').addClass('out');
+              $('.fade').removeClass('in').addClass('out').hide();
               $route.reload();
           });
       }
@@ -167,12 +197,12 @@ configControllers.controller('PressListController', ['$scope', '$rootScope','$ro
                     PressService.getListPress($scope.currentPage).success(function(res){
                         var tableHtml = ' <tbody>'+
                                           '<tr>'+
-                                            '<th style="text-align:center">Ảnh Đại Diện</th>'+
-                                            '<th style="text-align:center">Ảnh Chính</th>'+
-                                            '<th>Tên Bộ Sưu Tập</th>'+
-                                            '<th>Ngày Tạo</th>'+
-                                            '<th style="">Chỉnh Sửa</th>'+
-                                            '<th style="">Xóa</th>'+
+                                            '<th style="text-align:center">'+$scope.text_featured_image+'</th>'+
+                                            '<th style="text-align:center">'+$scope.text_photo+'</th>'+
+                                            '<th>'+$scope.comlumn_name+'</th>'+
+                                            '<th>'+$scope.comlumn_date_created+'</th>'+
+                                            '<th style="">'+$scope.btn_edit+'</th>'+
+                                            '<th style="">'+$scope.comlumn_delete+'</th>'+
                                             '</tr>';
                         for(var i = 0; i < res.data.length; i++)
                         {
@@ -181,8 +211,8 @@ configControllers.controller('PressListController', ['$scope', '$rootScope','$ro
                             tableHtml += '<td style="text-align:center"><img style="width:150px;height:100px" src="'+baseUrl+'/'+res.data[i].press_image_2+'" ></td>';
                             tableHtml += '<td>'+res.data[i].press_name+'</td>';
                             tableHtml += '<td>'+res.data[i].date_created+'</td>';
-                            tableHtml += '<td style="text-align:center"><a href="#/press/'+res.data[i].press_id+'"><button class="btn btn-primary btn-sm">Chỉnh Sửa</button></</a></td>';
-                            tableHtml += '<td style="text-align:center"><button ng-click="btnDelete('+res.data[i].press_id+')" class="btn btn-danger btn-sm">Xóa</button></td>';
+                            tableHtml += '<td style="text-align:center"><a href="#/press/'+res.data[i].press_id+'"><button class="btn btn-primary btn-sm">'+$scope.btn_edit+'</button></</a></td>';
+                            tableHtml += '<td style="text-align:center"><button ng-click="btnDelete('+res.data[i].press_id+')" class="btn btn-danger btn-sm">'+$scope.btn_delete+'</button></td>';
                             tableHtml += '</tr>';
                         }                    
                         $('.table').html(tableHtml);                    
@@ -204,12 +234,26 @@ configControllers.controller('PressListController', ['$scope', '$rootScope','$ro
     restrict: 'A',
     link : function(scope, elem, attrs)
 	    {
-	    	document.title = 'AdminLTE | Chỉnh sửa press';	
+	    	document.title = 'AdminLTE ';
+        checkLogin();	
 	    	var pressId = $routeParams.id;
 	    	PressService.getPressById (pressId).success(function(res){
 	    		if(res != null)
 	    		{
-	    			scope.title = res.press_name;
+	    			scope.edit_press = langArray.edit_press;
+            scope.text_menu_press_manament = langArray.text_menu_press_manament;
+            scope.text_menu_dashboard = langArray.text_menu_dashboard;
+            scope.btn_back = langArray.btn_back;
+            scope.text_information = langArray.text_information;
+            scope.text_name = langArray.text_name;
+            scope.text_featured_image = langArray.text_featured_image;
+            scope.text_add_photo = langArray.text_add_photo;
+            scope.text_click_to_remove = langArray.text_click_to_remove;
+            scope.text_photo = langArray.text_photo;
+            scope.text_upload_status = langArray.text_upload_status;
+            scope.text_upload_new_image = langArray.text_upload_new_image;
+            scope.btn_save = langArray.btn_save;
+            scope.title = res.press_name;
 	    			$('#blah').attr('src', baseUrl+res.press_image_1).css({"display":"block"});
 	    			$('#blah2').attr('src', baseUrl+res.press_image_2).css({"display":"block"});
 	    			var img1 = res.press_image_1;
@@ -255,7 +299,7 @@ configControllers.controller('PressListController', ['$scope', '$rootScope','$ro
                 img2 = 0;
               }else
               {
-                scope.message_error = 'Vui lòng tải lên đầy đủ hình ảnh';
+                scope.message_error = langArray.message_error_select_image;
               }
             }
 				    scope.btnBack = function()
@@ -266,7 +310,7 @@ configControllers.controller('PressListController', ['$scope', '$rootScope','$ro
 				    {
 				    	if(scope.title == 'undefined' || scope.title == '')
 				    	{
-				    		scope.message_error = "Vui lòng nhập vào tên";
+				    		scope.message_error = langArray.message_error_name;
 				    	}else if(scope.title != 'undefined' && scope.title != '')
 				    	{
                 if(img1 != 0 && img2 != 0)
@@ -307,7 +351,7 @@ configControllers.controller('PressListController', ['$scope', '$rootScope','$ro
                   update();
                 }else
                 {
-                  scope.message_error = 'Vui lòng tải lên đầy đủ hình ảnh';
+                  scope.message_error = langArray.message_error_select_image;
                 }
                 function update()
                 {

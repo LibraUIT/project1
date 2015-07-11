@@ -65,7 +65,24 @@ configApp.factory("ProductService", function($http) {
 });
 configControllers.controller('ProductController', ['$scope', '$rootScope','$routeParams', '$location','$http', '$state', '$route', 'ProductService',
   function($scope, $rootScope, $routeParams, $location, $http, $state, $route, ProductService) {
-    document.title = 'AdminLTE | Tạo mới';
+    document.title = 'AdminLTE ';
+    checkLogin();
+    $scope.text_menu_product_manament = langArray.text_menu_product_manament;
+    $scope.text_menu_dashboard = langArray.text_menu_dashboard;
+    $scope.text_menu_create_new = langArray.text_menu_create_new;
+    $scope.btn_back = langArray.btn_back;
+    $scope.text_name = langArray.text_name;
+    $scope.column_category = langArray.column_category;
+    $scope.text_description = langArray.text_description;
+    $scope.price = langArray.price;
+    $scope.price_new = langArray.price_new;
+    $scope.text_photo_gallery = langArray.text_photo_gallery;
+    $scope.text_add_photo = langArray.text_add_photo;
+    $scope.text_click_to_remove = langArray.text_click_to_remove;
+    $scope.text_upload_status = langArray.text_upload_status;
+    $scope.text_upload_new_image = langArray.text_upload_new_image;
+    $scope.btn_save = langArray.btn_save;
+    $scope.btn_cancle = langArray.btn_cancle;
     ProductService.getCategory().success(function(res){
       $scope.category = res;
     });
@@ -85,7 +102,7 @@ configControllers.controller('ProductController', ['$scope', '$rootScope','$rout
         
         if(productImg.length == 0)
         {
-          $scope.message_error = "Vui lòng tải lên hình ảnh cho sản phẩm";
+          $scope.message_error = langArray.message_error_upload_image;
         }else
         {
           var imgArr = $('.blah2');
@@ -111,26 +128,26 @@ configControllers.controller('ProductController', ['$scope', '$rootScope','$rout
     	$scope.message_error = '';
       if($scope.title == undefined)
     	{
-    	   $scope.message_error = "Vui lòng nhập vào tên của sản phẩm";	
+    	   $scope.message_error = langArray.message_error_name;	
     	}else if($scope.category_id == undefined)
       {
-         $scope.message_error = "Vui lòng chọn category cho sản phẩm"; 
+         $scope.message_error = langArray.message_error_choose_category; 
       }
       else if($scope.description == undefined)
     	{
-    		 $scope.message_error = "Vui lòng nhập vào mô tả sản phẩm";  
+    		 $scope.message_error = langArray.messgae_error_enter_description;  
     	}else if($scope.price == undefined)
       {
-         $scope.message_error = "Vui lòng nhập vào giá cho sản phẩm"; 
+         $scope.message_error = langArray.message_error_enter_price; 
       }else if(validatePrice($scope.price) == false)
       {
-        $scope.message_error = "Gía của sản phẩm phải là số"; 
+        $scope.message_error = langArray.message_error_price_is_int; 
       }else if($scope.price_new && validatePrice($scope.price_new) == false)
       {
-         $scope.message_error = "Gía mới của sản phẩm phải là số"; 
+         $scope.message_error = langArray.message_error_price_is_int; 
       }else if(imageArray.length == 0)
       {
-        $scope.message_error = "Vui lòng tải lên hình ảnh cho sản phẩm"; 
+        $scope.message_error = langArray.message_error_upload_image; 
       }else
       {
          if(! $scope.price_new)
@@ -167,7 +184,25 @@ configControllers.controller('ProductController', ['$scope', '$rootScope','$rout
 }]);
 configControllers.controller('ProductListController', ['$scope', '$rootScope','$routeParams', '$location','$http', '$state', 'ProductService', '$route',
   function($scope, $rootScope, $routeParams, $location, $http, $state, ProductService, $route) {
-    document.title = 'AdminLTE | Quản lý category';
+    document.title = 'AdminLTE ';
+    checkLogin();
+    $scope.text_menu_product_manament = langArray.text_menu_product_manament;
+    $scope.text_menu_list_product = langArray.text_menu_list_product;
+    $scope.text_menu_dashboard = langArray.text_menu_dashboard;
+    $scope.text_featured_image = langArray.text_featured_image;
+    $scope.comlumn_name = langArray.comlumn_name;
+    $scope.column_category = langArray.column_category;
+    $scope.price = langArray.price;
+    $scope.price_new = langArray.price_new;
+    $scope.column_date_created = langArray.column_date_created;
+    $scope.comlumn_edit = langArray.comlumn_edit;
+    $scope.comlumn_delete = langArray.comlumn_delete;
+    $scope.btn_edit = langArray.btn_edit;
+    $scope.btn_delete = langArray.btn_delete;
+    $scope.text_page = langArray.text_page;
+    $scope.modal_title = langArray.modal_title;
+    $scope.modal_message_delete_comfirm = langArray.modal_message_delete_comfirm;
+    $scope.btn_cancle = langArray.btn_cancle;
     $scope.currentPage = 1;
     $scope.baseUrl = baseUrl;
     ProductService.list($scope.currentPage).success(function(res){
@@ -187,14 +222,14 @@ configControllers.controller('ProductListController', ['$scope', '$rootScope','$
                     ProductService.list($scope.currentPage).success(function(res){
                         var tableHtml = ' <tbody>'+
                                           '<tr>'+
-                                            '<th style="text-align:center">Ảnh Đại Diện</th>'+
-                                            '<th>Tên </th>'+
-                                            '<th>Category</th>'+
-                                            '<th>Giá</th>'+
-                                            '<th>Giá Mới</th>'+
-                                            '<th>Ngày Tạo</th>'+
-                                            '<th style="">Chỉnh Sửa</th>'+
-                                            '<th style="">Xóa</th>'+
+                                            '<th style="text-align:center">'+$scope.text_featured_image+'</th>'+
+                                            '<th>'+$scope.comlumn_name+'</th>'+
+                                            '<th>'+$scope.column_category+'</th>'+
+                                            '<th>'+$scope.price+'</th>'+
+                                            '<th>'+$scope.price_new+'</th>'+
+                                            '<th>'+$scope.column_date_created+'</th>'+
+                                            '<th style="">'+$scope.comlumn_edit+'</th>'+
+                                            '<th style="">'+$scope.comlumn_delete+'</th>'+
                                             '</tr>';
                         for(var i = 0; i < res.data.length; i++)
                         {
@@ -212,8 +247,8 @@ configControllers.controller('ProductListController', ['$scope', '$rootScope','$
                             tableHtml += '<td>'+res.data[i].price+'</td>';
                             tableHtml += '<td>'+price_new+'</td>';
                             tableHtml += '<td>'+res.data[i].date_created+'</td>';
-                            tableHtml += '<td style="text-align:center"><a href="#/product/'+res.data[i].id+'"><button class="btn btn-primary btn-sm">Chỉnh Sửa</button></</a></td>';
-                            tableHtml += '<td style="text-align:center"><button id="'+res.data[i].id+'" ng-click="btnDelete('+res.data[i].id+')" class="btn btn-danger btn-sm btnDelete">Xóa</button></td>';
+                            tableHtml += '<td style="text-align:center"><a href="#/product/'+res.data[i].id+'"><button class="btn btn-primary btn-sm">'+$scope.btn_edit+'</button></</a></td>';
+                            tableHtml += '<td style="text-align:center"><button id="'+res.data[i].id+'" ng-click="btnDelete('+res.data[i].id+')" class="btn btn-danger btn-sm btnDelete">'+$scope.btn_delete+'</button></td>';
                             tableHtml += '</tr>';
                         } 
 
@@ -236,7 +271,7 @@ configControllers.controller('ProductListController', ['$scope', '$rootScope','$
       {
           ProductService.deleteById($scope.product_id).success(function(res){
               $('#myModal').modal('hide') ;
-              $('.fade').removeClass('in').addClass('out');
+              $('.fade').removeClass('in').addClass('out').hide();
               $route.reload();
               
           });
@@ -247,7 +282,24 @@ configControllers.controller('ProductListController', ['$scope', '$rootScope','$
     	restrict: 'A',
     	link : function(scope, elem, attrs)
 	    {
-	    	document.title = 'AdminLTE | Chỉnh sửa sản phẩm';
+	    	document.title = 'AdminLTE ';
+        checkLogin();
+        scope.text_menu_product_manament= langArray.text_menu_product_manament;
+        scope.text_menu_dashboard = langArray.text_menu_dashboard;
+        scope.edit_product = langArray.edit_product;
+        scope.btn_back = langArray.btn_back;
+        scope.text_name = langArray.text_name;
+        scope.column_category = langArray.column_category;
+        scope.text_description = langArray.text_description;
+        scope.price = langArray.price;
+        scope.price_new = langArray.price_new;
+        scope.text_photo_gallery = langArray.text_photo_gallery;
+        scope.text_click_to_remove = langArray.text_click_to_remove;
+        scope.text_upload_new_image = langArray.text_upload_new_image;
+        scope.text_add_photo = langArray.text_add_photo;
+        scope.text_upload_status = langArray.text_upload_status;
+        scope.btn_save = langArray.btn_save;
+        scope.btn_cancle = langArray.btn_cancle;
 	    	var pId = $routeParams.id;
 	    	ProductService.getById(pId).success(function(res){
 	    		if(res)
@@ -279,7 +331,7 @@ configControllers.controller('ProductListController', ['$scope', '$rootScope','$
             
             if(productImg.length == 0)
             {
-              scope.message_error = "Vui lòng chọn hình ảnh cho sản phẩm";
+              scope.message_error = langArray.message_error_select_image;
             }else
             {
               var imgArr = $('.blah2');
@@ -309,25 +361,25 @@ configControllers.controller('ProductListController', ['$scope', '$rootScope','$
 		    	 scope.message_error = '';
            if(scope.title == '')
            {
-              scope.message_error = 'Vui lòng nhập vào tên cho sản phẩm';
+              scope.message_error = langArray.message_error_name;
            }else if(scope.category_id == undefined)
            {
-              scope.message_error = 'Vui lòng nhập chọn category cho sản phẩm';
+              scope.message_error = langArray.message_error_choose_category;
            }else if(scope.description == '')
            {
-              scope.message_error = 'Vui lòng nhập vào mô tả cho sản phẩm';
+              scope.message_error = langArray.messgae_error_enter_description;
            }else if(scope.price == '')
            {
-              scope.message_error = "Vui lòng nhập vào giá cho sản phẩm"; 
+              scope.message_error = langArray.message_error_enter_price; 
            }else if(validatePrice(scope.price) == false)
            {
-              scope.message_error = "Gía của sản phẩm phải là số"; 
+              scope.message_error = langArray.message_error_price_is_int; 
            }else if(scope.price_new && validatePrice(scope.price_new) == false)
            {
-              scope.message_error = "Gía mới của sản phẩm phải là số"; 
+              scope.message_error = langArray.message_error_price_is_int; 
            }else if(imageArray.length == 0)
            {
-              scope.message_error = "Vui lòng tải lên hình ảnh cho sản phẩm"; 
+              scope.message_error = langArray.message_error_upload_image; 
            }else
            {
               if(! scope.price_new)

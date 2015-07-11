@@ -26,7 +26,7 @@
 <!-- Main -->
 <div id="content" class="strip">
       <div class="canvas fade_in">
-      		<?php $this->load->view('home'); ?>
+      		<?php $this->load->view($template); ?>
       </div>
 </div>      
 <!-- End Main -->

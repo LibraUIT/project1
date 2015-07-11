@@ -5,7 +5,17 @@
  		$this->load->library('session');
  		$this->load->helper('url');
  		$this->load->helper('string');
- 		$this->lang->load('en', 'english');
+ 		$this->load->library('mylang');
+ 		if($this->session->userdata('lang'))
+ 		{
+ 			$lang = $this->session->userdata('lang');
+ 			$this->lang->load($lang[0], $lang[1]);
+ 		}else
+ 		{
+ 			$lang = $this->mylang->get_config();
+ 			$this->lang->load($lang[0], $lang[1]);
+ 		}
+ 		
  		$this->load->model('Admin_model');
  		$this->load->model('Setting_model');
  		$this->load->model('Page_model');
@@ -14,6 +24,7 @@
  		$this->load->model('Press_model');
  		$this->load->model('Category_model');
  		$this->load->model('Product_model');
+ 		$this->load->model('Lang_model');
  	}
  	public function index()
  	{
@@ -38,7 +49,7 @@
  			$this->load->view("login");
  		}else
  		{
- 			//redirect('/admin/index', 'location', 301);
+ 			header('location:'.base_url().'admin/admin.html');
  		}
  	}
  	public function login_submit()
@@ -67,13 +78,43 @@
  		$this->session->sess_destroy();
  		redirect('/admin/login', 'location', 301);
  	}
+ 	public function check_login()
+ 	{
+ 		if (!$this->input->is_ajax_request()) {
+		   exit('No direct script access allowed');
+		}else
+		{
+			$email = $this->input->post('email');
+			$pass = $this->input->post('pass');
+			$login = $this->Admin_model->checkUserLogin($email, $pass);
+			
+			if( $login == "FALSE")
+			{
+				echo "FALSE";
+			}else
+			{
+				$this->session->set_userdata('login', $login['u_id']);
+				header('Content-Type: application/json');
+ 				echo json_encode($login);
+			}
+
+		}
+ 	}
  	public function get_user()
  	{
- 		
 			$u_id = $this->input->post('id');
-			$user = $this->Admin_model->getUserById($u_id);
-			header('Content-Type: application/json');
- 			echo json_encode($user);
+			$u_email = $this->input->post('email');
+			$u_pass = $this->input->post('pass');
+			$user = $this->Admin_model->getUser($u_id, $u_email, $u_pass);
+			if($user)
+			{
+				header('Content-Type: application/json');
+ 				echo json_encode($user);
+			}else
+			{
+				echo "FALSE";
+			}
+			
 
  	}
  	public function portfolio_save()
@@ -583,5 +624,42 @@
 		}
 		$this->Product_model->updateItemById($id, $update);
 		echo "TRUE";
+	}
+	public function set_lang($id)
+	{
+		switch ($id) {
+			case 'vi':
+				$lang = array(
+					0 => 'vi',
+					1 => 'vietnamese'
+				);
+				break;
+			
+			case 'en':
+				$lang = array(
+					0 => 'en',
+					1 => 'english'
+				);
+				break;
+		}
+		
+		$this->session->set_userdata('lang',$lang);
+		redirect('/admin/login', 'location', 301);
+	}
+	public function getLang()
+	{
+		$lang = $this->Lang_model->getItemById(1);
+		header('Content-Type: application/json');
+ 		echo json_encode($lang);
+	}
+	public function language_save()
+	{
+		$data= $this->input->post('data');
+		$update = array(
+				'name' => $data['name']
+			);
+		$this->Lang_model->updateItemById(1, $update);
+		echo 'TRUE';
+
 	}
  }

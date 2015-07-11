@@ -67,7 +67,20 @@ configApp.factory("CollectionService", function($http) {
 
 configControllers.controller('CollectionController', ['$scope', '$rootScope','$routeParams', '$location','$http', '$state', 'CollectionService', '$route',
   function($scope, $rootScope, $routeParams, $location, $http, $state, CollectionService, $route) {
-    document.title = 'AdminLTE | Tạo mới bộ sưu tập';
+    document.title = 'AdminLTE ';
+    checkLogin();
+    $scope.text_menu_collection_manament = langArray.text_menu_collection_manament;
+    $scope.text_menu_dashboard = langArray.text_menu_dashboard;
+    $scope.text_menu_create_new = langArray.text_menu_create_new;
+    $scope.btn_back = langArray.btn_back;
+    $scope.text_name = langArray.text_name;
+    $scope.text_featured_image = langArray.text_featured_image;
+    $scope.text_add_photo = langArray.text_add_photo;
+    $scope.text_click_to_remove = langArray.text_click_to_remove;
+    $scope.text_photo_gallery = langArray.text_photo_gallery;
+    $scope.text_upload_status = langArray.text_upload_status;
+    $scope.text_upload_new_image = langArray.text_upload_new_image;
+    $scope.btn_save = langArray.btn_save;
     $('#fileupload').change(function(){
         readURL(this);
     });
@@ -86,10 +99,10 @@ configControllers.controller('CollectionController', ['$scope', '$rootScope','$r
        
        if(featured.length == 0)
        {
-          $scope.message_error = "Vui lòng chọn ảnh đại diện cho bộ sưu tập";
+          $scope.message_error = langArray.message_error_select_image;
        }else if(collection.length == 0)
        {
-          $scope.message_error = "Vui lòng thêm ảnh cho bộ sưu tập";
+          $scope.message_error = langArray.message_error_select_image;
        }
        else
        {
@@ -138,14 +151,14 @@ configControllers.controller('CollectionController', ['$scope', '$rootScope','$r
     {
       if($scope.title === undefined)
        {
-          $scope.message_error = "Vui lòng nhập vào tên cho bộ sưu tập";
+          $scope.message_error = langArray.message_error_name;
        }
        else if(featuredImage == '')
        {
-          $scope.message_error = "Vui lòng chọn ảnh đại diện cho bộ sưu tập";
+          $scope.message_error = langArray.message_error_select_image;
        }else if(imageArray.length == 0)
        {
-          $scope.message_error = "Vui lòng thêm ảnh cho bộ sưu tập";
+          $scope.message_error = langArray.message_error_select_image;
        }
        else{
           if(status == 1)
@@ -157,7 +170,7 @@ configControllers.controller('CollectionController', ['$scope', '$rootScope','$r
                             'collections' : JSON.stringify(imageArray)
                           };
                           CollectionService.save(data).success(function(res){
-                              $scope.message_success = 'Tạo mới bộ sưu tập thành công';
+                              $scope.message_success = langArray.message_success;
                                    status = 0;
                                    featuredImage = '';
                                    imageArray = [];                  
@@ -169,7 +182,22 @@ configControllers.controller('CollectionController', ['$scope', '$rootScope','$r
 }]);
 configControllers.controller('CollectionListController', ['$scope', '$rootScope','$routeParams', '$location','$http', '$state', 'CollectionService', '$route',
   function($scope, $rootScope, $routeParams, $location, $http, $state, CollectionService, $route) {
-    document.title = 'AdminLTE | Quản lý các bộ sưu tập';
+      document.title = 'AdminLTE ';
+      checkLogin();
+      $scope.text_menu_collection_manament = langArray.text_menu_collection_manament;
+      $scope.text_menu_dashboard  = langArray.text_menu_dashboard;
+      $scope.text_menu_list_collection =langArray.text_menu_list_collection;
+      $scope.text_featured_image = langArray.text_featured_image;
+      $scope.comlumn_name = langArray.comlumn_name;
+      $scope.column_date_created = langArray.column_date_created;
+      $scope.comlumn_edit = langArray.comlumn_edit;
+      $scope.comlumn_delete = langArray.comlumn_delete;
+      $scope.modal_title = langArray.modal_title;
+      $scope.modal_message_delete_comfirm = langArray.modal_message_delete_comfirm;
+      $scope.btn_delete = langArray.btn_delete;
+      $scope.btn_edit = langArray.btn_edit;
+      $scope.btn_cancle = langArray.btn_cancle;
+      $scope.text_page = langArray.text_page;
       $scope.currentPage = 1;
       $scope.baseUrl = baseUrl;
       $scope.btnDelete = function(id)
@@ -181,6 +209,7 @@ configControllers.controller('CollectionListController', ['$scope', '$rootScope'
       {
           CollectionService.deleteCollectionById($scope.coll_id).success(function(res){
               $('#myModal').modal('hide') ;
+              $('.fade').removeClass('in').addClass('out').hide();
               $route.reload();
           });
       }
@@ -203,11 +232,11 @@ configControllers.controller('CollectionListController', ['$scope', '$rootScope'
                     CollectionService.getListCollection($scope.currentPage).success(function(res){
                         var tableHtml = ' <tbody>'+
                                           '<tr>'+
-                                            '<th style="text-align:center">Ảnh Đại Diện</th>'+
-                                            '<th>Tên Bộ Sưu Tập</th>'+
-                                            '<th>Ngày Tạo</th>'+
-                                            '<th style="">Chỉnh Sửa</th>'+
-                                            '<th style="">Xóa</th>'+
+                                            '<th style="text-align:center">'+$scope.text_featured_image+'</th>'+
+                                            '<th>'+$scope.comlumn_name+'</th>'+
+                                            '<th>'+$scope.column_date_created+'</th>'+
+                                            '<th style="">'+$scope.comlumn_edit+'</th>'+
+                                            '<th style="">'+$scope.comlumn_delete+'</th>'+
                                             '</tr>';
                         for(var i = 0; i < res.data.length; i++)
                         {
@@ -215,8 +244,8 @@ configControllers.controller('CollectionListController', ['$scope', '$rootScope'
                             tableHtml += '<td style="text-align:center;height:260px"><img style="width:50px" src="'+baseUrl+'/'+res.data[i].collection_featured_image+'" ></td>';
                             tableHtml += '<td>'+res.data[i].collection_name+'</td>';
                             tableHtml += '<td>'+res.data[i].collection_date_created+'</td>';
-                            tableHtml += '<td style="text-align:center"><a href="#/collection/'+res.data[i].collection_id+'"><button class="btn btn-primary btn-sm">Chỉnh Sửa</button></</a></td>';
-                            tableHtml += '<td style="text-align:center"><button ng-click="btnDelete('+res.data[i].collection_id+')" class="btn btn-danger btn-sm">Xóa</button></td>';
+                            tableHtml += '<td style="text-align:center"><a href="#/collection/'+res.data[i].collection_id+'"><button class="btn btn-primary btn-sm">'+$scope.btn_edit+'</button></</a></td>';
+                            tableHtml += '<td style="text-align:center"><button ng-click="btnDelete('+res.data[i].collection_id+')" class="btn btn-danger btn-sm">'+$scope.btn_delete+'</button></td>';
                             tableHtml += '</tr>';
                         }                    
                         $('.table').html(tableHtml);                    
@@ -238,6 +267,23 @@ configControllers.controller('CollectionListController', ['$scope', '$rootScope'
     restrict: 'A',
     link : function(scope, elem, attrs)
     {
+        document.title = 'AdminLTE ';
+        checkLogin();
+        scope.text_menu_collection_manament = langArray.text_menu_collection_manament;
+        scope.text_menu_dashboard = langArray.text_menu_dashboard;
+        scope.edit_collection = langArray.edit_collection;
+        scope.btn_back = langArray.btn_back;
+        scope.text_information = langArray.text_information;
+        scope.text_name = langArray.text_name;
+        scope.text_featured_image =langArray.text_featured_image;
+        scope.change_image = langArray.change_image;
+        scope.text_photo_gallery = langArray.text_photo_gallery;
+        scope.text_click_to_remove = langArray.text_click_to_remove;
+        scope.text_add_photo = langArray.text_add_photo;
+        scope.text_upload_status = langArray.text_upload_status;
+        scope.text_upload_new_image = langArray.text_upload_new_image;
+        scope.btn_save =langArray.btn_save;
+        scope.btn_cancle = langArray.btn_cancle;
         var collectionId = $routeParams.id;
         collection = [];
         featured = '';
@@ -333,7 +379,7 @@ configControllers.controller('CollectionListController', ['$scope', '$rootScope'
                       edit = 1;
                    }else if(scope.imageArray.length == 0 && imageArray.length == 0)
                    {
-                      scope.message_error = "Vui lòng tải ảnh lên cho bộ sưu tập";
+                      scope.message_error = langArray.message_error_select_image;
                       edit = 0;
                    }
                    if(featured != "")
@@ -359,7 +405,7 @@ configControllers.controller('CollectionListController', ['$scope', '$rootScope'
                       });
                     }else
                     {
-                      scope.message_error = "Vui lòng nhập vào tên cho bộ sưu tập";
+                      scope.message_error = langArray.message_error_name;
                     }
                   /*}else
                    {

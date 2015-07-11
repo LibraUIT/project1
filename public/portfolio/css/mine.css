@@ -54,6 +54,16 @@
 	{
 		color: #E53935;
 	}
+	.hvr-sweep-to-top a
+	{
+		color: rgb(207, 216, 220);
+		background-color: transparent;
+		text-decoration: none;
+	}
+	.hvr-sweep-to-top a:hover
+	{
+		color: #E53935;
+	}
 	article
 	{
 		position: fixed;
@@ -473,4 +483,96 @@
 	.social li:nth-child(4)
 	{
 		border-right: none;
+	}
+	.lang
+	{
+		position: absolute;
+		display: block;
+		left: 20%;
+		bottom: 3px;
+		color: #FFF;
+		font-size: 9px;
+	}
+	.lang a
+	{
+		color: #FFF;
+		font-size: 9px;
+	}
+	.lang a:hover
+	{
+		color: #E53935;
+	}
+	.press-title
+	{
+		width: 20%;
+		position: absolute;
+		height: 75vh;
+		background-color: transparent;
+		z-index: 1001;
+		top: 15vh;
+		left: 15%;
+		display: none;
+	}
+	.press-title h4
+	{
+		font-size: 28px;
+		color: #FFF;
+		font-family: "Times New Roman", Georgia, Serif;
+		font-weight: 400;
+		margin-top: 10%;
+		margin-left: 0%;
+		opacity: 0.7;
+		text-transform: uppercase;
+	}
+	.list-press
+	{
+		width: 83%;
+		position: absolute;
+		left: 15%;
+		height: 69vh;
+		background-color: #424242;
+		z-index: 1001;
+		top: 24vh;
+		border-left: 1px solid #424242;
+		display: none;
+		opacity: 0.9;
+	}
+	.thumb-press
+	{
+		width: 210px;
+		height: 135px;
+		float:left;
+		margin-top: 20px;
+	}
+	.press
+	{
+		z-index: 1000;
+		width: 100%;
+		height: 80vh;
+		position: absolute;
+		top: 17vh;
+		left: 0%;
+		background-color: #9E9E9E;
+		opacity: 0.3;
+		display: none;
+	}
+	 .hvr-shutter-out-vertical a:hover
+	{
+		text-decoration: none;
+	}
+	.class-press
+	{
+		height: 100px;
+	}
+	.class-press::-webkit-scrollbar {
+    width: 1em;
+	}
+	 
+	.class-press::-webkit-scrollbar-track {
+	    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	}
+	 
+	.class-press::-webkit-scrollbar-thumb {
+	  background-color: darkgrey;
+	  outline: 1px solid slategrey;
 	}
