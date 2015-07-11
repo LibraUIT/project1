@@ -27,12 +27,12 @@
  		$this->load->view("common/main",$view);
  	}
 
- 	public function viewProduct($id){
+ 	public function viewProduct($pid){
  		$id = 1;
  		$portfolio = $this->Setting_model->getItemById($id);
  		$data = unserialize($portfolio['setting_info']);
  		$this->load->model("Product_model");
- 		$result = $this->Product_model->detailProduct($id);
+ 		$result = $this->Product_model->detailProduct($pid);
  		$detail['pro'] = $result['0'];
  		$title = $detail['pro']['name'];
  		$template = array(
