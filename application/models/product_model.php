@@ -55,4 +55,30 @@ class Product_model extends CI_Model{
 		$this->db->where('id', $id);
 		$this->db->update($this->_table, $update); 
 	}
+
+	public function listProduct(){
+		$this->load->database();
+		$this->db->select("id,name,price,images, price_new");
+		$query = $this->db->get("products");
+		if($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}else
+		{
+			return NULL;
+		}
+	}
+
+	public function detailProduct($id){
+		$this->load->database();
+		$this->db->select("id, name, price,price_new, images,description");
+		$this->db->where("id","$id");
+		$query = $this->db->get("products");
+		if($query->num_rows() > 0){
+			return $query->result_array();
+		}else
+		{
+			return NULL;
+		}
+	}
 }

@@ -53,6 +53,7 @@ configApp.factory("ProductService", function($http) {
     },
     updateById : function(data)
     {
+
       var urlConfig = [baseUrl, 'admin','product_update_get_by_id'].join('/');
       return $http({
         method: 'POST',
@@ -74,8 +75,8 @@ configControllers.controller('ProductController', ['$scope', '$rootScope','$rout
     $scope.text_name = langArray.text_name;
     $scope.column_category = langArray.column_category;
     $scope.text_description = langArray.text_description;
-    $scope.price = langArray.price;
-    $scope.price_new = langArray.price_new;
+    $scope.text_price = langArray.price;
+    $scope.text_price_new = langArray.price_new;
     $scope.text_photo_gallery = langArray.text_photo_gallery;
     $scope.text_add_photo = langArray.text_add_photo;
     $scope.text_click_to_remove = langArray.text_click_to_remove;
@@ -261,7 +262,6 @@ configControllers.controller('ProductListController', ['$scope', '$rootScope','$
                 }
               });
     });
-  
     $scope.btnDelete = function(id)
       {
           $('#myModal').modal('show') ;

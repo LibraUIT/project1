@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta name="description" content="<?php  echo $description; ?>">
 	<meta name="keywords" content="<?php echo $key_work; ?>">
-	<meta name="author" content="Quan Nguyen">
+	<meta name="author" content="Quân Nguyễn - facebok.com/librauit">
 	<script type="text/javascript" src="<?php echo base_url(); ?>public/portfolio/js/jquery.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>public/portfolio/js/mine.js"></script>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/portfolio/css/hover.css" media="all">
