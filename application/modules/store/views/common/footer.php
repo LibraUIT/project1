@@ -7,7 +7,7 @@
         
                 
           <li><a href="/contact">Contact</a></li>
-          <li><a href="/cart">Cart</a></li>        
+          <!--<li><a href="/cart">Cart</a></li>  -->      
           
           <li><a href="http://twitter.com/CSiriano" title="Follow us on Twitter">Twitter</a></li>
           

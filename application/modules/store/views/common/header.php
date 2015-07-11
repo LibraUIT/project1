@@ -2,7 +2,7 @@
       <div class="canvas">
         <nav id="main_nav">
           <ul>
-            <li><a href="<?php echo base_url(); ?>store/products">Products</a></li><li><a href="<?php echo base_url(); ?>store/contact">Contact</a></li><li><a href="<?php echo base_url(); ?>store/cart">Cart</a></li>
+            <li><a href="<?php echo base_url(); ?>store/products">Products</a></li><li><a href="<?php echo base_url(); ?>store/contact">Contact</a></li><!--<li><a href="<?php echo base_url(); ?>store/cart">Cart</a></li>-->
           </ul>
         </nav>
         
