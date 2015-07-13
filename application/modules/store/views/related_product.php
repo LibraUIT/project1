@@ -23,10 +23,6 @@ function hrand($min, $max){
 	<h3>Related products</h3>
 	<ul id="products">
 		<?php
-			// $data = array(
-			// 	$info[rand(0,$count)],
-				
-			// );
 			if(count($info) <= 3){
 				for($i=0; $i<count($info); $i++){
 					$id = $info[$i]['id'];
@@ -50,22 +46,9 @@ function hrand($min, $max){
 			}
 			else{
 				$rand_select = hrand(0, count($info)-1);
-				// echo count($info);
-				// echo "<pre>";
-				// print_r($rand_select);
-				// echo "</pre>";
-
 				foreach($rand_select as $key => $value){
 					$proList[$key] = $info[$value];
 				}
-				// echo count($proList);
-				// echo "<pre>";
-				// print_r($proList);
-				// echo "</pre>";
-
-				// echo "<pre>";
-				// print_r($proList);
-				// echo "</pre>";
 				for($i=0; $i<3; $i++){
 					$id = $proList[$i]['id'];
 					$name = $proList[$i]['name'];
@@ -86,7 +69,6 @@ function hrand($min, $max){
 					echo "</li>";
 				}
 			}
-			
 
 		?>
 		<li></li>

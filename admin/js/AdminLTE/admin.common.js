@@ -132,7 +132,8 @@ configControllers.controller('BaseController', ['$scope', '$rootScope','$routePa
       LangService.user('en').success(function(res){
           settingLayout(); 
           langArray = res;
-          
+          $scope.text_menu_dashboard = langArray.text_menu_dashboard;
+          $scope.text_menu_home =langArray.text_menu_home;
       });
 
     }
@@ -160,6 +161,7 @@ configControllers.controller('BaseController', ['$scope', '$rootScope','$routePa
             scope.text_menu_home = langArray.text_menu_home;
             scope.text_menu_settings_title = langArray.text_menu_settings_title; 
             scope.text_menu_language = langArray.text_menu_language;
+            scope.text_hello = langArray.text_hello;
           });
          
           

@@ -18,8 +18,8 @@ configApp.factory("HeaderService", function($http) {
     }
   }
 });
-configControllers.controller('headerController', ['$scope', '$rootScope','$routeParams', '$location','$http', '$state', 'HeaderService',
-  function($scope, $rootScope, $routeParams, $location, $http, $state, HeaderService) {
+configControllers.controller('headerController', ['$scope', '$rootScope','$routeParams', '$location','$http', '$state', 'HeaderService', 'LangService',
+  function($scope, $rootScope, $routeParams, $location, $http, $state, HeaderService, LangService) {
   	if(isAdminLogin() !== false)
     {
 	  	 HeaderService.user(isAdminLogin()).success(function(res){
@@ -27,6 +27,12 @@ configControllers.controller('headerController', ['$scope', '$rootScope','$route
         {
 
 	  	  	 $scope.userLoginName = res.u_email;
+           LangService.user('en').success(function(res){
+              var langarr = res;
+              $scope.text_profile = langarr.text_profile;
+              $scope.text_singout = langarr.text_singout;
+              
+           });
         }else
         {
           window.location.href = [baseUrl, 'admin', 'logout'].join('/');
