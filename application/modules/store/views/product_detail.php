@@ -11,25 +11,25 @@
 	<span class="dash"></span>
 	<h3>
 		<?php
-		// setlocale(LC_MONETARY, 'en_GB');
-		// if(isset($pro['price_new']))
-	 //    {
-	 //      $ftm = '%i VND';
-	 //      $money = money_format($ftm, $pro['price_new']);
-	 //      $money = str_replace('GBP', '', $money);
-	 //      echo "<span class='currency_sign'></span>". $money;
-	 //      $money_new = money_format($ftm, $pro['price']);
-	 //      $money_new = str_replace('GBP', '', $money_new);
-	 //      echo "<h3 style='text-decoration: line-through;font-size:11px'><span class='currency_sign'></span>". $money_new."</h3>";
-	 //    }else
-	 //    {
-	 //      $ftm = '%i VND';
-	 //      $money = money_format($ftm, $pro['price']);
-	 //      $money = str_replace('GBP', '', $money);
-	      // echo "<span class='currency_sign'></span>". $money;
-			echo "<span class='currency_sign'></span>"."35USD";
+		 setlocale(LC_MONETARY, 'en_GB');
+		if(isset($pro['price_new']))
+	     {
+	         $ftm = '%i VND';
+	         $money = money_format($ftm, $pro['price_new']);
+	         $money = str_replace('GBP', '', $money);
+	         echo "<span class='currency_sign'></span>". $money;
+	         $money_new = money_format($ftm, $pro['price']);
+	         $money_new = str_replace('GBP', '', $money_new);
+	         echo "<h3 style='text-decoration: line-through;font-size:11px'><span class='currency_sign'></span>". $money_new."</h3>";
+	       }else
+	       {
+	         $ftm = '%i VND';
+	         $money = money_format($ftm, $pro['price']);
+	         $money = str_replace('GBP', '', $money);
+	         echo "<span class='currency_sign'></span>". $money;
+			//echo "<span class='currency_sign'></span>"."35USD";
 	     
-	 //    }
+	       }
 		?>
 	</h3>
 </header>

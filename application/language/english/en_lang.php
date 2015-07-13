@@ -90,6 +90,17 @@ $lang['edit_collection'] = 'Edit Collection';
 $lang['change_image'] = 'Change Image';
 $lang['message'] = 'Welcome to our temporary mobile site. Please choose from the menu below.';
 $lang['tap_image'] = '(Tap images to see larger)';
+$lang['text_store_product'] = 'Products';
+$lang['text_store_contact'] = 'Contact';
+$lang['text_store_home']	= 'Home';
+$lang['text_store_search'] = 'Search';
+$lang['text_store_more'] = 'More';
+$lang['text_store_back_to_site'] = 'BACK TO SITE';
+$lang['text_profile'] = 'Profile';
+$lang['text_singout'] = 'Sing out';
+$lang['text_hello'] = 'Hello, ';
+
+
 
 
 

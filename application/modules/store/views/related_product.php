@@ -14,7 +14,22 @@
 				echo "<div class='product_header'>";
 				echo "<h2>".$name."</h2>";
 				echo "<span class='dash'></span>";
-				echo "<h3><span class='currency_sign'>$</span>".$price."</h3>";
+				if(isset($info[$i]['price_new']))
+				{
+					$ftm = '%i VND';
+					$money = money_format($ftm, $price_new);
+       				$money = str_replace('GBP', '', $money);
+					echo "<h3><span class='currency_sign'></span>".$money."</h3>";
+					$money_new = money_format($ftm, $price);
+       				$money_new = str_replace('GBP', '', $money_new);
+       				echo "<h3 style='text-decoration: line-through;font-size:11px'><span class='currency_sign'></span>".$money_new."</h3>";
+				}else
+				{
+					$ftm = '%i VND';
+					$money = money_format($ftm, $price);
+       				$money = str_replace('GBP', '', $money);
+					echo "<h3><span class='currency_sign'></span>".$money."</h3>";
+				}		
 				echo "</div>";
 				echo "<div class='product_thumb'>";
 				echo "<img src='".base_url().$images."' class='fade_in' alt='Image of".$name."' />";
