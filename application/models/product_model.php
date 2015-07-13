@@ -87,7 +87,7 @@ class Product_model extends CI_Model{
 		$this->db->select("id, name, price, price_new, images");
 		$this->db->where("category_id","$cat");
 		$this->db->where("id !=", $id);
-		$query = $this->db->get("products",3);
+		$query = $this->db->get("products");
 		if($query->num_rows() > 0){
 			return $query->result_array();
 		}
