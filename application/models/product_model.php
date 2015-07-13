@@ -71,13 +71,27 @@ class Product_model extends CI_Model{
 
 	public function detailProduct($id){
 		$this->load->database();
-		$this->db->select("id, name, price, price_new, images,description");
+		$this->db->select("id, category_id, name, price, price_new, images,description");
 		$this->db->where("id","$id");
 		$query = $this->db->get("products");
 		if($query->num_rows() > 0){
 			return $query->result_array();
 		}else
 		{
+			return NULL;
+		}
+	}
+
+	public function relatedProducts($id, $cat){
+		$this->load->database();
+		$this->db->select("id, name, price, price_new, images");
+		$this->db->where("category_id","$cat");
+		$this->db->where("id !=", $id);
+		$query = $this->db->get("products",3);
+		if($query->num_rows() > 0){
+			return $query->result_array();
+		}
+		else{
 			return NULL;
 		}
 	}

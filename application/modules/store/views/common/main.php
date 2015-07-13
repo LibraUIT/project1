@@ -41,6 +41,16 @@
       </div>
 </div>      
 <!-- End Main -->
+
+<!-- Related Product -->
+<?php
+	$count = count($dataRelatedPro);
+	if($count > 0 && is_array($dataRelatedPro)){
+		$this->load->view("related_product",$dataRelatedPro);
+	}
+?>
+<!-- End Related Product -->
+
 <!-- Footer -->
 <?php $this->load->view("common/footer"); ?>
 <!-- End Footer -->

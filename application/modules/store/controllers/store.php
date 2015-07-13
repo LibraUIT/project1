@@ -13,6 +13,7 @@
  		$data = unserialize($portfolio['setting_info']);
  		$this->load->model("Product_model");
  		$products['pro'] = $this->Product_model->listProduct();
+ 		$relatedPro = '';
  		$template = array(
  			"id" => "home_page",
  			"page" => "home",
@@ -21,6 +22,7 @@
  			"title" => "Home page / Magic fashion",
  			"template" => $template,
  			"data" => $products,
+ 			"dataRelatedPro" => $relatedPro,
  			"key_work" => $data['key_work'],
  			"description" => $data['description']
  		);
@@ -34,6 +36,8 @@
  		$this->load->model("Product_model");
  		$result = $this->Product_model->detailProduct($pid);
  		$detail['pro'] = $result['0'];
+ 		$cat_id = $result['0']['category_id'];
+ 		$relatedPro['info'] = $this->Product_model->relatedProducts($pid, $cat_id);
  		$title = $detail['pro']['name'];
  		$template = array(
  			"id" => "product_page",
@@ -43,6 +47,7 @@
  			"title" => $title,
  			"template" => $template,
  			"data" => $detail,
+ 			"dataRelatedPro" => $relatedPro,
  			"key_work" => $data['key_work'],
  			"description" => $data['description']
  		);
@@ -53,7 +58,9 @@
  		$portfolio = $this->Setting_model->getItemById($id);
  		$data = unserialize($portfolio['setting_info']);
  		$this->load->model("Product_model");
+
  		$products['pro'] = $this->Product_model->listProduct();
+ 		$relatedPro = '';
  		$template = array(
  			"id" => "home_page",
  			"child_menu" => "true",
@@ -63,6 +70,7 @@
  			"title" => "Products / Christian Siriano",
  			"template" => $template,
  			"data" => $products,
+ 			"dataRelatedPro" => $relatedPro,
  			"key_work" => $data['key_work'],
  			"description" => $data['description']
  		);
