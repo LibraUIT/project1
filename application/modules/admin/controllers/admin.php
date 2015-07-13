@@ -317,6 +317,15 @@
 	public function delete_get_by_id()
 	{
 		$id = $this->input->post('id');
+		$data = $this->Collection_model->getItemById($id);
+		$featuredImage = PUBPATH.substr($data['collection_featured_image'], 1);
+		unlink($featuredImage);
+		$replace = array("[", "]", '"');
+		$col = str_replace($replace, '', $data['collection_image_list'])  ;
+		$col = explode(',', $col);
+		foreach ($col as $value) {
+			unlink(PUBPATH.substr($value, 1));
+		}
 		$this->Collection_model->deleteItemById($id);
 	}
 	public function home_save()
@@ -405,6 +414,11 @@
  	public function delete_press_get_by_id()
 	{
 		$id = $this->input->post('id');
+		$data = $this->Press_model->getItemById($id);
+		$press_image_1 = PUBPATH.substr($data['press_image_1'], 1);
+		unlink($press_image_1);
+		$press_image_2 = PUBPATH.substr($data['press_image_2'], 1);
+		unlink($press_image_2);
 		$this->Press_model->deleteItemById($id);
 	}
 	public function press_get_by_id()
@@ -661,5 +675,14 @@
 		$this->Lang_model->updateItemById(1, $update);
 		echo 'TRUE';
 
+	}
+	public function removeImage()
+	{
+		$data = $this->input->post('images');
+		$images = json_decode($data);
+		foreach($images as $image)	
+		{
+			unlink(PUBPATH.substr($image, 1));
+		}
 	}
  }

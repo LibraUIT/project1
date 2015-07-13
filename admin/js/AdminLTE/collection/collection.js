@@ -61,6 +61,16 @@ configApp.factory("CollectionService", function($http) {
         data: $.param({ id : id }),
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       });
+    },
+    removeImage : function(images)
+    {
+      var urlConfig = [baseUrl, 'admin','removeImage'].join('/');
+      return $http({
+        method: 'POST',
+        url: urlConfig,
+        data: $.param({ images : images }),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+      });
     }
   }
 });
@@ -89,6 +99,9 @@ configControllers.controller('CollectionController', ['$scope', '$rootScope','$r
     });
     $('#blah').on('click', function(){
         $(this).attr('src', '').css({"display":"none"});
+    });
+    $('#blah2').on('click', function(){
+                    $(this).attr('src', '').css({"display":"none"});
     });
     $scope.btnBack = function()
                 {
@@ -297,7 +310,7 @@ configControllers.controller('CollectionListController', ['$scope', '$rootScope'
                 }
                 scope.btnCollectionCancle = function()
                 {
-                  $route.reload();
+                  $location.path("/collection_list");  
                 }
                 scope.title = res.collection_name;
                 scope.featuredImage = res.collection_featured_image;
@@ -323,6 +336,9 @@ configControllers.controller('CollectionListController', ['$scope', '$rootScope'
                 $('#morefileupload').change(function(){
                   readURL2(this);
                 });
+                $('#blah').on('click', function(){
+                    $(this).attr('src', '').css({"display":"none"});
+                });
                 $('#blah2').on('click', function(){
                     $(this).attr('src', '').css({"display":"none"});
                 });
@@ -338,6 +354,7 @@ configControllers.controller('CollectionListController', ['$scope', '$rootScope'
                           {
                             if(j == key)
                             {
+                                scope.remove.push(value);
                                 collection[j] = null;
                             }
                           }

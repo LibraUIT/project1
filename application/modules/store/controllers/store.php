@@ -4,6 +4,16 @@
  		parent::__construct();
  		$this->load->library('rewrite');
  		$this->load->model('Setting_model');
+ 		$this->load->library('mylang');
+ 		if($this->session->userdata('lang_portfolio'))
+ 		{
+ 			$lang = $this->session->userdata('lang_portfolio');
+ 			$this->lang->load($lang[0], $lang[1]);
+ 		}else
+ 		{
+ 			$lang = $this->mylang->get_config();
+ 			$this->lang->load($lang[0], $lang[1]);
+ 		}
  	}
 
  	public function index()
@@ -22,7 +32,8 @@
  			"template" => $template,
  			"data" => $products,
  			"key_work" => $data['key_work'],
- 			"description" => $data['description']
+ 			"description" => $data['description'],
+ 			"footer" => $data['footer']
  		);
  		$this->load->view("common/main",$view);
  	}
@@ -44,7 +55,8 @@
  			"template" => $template,
  			"data" => $detail,
  			"key_work" => $data['key_work'],
- 			"description" => $data['description']
+ 			"description" => $data['description'],
+ 			"footer" => $data['footer']
  		);
  		$this->load->view("common/main", $view);
  	}
@@ -64,7 +76,8 @@
  			"template" => $template,
  			"data" => $products,
  			"key_work" => $data['key_work'],
- 			"description" => $data['description']
+ 			"description" => $data['description'],
+ 			"footer" => $data['footer']
  		);
  		$this->load->view("common/main",$view);
  	}
