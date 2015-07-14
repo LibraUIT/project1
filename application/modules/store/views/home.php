@@ -1,5 +1,7 @@
 <?php
-  $count = count($pro);
+$count = count($pro);
+if($count > 0)
+{    
   echo "<ul id='products' class='' </br>";
   for($i = 0; $i < $count; $i++)
   {
@@ -44,5 +46,9 @@
     echo "</li>";
   }
   echo "</ul>";
+}else
+{
+  echo '<p class="alert-noproducts">'.$this->lang->line('text_no_product_result').'</p>';
+}
 ?>
 

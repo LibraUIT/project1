@@ -22,6 +22,9 @@
 	case 'product_page':
 		echo 'product_page';
 		break;
+	case 'contact_page':
+		echo 'contact_page';
+		break;		
 	default:
 		echo 'home_page';;
 		break;

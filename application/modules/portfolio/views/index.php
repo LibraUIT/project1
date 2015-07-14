@@ -26,6 +26,11 @@
 </head>
 <body>
 <header class="animated slideInDown">
+	<div class="lang">
+		 <a href="<?php echo base_url(); ?>portfolio/set_lang/en"><?php echo $this->lang->line('en'); ?></a>
+		 /
+         <a href="<?php echo base_url(); ?>portfolio/set_lang/vi"><?php echo $this->lang->line('vi'); ?></a>
+	</div>
 	<div class="web-name"><h1 style="text-transform: uppercase"><?php echo $site_title; ?></h1></div>
 	<div class="nav-menu">
 		<ul>
@@ -228,11 +233,6 @@
 		<li><a href="<?php echo $instagram; ?>">Instagram</a></li>
 		<li><a href="<?php echo $twitter; ?>">Twitter</a></li>
 		<li><a href="<?php echo $tumblr; ?>">Tumblr</a></li>
-	</div>
-	<div class="lang">
-		 <a href="<?php echo base_url(); ?>portfolio/set_lang/en"><?php echo $this->lang->line('en'); ?></a>
-		 /
-         <a href="<?php echo base_url(); ?>portfolio/set_lang/vi"><?php echo $this->lang->line('vi'); ?></a>
 	</div>
 </footer>
 <!-- BackgroundSlide -->

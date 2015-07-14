@@ -95,4 +95,16 @@ class Product_model extends CI_Model{
 			return NULL;
 		}
 	}
+	public function search($name)
+	{
+		$this->db->like('name', $name);
+		$query = $this->db->get($this->_table);
+		if($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}else
+		{
+			return NULL;
+		} 
+	}
 }

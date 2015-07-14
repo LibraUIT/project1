@@ -5,7 +5,12 @@
             <li><a href="<?php echo base_url(); ?>store/products"><?php echo $this->lang->line('text_store_product'); ?></a></li><li><a href="<?php echo base_url(); ?>store/contact"><?php echo $this->lang->line('text_store_contact'); ?></a></li><!--<li><a href="<?php echo base_url(); ?>store/cart">Cart</a></li>-->
           </ul>
         </nav>
-        
+        <br />
+        <div style="font-size:11px;text-align:center">
+          <a href="<?php echo base_url(); ?>store/set_lang/en"><?php echo $this->lang->line('en'); ?></a>
+          /
+         <a href="<?php echo base_url(); ?>store/set_lang/vi"><?php echo $this->lang->line('vi'); ?></a>
+         </div>
         <header>
           
           <div id="branding">

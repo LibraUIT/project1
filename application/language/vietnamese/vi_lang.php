@@ -99,7 +99,10 @@ $lang['text_store_back_to_site'] = 'TRỞ LÊN';
 $lang['text_profile'] = 'Cá nhân';
 $lang['text_singout'] = 'Đăng xuất';
 $lang['text_hello'] = 'Xin chào, ';
-
+$lang['text_content_contact_1'] = 'ĐỂ LIÊN HỆ VỚI CHÚNG TÔI, XIN THĂM ';
+$lang['text_content_contact_2'] = 'WEBSITE CỦA CHÚNG TÔI';
+$lang['text_content_contact_3'] = ' VÀ CLICK VÀO TAB "LIÊN HỆ" . CẢM ƠN.';
+$lang['text_no_product_result'] = 'Không  tìm thấy sản phẩm.';
 
 
 

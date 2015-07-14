@@ -488,8 +488,8 @@
 	{
 		position: absolute;
 		display: block;
-		left: 20%;
-		bottom: 3px;
+		left: 0%;
+		top:-20px;
 		color: #FFF;
 		font-size: 9px;
 	}

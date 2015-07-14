@@ -99,6 +99,10 @@ $lang['text_store_back_to_site'] = 'BACK TO SITE';
 $lang['text_profile'] = 'Profile';
 $lang['text_singout'] = 'Sing out';
 $lang['text_hello'] = 'Hello, ';
+$lang['text_content_contact_1'] = 'TO CONTACT US, PLEASE VISIT ';
+$lang['text_content_contact_2'] = 'OUR WEBSITE';
+$lang['text_content_contact_3'] = ' AND CLICK TO THE "CONTACT" TAB. THANK YOU.';
+$lang['text_no_product_result'] = 'No products found.';
 
 
 
