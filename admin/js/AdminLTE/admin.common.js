@@ -92,6 +92,22 @@ configApp.config(['$routeProvider',
         templateUrl : 'templates/product/edit.html',
         controller : 'ProductController'
       }).
+      when('/profile/:id', {
+        templateUrl : 'templates/profile/main.html',
+        controller : 'ProfileController'
+      }).
+      when('/user_create', {
+        templateUrl : 'templates/user/create.html',
+        controller : 'UserController'
+      }).
+      when('/user_list', {
+        templateUrl : 'templates/user/list.html',
+        controller : 'UserListController'
+      }).
+      when('/user/:id',{
+        templateUrl : 'templates/user/edit.html',
+        controller : 'UserController'
+      }).
       otherwise({
           redirectTo: '/'
       });
@@ -162,6 +178,8 @@ configControllers.controller('BaseController', ['$scope', '$rootScope','$routePa
             scope.text_menu_settings_title = langArray.text_menu_settings_title; 
             scope.text_menu_language = langArray.text_menu_language;
             scope.text_hello = langArray.text_hello;
+            scope.text_menu_user_manament = langArray.text_menu_user_manament;
+            scope.text_menu_list_user = langArray.text_menu_list_user;
           });
          
           
@@ -205,4 +223,8 @@ function checkLogin()
         //$location.path('/sign');
         window.location.href = [baseUrl, 'admin', 'login'].join('/');
     }
+}
+function validateEmail(email) {
+    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    return re.test(email);
 }
