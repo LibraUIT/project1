@@ -1,0 +1,67 @@
+<aside class="right-side">                
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            {{text_menu_user_manament}}
+                    </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#/"><i class="fa fa-dashboard"></i>{{text_menu_dashboard}}</a></li>
+                    <li><a href="#/user_list"><i class="fa fa-user"></i>{{text_menu_user_manament}}</a></li>
+                    <li class="active">{{edit_user}}</li>
+                </ol>
+    </section>
+    <section  class="content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!-- general form elements -->
+                            <!--<span ng-click="btnBack()" style="margin-bottom:20px;" class="btn btn-default">
+                                                <i class="glyphicon glyphicon-chevron-left"></i>
+                                                <span>Back</span> 
+                            </span> -->
+                            
+                            <div  class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title">{{edit_user}}</h3>
+                                </div><!-- /.box-header -->
+                                <!-- form start -->
+                                <div ng-if="userLoginLevel!=1"  class="box-body">
+                                    <div class="alert alert-danger alert-dismissable">
+                                            <i class="fa fa-ban"></i>
+                                            {{message_error_permission}}
+                                    </div>
+                                </div>
+                                <form edit-user ng-if="userLoginLevel==1" role="form">
+                                    <div class="box-body">
+                                        <div ng-if="message_error" class="alert alert-danger alert-dismissable alert-create">
+                                        <i class="fa fa-ban"></i>
+                                        {{message_error}}
+                                        </div>
+                                        <div ng-if="message_success" class="alert alert-success alert-dismissable ">
+                                        <i class="fa fa-ban"></i>
+                                        {{message_success}}
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{text_user_email}}</label>
+                                            <input ng-disabled="user_email" ng-model="user_email" type="text" class="form-control" id="title" placeholder="{{text_user_email}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{text_user_password}}</label>
+                                            <input ng-model="user_password" type="password" class="form-control" id="title" placeholder="{{text_user_password}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>{{text_user_password_repeat}}</label>
+                                            <input ng-model="user_password_repeat" type="password" class="form-control" id="title" placeholder="{{text_user_password_repeat}}">
+                                        </div>
+                                    </div><!-- /.box-body -->
+
+                                    <div class="box-footer">
+                                        <button ng-click="btnUpdateUser()" type="submit" class="btn btn-primary">{{btn_save}}</button>
+                                        <button ng-click="btnClear()" type="submit" class="btn btn-danger">{{btn_clear}}</button>
+                                    </div>
+                                </form>
+                            </div><!-- /.box -->
+                        </div>
+                    </div>
+
+                </section><!-- /.content -->
+</aside>
