@@ -25,6 +25,7 @@
  		$this->load->model('Category_model');
  		$this->load->model('Product_model');
  		$this->load->model('Lang_model');
+ 		$this->load->model('User_model');
  	}
  	public function index()
  	{
@@ -60,7 +61,7 @@
 		{
 			$u_email = $this->input->post('email');
 			$u_password = $this->input->post('password');
-			$login = $this->Admin_model->checkUserLogin($u_email, $u_password);
+			$login = $this->Admin_model->checkUserLogin($u_email, md5($u_password));
 			
 			if( $login == "FALSE")
 			{
@@ -105,7 +106,7 @@
 			$u_id = $this->input->post('id');
 			$u_email = $this->input->post('email');
 			$u_pass = $this->input->post('pass');
-			$user = $this->Admin_model->getUser($u_id, $u_email, $u_pass);
+			$user = $this->Admin_model->getUser($u_id, $u_email,$u_pass);
 			if($user)
 			{
 				header('Content-Type: application/json');
@@ -684,5 +685,78 @@
 		{
 			unlink(PUBPATH.substr($image, 1));
 		}
+	}
+	public function changePass()
+	{
+		$data = $this->input->post('data');
+		$old_pass = $data['old_password'];
+		$new_pass = $data['new_password'];
+		$new_password_repeat = $data['new_password_repeat'];
+		$userId = $data['userId'];
+		$check = $this->User_model->checkPassword($userId, md5($old_pass));
+		if($check == "TRUE")
+		{
+			$update = array(
+				"u_password" => md5($new_pass)
+				);
+			$this->User_model->updateItemById($userId, $update);
+			echo md5($new_pass);
+		}else
+		{
+			echo 1;
+		}
+	}
+	public function test()
+	{
+		session_destroy();
+		//$this->session->sess_destroy();
+	}
+	public function user_save()
+	{
+		$data = $this->input->post('data');
+		$email = $data['u_email'];
+		$password = $data['u_password'];
+		$check = $this->User_model->checkEmail($email);
+		if($check == "FALSE")
+		{
+			echo 0;
+		}else
+		{
+			$insert = array(
+					"u_email" => $email,
+					"u_password" => md5($password)
+				);
+			$this->User_model->insertItem($insert);
+			echo 1;
+		}
+
+	}
+	public function user_list()
+	{
+		$data = $this->User_model->getList();
+		header('Content-Type: application/json');
+ 		echo json_encode($data);
+	}
+	public function delete_user_get_by_id()
+	{
+		$id = $this->input->post('id');
+		$this->User_model->deleteItemById($id);
+	}
+	public function user_get_by_id()
+	{
+		$id = $this->input->post('id');
+		$data = $this->User_model->getUserById($id);
+		header('Content-Type: application/json');
+ 		echo json_encode($data);
+	}
+	public function user_update_get_by_id()
+	{
+		$data = $this->input->post('data');
+		$id = $data['u_id'];
+		$password = $data['u_password'];
+		$update = array(
+				"u_password" => md5($password)
+			);
+		$this->User_model->updateItemById($id, $update);
 	}
  }

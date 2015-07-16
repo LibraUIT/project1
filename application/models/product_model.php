@@ -96,6 +96,7 @@ class Product_model extends CI_Model{
 			return NULL;
 		}
 	}
+<<<<<<< HEAD
 
 	# Lấy danh sách Category và sản phẩm trong nó
 	public function getItembyCategory(){
@@ -127,4 +128,18 @@ class Product_model extends CI_Model{
 		
 		return $result;
 	}	
+=======
+	public function search($name)
+	{
+		$this->db->like('name', $name);
+		$query = $this->db->get($this->_table);
+		if($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}else
+		{
+			return NULL;
+		} 
+	}
+>>>>>>> aa904718486410897ee83533b15bc854a85a855d
 }

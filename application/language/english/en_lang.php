@@ -99,6 +99,37 @@ $lang['text_store_back_to_site'] = 'BACK TO SITE';
 $lang['text_profile'] = 'Profile';
 $lang['text_singout'] = 'Sing out';
 $lang['text_hello'] = 'Hello, ';
+$lang['text_content_contact_1'] = 'TO CONTACT US, PLEASE VISIT ';
+$lang['text_content_contact_2'] = 'OUR WEBSITE';
+$lang['text_content_contact_3'] = ' AND CLICK TO THE "CONTACT" TAB. THANK YOU.';
+$lang['text_no_product_result'] = 'No products found.';
+$lang['text_old_password'] = 'Old Password';
+$lang['text_new_password'] = 'New Password';
+$lang['text_new_password_repeat'] = 'New Repeat Password ';
+$lang['message_error_old_password_required'] = 'Please enter your old password';
+$lang['message_error_new_password_required'] = 'Please enter your new password';
+$lang['message_error_new_password_repeat_required'] = 'Please enter your repeat new password ';
+$lang['message_error_old_password'] = 'Old password not match';
+$lang['message_error_new_password_repeat_not_match'] = 'New password and repeat new password not match';
+$lang['text_change_pass'] = 'Change Password';
+$lang['text_menu_user_manament'] = "User Manament";
+$lang['text_menu_list_user'] = "All Users";
+$lang['text_user_email'] = "Email Address";
+$lang['text_user_password'] = 'Password';
+$lang['text_user_password_repeat'] = 'Repeat Password';
+$lang['btn_clear'] = 'Clear';
+$lang['message_error_email'] = 'Please enter email';
+$lang['message_error_password'] = 'Please enter password';
+$lang['message_error_password_repeat'] = 'Please enter password repeat';
+$lang['message_error_password_repeat_not_match'] = 'Password and repeat password not match';
+$lang['message_error_email_not_validate'] = 'Email not validate';
+$lang['message_error_exits_email'] = 'Email has exits';
+$lang['message_error_permission'] = 'You don\'t have permission. Please go back !';
+$lang['comlumn_email'] = 'Email';
+$lang['edit_user'] = 'Edit User';
+
+
+
 
 
 

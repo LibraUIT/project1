@@ -29,7 +29,7 @@
  			"page" => "home",
  		);
  		$view = array(
- 			"title" => "Home page / Magic fashion",
+ 			"title" => "Home page / ".$data['site_title'],
  			"template" => $template,
  			"data" => $products,
  			"dataRelatedPro" => $relatedPro,
@@ -78,7 +78,7 @@
  			"page" => "home"
  		);
  		$view = array(
- 			"title" => "Products / Christian Siriano",
+ 			"title" => $this->lang->line('text_store_product')." / ".$data['site_title'],
  			"template" => $template,
  			"data" => $products,
  			"dataRelatedPro" => $relatedPro,
@@ -88,6 +88,7 @@
  		);
  		$this->load->view("common/main",$view);
  	}
+<<<<<<< HEAD
 
  	public function listProCategory(){
  		$id = 1;
@@ -105,11 +106,83 @@
  			"template" => $template,
  			"data" => $listPro,
  			"dataRelatedPro" => $relatedPro,
+=======
+ 	public function contact()
+ 	{
+ 		$id = 1;
+ 		$portfolio = $this->Setting_model->getItemById($id);
+ 		$data = unserialize($portfolio['setting_info']);
+ 		$template = array(
+ 			"id" => "contact_page",
+ 			"child_menu" => "false",
+ 			"page" => "contact"
+ 		);
+ 		$view = array(
+ 			"title" => $this->lang->line('text_store_contact')."/ ".$data['site_title'],
+ 			"template" => $template,
+ 			"data" => array(),
+ 			"dataRelatedPro" => array(),
+>>>>>>> aa904718486410897ee83533b15bc854a85a855d
  			"key_work" => $data['key_work'],
  			"description" => $data['description'],
  			"footer" => $data['footer']
  		);
  		$this->load->view("common/main",$view);
+<<<<<<< HEAD
  		
  	}
+=======
+ 	}
+ 	public function set_lang($id)
+	{
+		switch ($id) {
+			case 'vi':
+				$lang = array(
+					0 => 'vi',
+					1 => 'vietnamese'
+				);
+				break;
+			
+			case 'en':
+				$lang = array(
+					0 => 'en',
+					1 => 'english'
+				);
+				break;
+		}
+		
+		$this->session->set_userdata('lang_portfolio',$lang);
+		header('location:'.base_url().'store');
+	}
+	public function searchProduct()
+	{
+		if($this->input->get('search'))
+		{
+			$name = $this->input->get('search');
+			$this->load->model("Product_model");
+			$products['pro'] = $this->Product_model->search($name);
+			$id = 1;
+	 		$portfolio = $this->Setting_model->getItemById($id);
+	 		$data = unserialize($portfolio['setting_info']);
+	 		$relatedPro = '';
+	 		$template = array(
+	 			"id" => "contact_page",
+	 			"child_menu" => "true",
+	 			"page" => "home"
+	 		);
+	 		$view = array(
+	 			"title" => $this->lang->line('text_store_search')." / ".$data['site_title'],
+	 			"template" => $template,
+	 			"data" => $products,
+	 			"products" => $products,
+	 			"dataRelatedPro" => $relatedPro,
+	 			"key_work" => $data['key_work'],
+	 			"description" => $data['description'],
+	 			"footer" => $data['footer']
+	 		);
+	 		$this->load->view("common/main",$view);
+		}
+		
+	}
+>>>>>>> aa904718486410897ee83533b15bc854a85a855d
  }
