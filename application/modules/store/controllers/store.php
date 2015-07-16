@@ -23,7 +23,7 @@
  		$data = unserialize($portfolio['setting_info']);
  		$this->load->model("Product_model");
  		$products['pro'] = $this->Product_model->listProduct();
- 		$relatedPro = '';
+ 		$relatedPro['pro'] = '';
  		$template = array(
  			"id" => "home_page",
  			"page" => "home",
@@ -48,7 +48,7 @@
  		$result = $this->Product_model->detailProduct($pid);
  		$detail['pro'] = $result['0'];
  		$cat_id = $result['0']['category_id'];
- 		$relatedPro['info'] = $this->Product_model->relatedProducts($pid, $cat_id);
+ 		$relatedPro['pro'] = $this->Product_model->relatedProducts($pid, $cat_id);
  		$title = $detail['pro']['name'];
  		$template = array(
  			"id" => "product_page",
@@ -70,9 +70,8 @@
  		$portfolio = $this->Setting_model->getItemById($id);
  		$data = unserialize($portfolio['setting_info']);
  		$this->load->model("Product_model");
-
  		$products['pro'] = $this->Product_model->listProduct();
- 		$relatedPro = '';
+ 		$relatedPro['pro'] = '';
  		$template = array(
  			"id" => "home_page",
  			"child_menu" => "true",
@@ -88,5 +87,29 @@
  			"footer" => $data['footer']
  		);
  		$this->load->view("common/main",$view);
+ 	}
+
+ 	public function listProCategory(){
+ 		$id = 1;
+ 		$portfolio = $this->Setting_model->getItemById($id);
+ 		$data = unserialize($portfolio['setting_info']);
+ 		$relatedPro['pro'] = '';
+ 		$this->load->model("Product_model");
+ 		$listPro['pro'] = $this->Product_model->getItembyCategory();
+ 		$template = array(
+ 			"id" => "home_page",
+ 			"page" => "product_cat"
+ 		);
+ 		$view = array(
+ 			"title" => "Products /Christian Siriano",
+ 			"template" => $template,
+ 			"data" => $listPro,
+ 			"dataRelatedPro" => $relatedPro,
+ 			"key_work" => $data['key_work'],
+ 			"description" => $data['description'],
+ 			"footer" => $data['footer']
+ 		);
+ 		$this->load->view("common/main",$view);
+ 		
  	}
  }

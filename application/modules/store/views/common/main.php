@@ -44,10 +44,12 @@
 
 <!-- Related Product -->
 <?php
-	$count = count($dataRelatedPro);
-	if($count > 0 && is_array($dataRelatedPro)){
+	if($dataRelatedPro['pro'] != NULL && is_array($dataRelatedPro)){
 		$this->load->view("related_product",$dataRelatedPro);
 	}
+	// echo "<pre>";
+	// print_r($dataRelatedPro);
+	// echo "</pre>";
 ?>
 <!-- End Related Product -->
 
