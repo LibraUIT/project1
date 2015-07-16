@@ -127,6 +127,7 @@ $lang['message_error_exits_email'] = 'Email has exits';
 $lang['message_error_permission'] = 'You don\'t have permission. Please go back !';
 $lang['comlumn_email'] = 'Email';
 $lang['edit_user'] = 'Edit User';
+$lang['text_related_products'] = 'Related products';
 
 
 

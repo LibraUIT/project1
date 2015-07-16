@@ -127,5 +127,6 @@ $lang['message_error_exits_email'] = 'Địa chỉ email đã tồn tại';
 $lang['message_error_permission'] = 'Bạn không có quyền truy cập. Vui lòng quay lại !';
 $lang['comlumn_email'] = 'Email';
 $lang['edit_user'] = 'Chỉnh Sửa Thành Viên';
+$lang['text_related_products'] = 'Sản Phẩm Liên Quan';
 
 

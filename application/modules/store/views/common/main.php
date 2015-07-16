@@ -48,7 +48,7 @@
 <!-- Related Product -->
 <?php
 	$count = count($dataRelatedPro);
-	if($count > 0 && is_array($dataRelatedPro)){
+	if( $count > 0 && ($dataRelatedPro['pro'] != NULL && is_array($dataRelatedPro))){
 		$this->load->view("related_product",$dataRelatedPro);
 	}
 ?>

@@ -107,4 +107,32 @@ class Product_model extends CI_Model{
 			return NULL;
 		} 
 	}
+	public function getItembyCategory(){
+		$this->load->database();
+		$list_cats = $this->db->query("SELECT category_id, category_name FROM categorys");
+		if($list_cats->num_rows() > 0)
+		{
+			foreach ($list_cats->result_array() as $value) {
+				$cats[$value['category_id']] = $value['category_name'];
+			}
+		}
+		else
+		{
+			return NULL;
+		}
+		foreach($cats as $key => $value)
+		{
+			$data = $this->db->query("SELECT id, name, price, price_new, images FROM products WHERE category_id = $key");
+			if($data->num_rows() > 0)
+			{	
+				$result[$value] = $data->result_array();
+			}
+			else
+			{
+				$result = NULL;
+			}	
+		}
+		
+		return $result;
+	}	
 }

@@ -2,7 +2,7 @@
       <div class="canvas">
         <nav id="main_nav">
           <ul>
-            <li><a href="<?php echo base_url(); ?>store/products"><?php echo $this->lang->line('text_store_product'); ?></a></li><li><a href="<?php echo base_url(); ?>store/contact"><?php echo $this->lang->line('text_store_contact'); ?></a></li><!--<li><a href="<?php echo base_url(); ?>store/cart">Cart</a></li>-->
+            <li><a href="<?php echo base_url(); ?>store/listProCategory"><?php echo $this->lang->line('text_store_product'); ?></a></li><li><a href="<?php echo base_url(); ?>store/contact"><?php echo $this->lang->line('text_store_contact'); ?></a></li><!--<li><a href="<?php echo base_url(); ?>store/cart">Cart</a></li>-->
           </ul>
         </nav>
         <br />

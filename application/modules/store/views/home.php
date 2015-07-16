@@ -34,7 +34,7 @@ if($count > 0)
        $ftm = '%i VND';
        $money = money_format($ftm, $pro[$i]['price']);
        $money = str_replace('GBP', '', $money);
-      //echo "<h3><span class='currency_sign'></span>"."35 USD"."</h3>";
+      echo "<h3><span class='currency_sign'></span>".$money."</h3>";
      
      }
     
