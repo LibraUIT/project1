@@ -16,7 +16,8 @@
           <div id="branding">
             <a href="<?php echo base_url(); ?>store">
               <h2><?php echo $this->lang->line('text_store_home'); ?></h2>
-              <img src="http://images.cdn.bigcartel.com/bigcartel/theme_images/6088794/max_h-1000+max_w-1000/Christian_Siriano_logosm.jpg" alt="Christian Siriano">
+              <h1 class="site_title"><?php echo $site_name; ?></h1>
+              <!--<img src="http://images.cdn.bigcartel.com/bigcartel/theme_images/6088794/max_h-1000+max_w-1000/Christian_Siriano_logosm.jpg" alt="Christian Siriano">-->
             </a>
           </div>
           
@@ -31,3 +32,10 @@
         </nav>
       </div>
 </div>
+<style type="text/css">
+  .site_title
+  {
+    font-size: 48px;
+    font-family: 'Lucida Sans Typewriter', 'Lucida Console', monaco, 'Bitstream Vera Sans Mono', monospace;
+  }
+</style>

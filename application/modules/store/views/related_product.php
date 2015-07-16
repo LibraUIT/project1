@@ -38,7 +38,7 @@ function hrand($min, $max){
 				        $img_url[$key] = rtrim(ltrim($value,'["'),'"]');
 				    }
 					echo "<li id='".$id."' class='product'>";
-					echo "<a href='".base_url()."store/viewProduct/".$id."' title='View ".$name."'>";
+					echo "<a href='".base_url()."store/viewProduct/".$id."/".$this->rewrite->make($name).".html"."' title='View ".$name."'>";
 					echo "<div class='product_header'>";
 					echo "<h2>".$name."</h2>";
 					echo "<span class='dash'></span>";

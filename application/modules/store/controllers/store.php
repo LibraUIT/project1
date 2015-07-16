@@ -35,7 +35,8 @@
  			"dataRelatedPro" => $relatedPro,
  			"key_work" => $data['key_work'],
  			"description" => $data['description'],
- 			"footer" => $data['footer']
+ 			"footer" => $data['footer'],
+ 			"site_name" => $data['site_title']
  		);
  		$this->load->view("common/main",$view);
  	}
@@ -61,7 +62,8 @@
  			"dataRelatedPro" => $relatedPro,
  			"key_work" => $data['key_work'],
  			"description" => $data['description'],
- 			"footer" => $data['footer']
+ 			"footer" => $data['footer'],
+ 			"site_name" => $data['site_title']
  		);
  		$this->load->view("common/main", $view);
  	}
@@ -85,7 +87,8 @@
  			"dataRelatedPro" => $relatedPro,
  			"key_work" => $data['key_work'],
  			"description" => $data['description'],
- 			"footer" => $data['footer']
+ 			"footer" => $data['footer'],
+ 			"site_name" => $data['site_title']
  		);
  		$this->load->view("common/main",$view);
  	}
@@ -106,7 +109,8 @@
  			"dataRelatedPro" => array(),
  			"key_work" => $data['key_work'],
  			"description" => $data['description'],
- 			"footer" => $data['footer']
+ 			"footer" => $data['footer'],
+ 			"site_name" => $data['site_title']
  		);
  		$this->load->view("common/main",$view);
  	}
@@ -155,7 +159,8 @@
 	 			"dataRelatedPro" => $relatedPro,
 	 			"key_work" => $data['key_work'],
 	 			"description" => $data['description'],
-	 			"footer" => $data['footer']
+	 			"footer" => $data['footer'],
+	 			"site_name" => $data['site_title']
 	 		);
 	 		$this->load->view("common/main",$view);
 		}
@@ -179,7 +184,8 @@
  			"dataRelatedPro" => $relatedPro,
 	 		"key_work" => $data['key_work'],
 	 		"description" => $data['description'],
-	 		"footer" => $data['footer']
+	 		"footer" => $data['footer'],
+	 		"site_name" => $data['site_title']
 	 		);
 	 		$this->load->view("common/main",$view);
 		}

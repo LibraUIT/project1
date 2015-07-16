@@ -14,7 +14,7 @@ foreach($pro as $key => $value){
         	$img_url[$keys] = rtrim(ltrim($values,'["'),'"]');
     	}
 		echo "<li id='".$id."' class='product'>";
-		echo "<a href='".base_url()."store/viewProduct/".$id."/"."' title='View $product_name'>";
+		echo "<a href='".base_url()."store/viewProduct/".$id."/".$this->rewrite->make($product_name).".html"."' title='View $product_name'>";
 		echo "<div class='product_header'>";
 		echo "<h2>$product_name</h2>";
 		echo "<span class='dash'></span>";

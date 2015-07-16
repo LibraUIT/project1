@@ -7,6 +7,7 @@
 	<meta name="keywords" content="<?php echo $key_work; ?>">
 	<meta name="author" content="Quân Nguyễn - facebok.com/librauit">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
 	<!-- include jquery -->
 	<script type="text/javascript" src="<?php echo base_url(); ?>public/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 	<!-- end include jquery -->
