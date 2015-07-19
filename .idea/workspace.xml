@@ -2,29 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e92cbe4-b33a-4899-be0a-07e9151e87ba" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive.zip" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/libraries/rewrite.php" afterPath="$PROJECT_DIR$/application/libraries/Rewrite.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/models/admin_model.php" afterPath="$PROJECT_DIR$/application/models/Admin_model.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/models/category_model.php" afterPath="$PROJECT_DIR$/application/models/Category_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/AdminLTE/settings/about.js" afterPath="$PROJECT_DIR$/admin/js/AdminLTE/settings/about.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/AdminLTE/admin.common.js" afterPath="$PROJECT_DIR$/admin/js/AdminLTE/admin.common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/admin/admin.common.js" afterPath="$PROJECT_DIR$/public/admin/admin.common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/AdminLTE/admin.header.js" afterPath="$PROJECT_DIR$/admin/js/AdminLTE/admin.header.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/admin/admin.login.js" afterPath="$PROJECT_DIR$/public/admin/admin.login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/AdminLTE/category/category.js" afterPath="$PROJECT_DIR$/admin/js/AdminLTE/category/category.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/AdminLTE/collection/collection.js" afterPath="$PROJECT_DIR$/admin/js/AdminLTE/collection/collection.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/AdminLTE/settings/contact.js" afterPath="$PROJECT_DIR$/admin/js/AdminLTE/settings/contact.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/templates/press/edit.html" afterPath="$PROJECT_DIR$/admin/templates/press/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/AdminLTE/settings/home.js" afterPath="$PROJECT_DIR$/admin/js/AdminLTE/settings/home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/AdminLTE/settings/language.js" afterPath="$PROJECT_DIR$/admin/js/AdminLTE/settings/language.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/templates/press/list.html" afterPath="$PROJECT_DIR$/admin/templates/press/list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/portfolio/css/mine.css" afterPath="$PROJECT_DIR$/public/portfolio/css/mine.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/portfolio/js/mine.js" afterPath="$PROJECT_DIR$/public/portfolio/js/mine.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/AdminLTE/settings/portfolio.js" afterPath="$PROJECT_DIR$/admin/js/AdminLTE/settings/portfolio.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/AdminLTE/press/press.js" afterPath="$PROJECT_DIR$/admin/js/AdminLTE/press/press.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/AdminLTE/product/product.js" afterPath="$PROJECT_DIR$/admin/js/AdminLTE/product/product.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.rst" afterPath="$PROJECT_DIR$/readme.rst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/AdminLTE/user/user.js" afterPath="$PROJECT_DIR$/admin/js/AdminLTE/user/user.js" />
     </list>
     <ignored path="project_shopping.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,7 +23,18 @@
     <favorites_list name="project_shopping" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="readme.rst" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/readme.rst">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.088757396">
+              <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -181,9 +170,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1279" height="773" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24628615" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24628615" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -413,8 +402,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/readme.rst">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06656805">
-          <caret line="3" column="58" selection-start-line="3" selection-start-column="58" selection-end-line="3" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.088757396">
+          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
           <folding />
         </state>
       </provider>
