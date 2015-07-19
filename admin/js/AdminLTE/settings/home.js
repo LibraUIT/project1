@@ -2,16 +2,16 @@
 
 configApp.factory("SettingHomeService", function($http) {
   return {
-  	save : function(sendData)
-  	{
-  		var urlConfig = [baseUrl, 'admin','home_save'].join('/');
-	      return $http({
-	        method: 'POST',
-	        url: urlConfig,
-	        data: $.param({ data : sendData}),
-	        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-	      });
-  	},
+    save : function(sendData)
+    {
+      var urlConfig = [baseUrl, 'admin','home_save'].join('/');
+      return $http({
+        method: 'POST',
+        url: urlConfig,
+        data: $.param({ data : sendData}),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+      });
+    },
     user : function(sendData)
     {
       var urlConfig = [baseUrl, 'admin','lang'].join('/');
@@ -75,7 +75,7 @@ configControllers.controller('HomePageController', ['$scope', '$rootScope','$rou
       };
 
       SettingHomeService.save(data).success(function(res){
-          $scope.message_success = $scope.message_update_success;
+        $scope.message_success = $scope.message_update_success;
       });
     }
-}]);
+  }]);

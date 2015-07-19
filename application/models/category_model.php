@@ -4,11 +4,11 @@ class Category_model extends CI_Model{
 	public function __construct(){
 		parent::__construct();
 	}
-	
+
 	public function updateItemById($id, $update)
 	{
 		$this->db->where('category_id', $id);
-		$this->db->update($this->_table, $update); 
+		$this->db->update($this->_table, $update);
 	}
 	public function getItemById($id)
 	{
@@ -80,6 +80,6 @@ class Category_model extends CI_Model{
 	public function deleteItemById($id)
 	{
 		$this->db->where('category_id', $id);
-		$this->db->delete($this->_table); 
+		$this->db->delete($this->_table);
 	}
 }

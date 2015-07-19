@@ -8,7 +8,7 @@ $(window).bind("load", function() {
         "#F48FB1"
     ];
     var time = 1;
-    setInterval(function(){ 
+    setInterval(function(){
         $('.web-name h1').css({"color" : colorTitle[time]});
         time++;
         if(time + 0 == 4 )
@@ -19,39 +19,39 @@ $(window).bind("load", function() {
     function loadPage(basePageId)
     {
         $(function(){
-          //Reset nav menu
-          $('.nav-menu ul li').css({"background-color" : "transparent", "color" : "#CFD8DC"});
-          $('.nav-menu ul li').hover(function(){
-            $(this).css({"color" : "#E53935"});
-          });
-          $('.nav-menu ul li').mouseleave(function(){
-               var id = $(this).attr('id');
-               if(basePageId != id)
-               {
+            //Reset nav menu
+            $('.nav-menu ul li').css({"background-color" : "transparent", "color" : "#CFD8DC"});
+            $('.nav-menu ul li').hover(function(){
+                $(this).css({"color" : "#E53935"});
+            });
+            $('.nav-menu ul li').mouseleave(function(){
+                var id = $(this).attr('id');
+                if(basePageId != id)
+                {
                     $(this).css({"color" : "#CFD8DC"});
-               }else
-               {
-                    $(this).css({"color" : "#000"}); 
-               } 
-          });    
-          switch(basePageId)
-          {
-            case 1:
-                $('li#1').css({"background-color" : "#CFD8DC", "color" : "#000"});
-                break;
-            case 2:
-                $('li#2').css({"background-color" : "#CFD8DC", "color" : "#000"});
-                break;    
-            case 3:
-                $('li#3').css({"background-color" : "#CFD8DC", "color" : "#000"});
-                break;
-            case 4:
-                $('li#4').css({"background-color" : "#CFD8DC", "color" : "#000"});
-                break;    
-            case 7:
-                $('li#7').css({"background-color" : "#CFD8DC", "color" : "#000"});
-                break;         
-          }
+                }else
+                {
+                    $(this).css({"color" : "#000"});
+                }
+            });
+            switch(basePageId)
+            {
+                case 1:
+                    $('li#1').css({"background-color" : "#CFD8DC", "color" : "#000"});
+                    break;
+                case 2:
+                    $('li#2').css({"background-color" : "#CFD8DC", "color" : "#000"});
+                    break;
+                case 3:
+                    $('li#3').css({"background-color" : "#CFD8DC", "color" : "#000"});
+                    break;
+                case 4:
+                    $('li#4').css({"background-color" : "#CFD8DC", "color" : "#000"});
+                    break;
+                case 7:
+                    $('li#7').css({"background-color" : "#CFD8DC", "color" : "#000"});
+                    break;
+            }
         });
     }
     function clearArticle()
@@ -72,10 +72,10 @@ $(window).bind("load", function() {
     }
     function mouseleaveImage()
     {
-       $('.list-collection ul li').mouseleave(function(){
+        $('.list-collection ul li').mouseleave(function(){
             $(this).find('img').css({"-webkit-filter" : "grayscale(90%)"});
             $(".collectid").css({"color" : "#000"});
-       });
+        });
     }
     function mouseleaveLink()
     {
@@ -84,11 +84,11 @@ $(window).bind("load", function() {
             $('.list-collection ul li img').css({"-webkit-filter" : "grayscale(90%)"});
         });
 
-    } 
+    }
     $('.view-gallary').hover(function(){
         $(this).parent().find('img').css({"-webkit-filter" : "grayscale(0%)"});
         mouseleaveImage();
-    }); 
+    });
     $('.list-collection ul li').hover(function(){
         $(this).find('img').css({"-webkit-filter" : "grayscale(0%)"});
         var collect_id = $(this).attr('class');
@@ -110,11 +110,11 @@ $(window).bind("load", function() {
         $('.show-collection').addClass('fadeInUp');
         $('.show-collection').removeClass('fadeOutUp');
         $.ajax({
-          method: "POST",
-          url: base_url+['portfolio', 'get_collection_by_id'].join('/'),
-          data: { collect_id : collect_id }
-          })
-          .done(function( res ) {
+            method: "POST",
+            url: base_url+['portfolio', 'get_collection_by_id'].join('/'),
+            data: { collect_id : collect_id }
+        })
+            .done(function( res ) {
                 $('#title-content-collection').text(res.collection_name);
                 var collections = JSON.parse(res.collection_image_list);
                 $('#show-image').attr('src', base_url+collections[0]);
@@ -123,7 +123,7 @@ $(window).bind("load", function() {
                 $.each( collections, function( key, value ) {
                     if(count == 0)
                     {
-                       listImage += '<li><img class="clickImage" onclick="clickImage('+count+')" style="width:52px;height:78px;-webkit-filter: grayscale(0%);" src="'+base_url+value+'"></li>'; 
+                        listImage += '<li><img class="clickImage" onclick="clickImage('+count+')" style="width:52px;height:78px;-webkit-filter: grayscale(0%);" src="'+base_url+value+'"></li>';
                     }
                     else
                     {
@@ -132,7 +132,7 @@ $(window).bind("load", function() {
                     count++;
                 });
                 $('#gallery-collection').html(listImage);
-          });
+            });
     });
     $('.latest-collection').on('click', function(){
         basePageId = 2;
@@ -159,22 +159,22 @@ $(window).bind("load", function() {
         $('.show-collection').addClass('fadeInUp');
         $('.show-collection').removeClass('fadeOutUp');
         $.ajax({
-          method: "POST",
-          url: base_url+['portfolio', 'get_collection_by_id'].join('/'),
-          data: { collect_id : collect_id }
-          })
-          .done(function( res ) {
+            method: "POST",
+            url: base_url+['portfolio', 'get_collection_by_id'].join('/'),
+            data: { collect_id : collect_id }
+        })
+            .done(function( res ) {
                 if(lang_page == 'en')
                 {
                     title_content_collection  = res.en_collection_name;
                     $('#title-content-collection').text(title_content_collection);
                 }else if(lang_page == 'vi')
                 {
-                   title_content_collection  = res.vi_collection_name; 
-                   $('#title-content-collection').text(title_content_collection);
+                    title_content_collection  = res.vi_collection_name;
+                    $('#title-content-collection').text(title_content_collection);
                 }
 
-                
+
                 var collections = JSON.parse(res.collection_image_list);
                 $('#show-image').attr('src', base_url+collections[0]);
                 var listImage = '';
@@ -182,7 +182,7 @@ $(window).bind("load", function() {
                 $.each( collections, function( key, value ) {
                     if(count == 0)
                     {
-                       listImage += '<li><img class="clickImage" onclick="clickImage('+count+')" style="width:52px;height:78px;-webkit-filter: grayscale(0%);" src="'+base_url+value+'"></li>'; 
+                        listImage += '<li><img class="clickImage" onclick="clickImage('+count+')" style="width:52px;height:78px;-webkit-filter: grayscale(0%);" src="'+base_url+value+'"></li>';
                     }
                     else
                     {
@@ -191,7 +191,7 @@ $(window).bind("load", function() {
                     count++;
                 });
                 $('#gallery-collection').html(listImage);
-          });
+            });
     });
     $('.back-to-all').on('click', function(){
         $('.collection-title').fadeIn();
@@ -266,8 +266,8 @@ $(window).bind("load", function() {
 });
 function clickImage(img)
 {
-  // $('.clickImage').css({"-webkit-filter":"grayscale(0%)"});
-   $( ".clickImage" ).each(function( index ) {
+    // $('.clickImage').css({"-webkit-filter":"grayscale(0%)"});
+    $( ".clickImage" ).each(function( index ) {
         if(index == img)
         {
             $(this).css({"-webkit-filter":"grayscale(0%)"});
@@ -275,34 +275,34 @@ function clickImage(img)
             $('#show-image').attr('src',img_url);
         }else
         {
-           $(this).css({"-webkit-filter":"grayscale(100%)"}); 
+            $(this).css({"-webkit-filter":"grayscale(100%)"});
         }
-    });     
+    });
 }
 function getCollection(collect_id)
 {
-   $.ajax({
-          method: "POST",
-          url: base_url+['portfolio', 'get_collection_by_id'].join('/'),
-          data: { collect_id : collect_id }
-          })
-          .done(function( res ) {
-                $('#title-content-collection').text(res.collection_name);
-                var collections = JSON.parse(res.collection_image_list);
-                $('#show-image').attr('src', base_url+collections[0]);
-                var listImage = '';
-                var count = 0;
-                $.each( collections, function( key, value ) {
-                    if(count == 0)
-                    {
-                       listImage += '<li><img class="clickImage" onclick="clickImage('+count+')" style="width:52px;height:78px;-webkit-filter: grayscale(0%);" src="'+base_url+value+'"></li>'; 
-                    }
-                    else
-                    {
-                        listImage += '<li><img class="clickImage" onclick="clickImage('+count+')" style="width:52px;height:78px" src="'+base_url+value+'"></li>';
-                    }
-                    count++;
-                });
-                $('#gallery-collection').html(listImage);
-          }); 
+    $.ajax({
+        method: "POST",
+        url: base_url+['portfolio', 'get_collection_by_id'].join('/'),
+        data: { collect_id : collect_id }
+    })
+        .done(function( res ) {
+            $('#title-content-collection').text(res.collection_name);
+            var collections = JSON.parse(res.collection_image_list);
+            $('#show-image').attr('src', base_url+collections[0]);
+            var listImage = '';
+            var count = 0;
+            $.each( collections, function( key, value ) {
+                if(count == 0)
+                {
+                    listImage += '<li><img class="clickImage" onclick="clickImage('+count+')" style="width:52px;height:78px;-webkit-filter: grayscale(0%);" src="'+base_url+value+'"></li>';
+                }
+                else
+                {
+                    listImage += '<li><img class="clickImage" onclick="clickImage('+count+')" style="width:52px;height:78px" src="'+base_url+value+'"></li>';
+                }
+                count++;
+            });
+            $('#gallery-collection').html(listImage);
+        });
 }
