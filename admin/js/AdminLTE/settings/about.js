@@ -46,7 +46,8 @@ configControllers.controller('AboutPageController', ['$scope', '$rootScope','$ro
           if(res)
           {
               $scope.page_name = res.page_name;
-              $scope.about_page = res.page_content;
+              $scope.en_about_page = res.en_page_content;
+              $scope.vi_about_page = res.vi_page_content;
               $scope.text_menu_dashboard = langArray.text_menu_dashboard;
               $scope.text_menu_settings_title = langArray.text_menu_settings_title;
               $scope.text_menu_about = langArray.text_menu_about;
@@ -60,11 +61,12 @@ configControllers.controller('AboutPageController', ['$scope', '$rootScope','$ro
     $scope.btnAboutSave = function()
     {
     	
-    	if($scope.about_page !== undefined && $scope.page_name != undefined )
+    	if($scope.en_about_page !== undefined && $scope.page_name != undefined )
     	{
     		var data = {
     			"page_name" : $scope.page_name,
-    			"about_page" : $scope.about_page
+    			"en_about_page" : $scope.en_about_page,
+          "vi_about_page" : $scope.vi_about_page
     		};
     		AboutPageService.save(data).success(function(res){
           if(res == "TRUE")

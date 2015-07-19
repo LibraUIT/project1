@@ -47,23 +47,26 @@ configControllers.controller('ContactPageController', ['$scope', '$rootScope','$
           if(res)
           {
               $scope.page_name = res.page_name;
-              $scope.contact_page = res.page_content;
+              $scope.en_contact_page = res.en_page_content;
+              $scope.vi_contact_page = res.vi_page_content;
               $scope.text_menu_settings_title = langArray.text_menu_settings_title;
               $scope.text_menu_dashboard = langArray.text_menu_dashboard;
               $scope.text_contact_info = langArray.text_contact_info;
               $scope.text_title = langArray.text_title;
               $scope.btn_save = langArray.btn_save;
               $scope.message_update_success = langArray.message_update_success;
+              $scope.text_content = langArray.text_content;
           }  
            
       }); 
     $scope.btnContactSave = function()
     {
     	
-    	if($scope.contact_page !== undefined )
+    	if($scope.en_contact_page !== undefined )
     	{
     		var data = {
-    			"contact_page" : $scope.contact_page,
+    			"en_contact_page" : $scope.en_contact_page,
+          "vi_contact_page" : $scope.vi_contact_page,
           "page_name" : $scope.page_name
     		};
     		ContactPageService.save(data).success(function(res){

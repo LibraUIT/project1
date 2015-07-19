@@ -1,12 +1,22 @@
 <aside class="category_nav">
 	<nav class="categories">
-		<h3>Products</h3>
+		<h3><?php echo $this->lang->line('text_store_product'); ?></h3>
 		<ul>
 			<li class="selected">
 				<!-- ::before --> <!-- Do not understand this line -->
-				<a href="/products">All</a>
+				<a href="<?php echo base_url();?>store/products/0-all.html"><?php echo $this->lang->line('text_all'); ?></a>
 			</li>
+			<?php
+			foreach($categorys as $cate)
+			{		
+			?>
 			<li class="page">
+				<a href="<?php echo base_url()."store/products/".$cate['category_id']."-".$this->rewrite->make($cate['category_name']); ?>.html" title="View <?php echo $cate['category_name']; ?>"><?php echo $cate['category_name']; ?></a>
+			</li>
+			<?php
+			}
+			?>
+			<!--<li class="page">
 				<a href="/category/tops" title="View Tops">Tops</a>
 			</li>
 			<li class="page">
@@ -38,7 +48,7 @@
 			</li>
 			<li class="page">
 				<a href="/category/under-150" title="View Under $150">Under $150</a>
-			</li>
+			</li>-->
 		</ul>
 	</nav>
 </aside>

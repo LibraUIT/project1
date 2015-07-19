@@ -3,7 +3,7 @@
         <h3><?php echo $this->lang->line('text_store_more'); ?></h3>
         <ul>
           <li><a href="<?php echo base_url(); ?>store" alt="Home"><?php echo $this->lang->line('text_store_home'); ?></a></li>      
-          <li><a href="<?php echo base_url(); ?>store/listProCategory"><?php echo $this->lang->line('text_store_product'); ?></a></li>
+          <li><a href="<?php echo base_url(); ?>store/products/0-all.html"><?php echo $this->lang->line('text_store_product'); ?></a></li>
         
                 
           <li><a href="<?php echo base_url(); ?>store/contact"><?php echo $this->lang->line('text_store_contact'); ?></a></li>

@@ -18,6 +18,7 @@
 	<script type="text/javascript">
 			var base_url = "<?php echo base_url(); ?>";
 			var last_collection = "<?php echo $last_collection; ?>";
+			var lang_page = "<?php echo $this->session->userdata('lang_page'); ?>";
 	</script>
 	<link href="<?php echo base_url(); ?>public/portfolio/lightbox/ekko-lightbox.css" rel="stylesheet">
 	<script src="<?php echo base_url(); ?>public/portfolio/lightbox/ekko-lightbox.js"></script>
@@ -142,7 +143,7 @@
 				{
 			?>
 			<li>
-				<span class="collectid" id="collect_<?php echo $collection['collection_id']; ?>"><?php echo $collection['collection_name']; ?></span>
+				<span class="collectid" id="collect_<?php echo $collection['collection_id']; ?>"><?php echo $collection[$this->session->userdata('lang_page').'_collection_name']; ?></span>
 			</li>
 			<?php				
 				}
@@ -213,7 +214,7 @@
 	 echo '<div class="row">';
 	 foreach ($press as $key => $value) {
 	 ?>
-	 <a href="<?php echo base_url().$value['press_image_2']; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $value['press_name']; ?>" class="col-sm-3">
+	 <a href="<?php echo base_url().$value['press_image_2']; ?>" data-toggle="lightbox" data-gallery="multiimages" data-title="<?php echo $value[$this->session->userdata('lang_page').'_press_name']; ?>" class="col-sm-3">
      <img data-original="<?php echo base_url().$value['press_image_2']; ?>" class="thumb-press lazy img-responsive">
      </a>
 	 <?php

@@ -128,6 +128,17 @@ $lang['message_error_permission'] = 'You don\'t have permission. Please go back 
 $lang['comlumn_email'] = 'Email';
 $lang['edit_user'] = 'Edit User';
 $lang['text_related_products'] = 'Related products';
+$lang['text_all'] = 'All';
+$lang['about_title'] = 'BIOGRAPHY';
+$lang['contact_name'] = 'CONTACT';
+$lang['text_products'] = 'PRODUCTS';
+$lang['text_collections'] = 'COLLECTIONS';
+$lang['text_press'] = 'PRESS';
+$lang['text_categorys'] = 'CATEGORIES';
+$lang['text_more_info'] = 'More Info';
+$lang['text_new_product'] = 'New Product';
+$lang['text_new_collection'] = 'New Collection';
+$lang['text_new_press'] = 'New Press';
 
 
 

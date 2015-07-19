@@ -9,7 +9,7 @@ foreach($press as $value)
 ?>
 <a class="title" href="<?php echo base_url().$value['press_image_2']; ?>">
 <img style="width:197px; height:207px" src="<?php echo base_url().$value['press_image_2']; ?>"></a><br />
-<?php echo $value['press_name']; ?></a> <br /><br />
+<?php echo $value[$this->session->userdata('lang_page').'_press_name']; ?></a> <br /><br />
 <?php
 }
 ?>

@@ -10,7 +10,7 @@ class Product_model extends CI_Model{
 	}
 	public function getList()
 	{
-		$sql = "SELECT c.category_id, c.category_name, p.id, p.name, p.description, p.images, p.price, p.price_new, p.date_created
+		$sql = "SELECT c.category_id, c.category_name, p.id, p.en_name, p.vi_name, p.en_description, p.vi_description, p.images, p.price, p.price_new, p.date_created
 		FROM categorys c INNER JOIN products p WHERE c.category_id = p.category_id";
 		$query = $this->db->query($sql);
 		if($query->num_rows() > 0)
@@ -23,7 +23,7 @@ class Product_model extends CI_Model{
 	}
 	public function getListLimit($offset = 0 , $limit = 10)
 	{
-		$sql = 'SELECT c.category_id, c.category_name, p.id, p.name, p.description, p.images, p.price, p.price_new, p.date_created FROM categorys c INNER JOIN products p WHERE c.category_id = p.category_id ORDER BY p.id DESC LIMIT '.(int) $offset.','.$limit.'';
+		$sql = 'SELECT c.category_id, c.category_name, p.id, p.en_name, p.vi_name, p.en_description, p.vi_description, p.images, p.price, p.price_new, p.date_created FROM categorys c INNER JOIN products p WHERE c.category_id = p.category_id ORDER BY p.id DESC LIMIT '.(int) $offset.','.$limit.'';
 		$query = $this->db->query($sql);
 		if($query->num_rows() > 0)
 		{
@@ -58,7 +58,8 @@ class Product_model extends CI_Model{
 
 	public function listProduct(){
 		$this->load->database();
-		$this->db->select("id,name,price,images, price_new");
+		$this->db->order_by('id', 'DESC');
+		$this->db->select("id,en_name, vi_name,price,images, price_new");
 		$query = $this->db->get("products");
 		if($query->num_rows() > 0)
 		{
@@ -71,7 +72,7 @@ class Product_model extends CI_Model{
 
 	public function detailProduct($id){
 		$this->load->database();
-		$this->db->select("id, category_id, name, price, price_new, images,description");
+		$this->db->select("id, category_id, en_name, vi_name, price, price_new, images, en_description, vi_description");
 		$this->db->where("id","$id");
 		$query = $this->db->get("products");
 		if($query->num_rows() > 0){
@@ -84,7 +85,7 @@ class Product_model extends CI_Model{
 
 	public function relatedProducts($id, $cat){
 		$this->load->database();
-		$this->db->select("id, name, price, price_new, images");
+		$this->db->select("id, en_name, vi_name ,price, price_new, images");
 		$this->db->where("category_id","$cat");
 		$this->db->where("id !=", $id);
 		$query = $this->db->get("products",3);
@@ -97,7 +98,8 @@ class Product_model extends CI_Model{
 	}
 	public function search($name)
 	{
-		$this->db->like('name', $name);
+		$this->db->like('en_name', $name);
+		$this->db->or_like('vi_name', $name); 
 		$query = $this->db->get($this->_table);
 		if($query->num_rows() > 0)
 		{
@@ -134,5 +136,32 @@ class Product_model extends CI_Model{
 		}
 		
 		return $result;
+	}
+	public function listProductByCategoryId($id){
+		$this->load->database();
+		$this->db->where("category_id", $id);
+		$this->db->order_by('id', 'DESC');
+		$this->db->select("id,en_name, vi_name ,price,images, price_new");
+		$query = $this->db->get("products");
+		if($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}else
+		{
+			return NULL;
+		}
+	}
+	public function lastitem()
+	{
+		$this->db->insert_id();
+		$this->db->order_by('id', 'DESC');
+		$query = $this->db->get($this->_table);
+		if($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}else
+		{
+			return NULL;
+		}
 	}	
 }

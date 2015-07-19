@@ -162,7 +162,7 @@ configControllers.controller('CollectionController', ['$scope', '$rootScope','$r
     }
     $scope.btnCollectionSave =  function()
     {
-      if($scope.title === undefined)
+      if($scope.en_title === undefined || $scope.vi_title === undefined)
        {
           $scope.message_error = langArray.message_error_name;
        }
@@ -178,7 +178,8 @@ configControllers.controller('CollectionController', ['$scope', '$rootScope','$r
           {
                           $scope.message_error = '';
                           var data = {
-                            'title' : $scope.title,
+                            'en_title' : $scope.en_title,
+                            'vi_title' : $scope.vi_title,
                             'featured' : featuredImage,
                             'collections' : JSON.stringify(imageArray)
                           };
@@ -312,7 +313,8 @@ configControllers.controller('CollectionListController', ['$scope', '$rootScope'
                 {
                   $location.path("/collection_list");  
                 }
-                scope.title = res.collection_name;
+                scope.en_title = res.en_collection_name;
+                scope.vi_title = res.vi_collection_name;
                 scope.featuredImage = res.collection_featured_image;
                 
                 if(res.collection_image_list != '')
@@ -406,11 +408,12 @@ configControllers.controller('CollectionListController', ['$scope', '$rootScope'
 
                    /*if(edit == 1)
                    {*/
-                    if(scope.title != '')
+                    if(scope.en_title != '' || scope.vi_title != '')
                     {  
                       var data = {
                         "id" : collectionId,
-                        "name" : scope.title,
+                        "en_name" : scope.en_title,
+                        "vi_name" : scope.vi_title,
                         "featuredImage" : scope.featuredImage,
                         "collectionImage" : JSON.stringify(scope.imageArray)
                       }

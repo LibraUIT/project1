@@ -164,7 +164,17 @@ $(window).bind("load", function() {
           data: { collect_id : collect_id }
           })
           .done(function( res ) {
-                $('#title-content-collection').text(res.collection_name);
+                if(lang_page == 'en')
+                {
+                    title_content_collection  = res.en_collection_name;
+                    $('#title-content-collection').text(title_content_collection);
+                }else if(lang_page == 'vi')
+                {
+                   title_content_collection  = res.vi_collection_name; 
+                   $('#title-content-collection').text(title_content_collection);
+                }
+
+                
                 var collections = JSON.parse(res.collection_image_list);
                 $('#show-image').attr('src', base_url+collections[0]);
                 var listImage = '';

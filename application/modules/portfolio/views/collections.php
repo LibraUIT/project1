@@ -5,7 +5,7 @@
 foreach($collections as $value)
 {
 ?>
-<a class="title" href="<?php echo base_url(); ?>portfolio/collection/<?php echo $value['collection_id']; ?>"><?php echo $value['collection_name']; ?></a> <br>
+<a class="title" href="<?php echo base_url(); ?>portfolio/collection/<?php echo $value['collection_id']; ?>"><?php echo $value[$this->session->userdata('lang_page').'_collection_name']; ?></a> <br>
 <?php
 }
 ?>

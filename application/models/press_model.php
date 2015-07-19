@@ -55,4 +55,17 @@ class Press_model extends CI_Model{
 		$this->db->where('press_id', $id);
 		$this->db->delete($this->_table); 
 	}
+	public function lastitem()
+	{
+		$this->db->insert_id();
+		$this->db->order_by('press_id', 'DESC');
+		$query = $this->db->get($this->_table);
+		if($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}else
+		{
+			return NULL;
+		}
+	}	
 }

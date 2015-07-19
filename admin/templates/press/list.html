@@ -33,7 +33,7 @@
                                             <tr ng-repeat="item in table">
                                                 <td style="text-align:center"><img style="width:150px;height:100px" src="{{baseUrl}}{{item.press_image_1}}" ></td>
                                                 <td style="text-align:center"><img style="width:150px;height:100px" src="{{baseUrl}}{{item.press_image_2}}" ></td>
-                                                <td>{{item.press_name}}</td>
+                                                <td>{{item.en_press_name}}<br />{{item.vi_press_name}}</td>
                                                 <td>{{item.date_created}}</td>
                                                 <td style="text-align:center"><a href="#/press/{{item.press_id}}"><button class="btn btn-primary btn-sm">{{btn_edit}}</button></</a></td>
                                                <td style="text-align:center"><button ng-click="btnDelete(item.press_id)" class="btn btn-danger btn-sm">{{btn_delete}}</button></td>

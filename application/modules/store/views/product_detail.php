@@ -3,8 +3,8 @@
 	foreach ($img_data as $key => $value) {
 		$img_url[$key] = rtrim(ltrim($value,'["'),'"]');
 	}
-	$name = $pro['name'];
-	$description = $pro['description'];
+	$name = $pro[$this->session->userdata('lang_page').'_name'];
+	$description = $pro[$this->session->userdata('lang_page').'_description'];
 ?>
 <header class="product_header page_header">
 	<h1><?php echo $name; ?> </h1>

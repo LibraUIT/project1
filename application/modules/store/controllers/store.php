@@ -14,6 +14,7 @@
  			$lang = $this->mylang->get_config();
  			$this->lang->load($lang[0], $lang[1]);
  		}
+ 		$this->session->set_userdata('lang_page',$lang[0]);
  	}
 
  	public function index()
@@ -50,7 +51,7 @@
  		$detail['pro'] = $result['0'];
  		$cat_id = $result['0']['category_id'];
  		$relatedPro['pro'] = $this->Product_model->relatedProducts($pid, $cat_id);
- 		$title = $detail['pro']['name'];
+ 		$title = $detail['pro'][$this->session->userdata('lang_page').'_name'];
  		$template = array(
  			"id" => "product_page",
  			"page" => "product_detail"
@@ -67,14 +68,23 @@
  		);
  		$this->load->view("common/main", $view);
  	}
- 	public function products(){
+ 	public function products($cid){
  		$id = 1;
  		$portfolio = $this->Setting_model->getItemById($id);
  		$data = unserialize($portfolio['setting_info']);
+ 		$this->load->model("Category_model");
+ 		$categorys = $this->Category_model->getList();
  		$this->load->model("Product_model");
-
- 		$products['pro'] = $this->Product_model->listProduct();
- 		$relatedPro = '';
+ 		$cid = explode('-', $cid);
+ 		if($cid[0] == 0)
+ 		{
+ 			$products['pro'] = $this->Product_model->listProduct();
+ 		}else
+ 		{
+ 			$products['pro'] = $this->Product_model->listProductByCategoryId($cid[0]);
+ 		}
+ 		
+ 		$relatedPro['pro'] = '';
  		$template = array(
  			"id" => "home_page",
  			"child_menu" => "true",
@@ -88,7 +98,8 @@
  			"key_work" => $data['key_work'],
  			"description" => $data['description'],
  			"footer" => $data['footer'],
- 			"site_name" => $data['site_title']
+ 			"site_name" => $data['site_title'],
+ 			"categorys" => $categorys
  		);
  		$this->load->view("common/main",$view);
  	}

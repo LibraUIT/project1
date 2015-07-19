@@ -140,12 +140,14 @@
  	public function contact_page_save()
  	{
  		$data = $this->input->post('data');
- 		$contact_page = $data['contact_page'];
+ 		$en_contact_page = $data['en_contact_page'];
+ 		$vi_contact_page = $data['vi_contact_page'];
  		$page_name = $data['page_name'];
  		$id = 1;
  		$update = array(
  				"page_name" => $page_name,
- 				"page_content" => $contact_page
+ 				"en_page_content" => $en_contact_page,
+ 				"vi_page_content" => $vi_contact_page
  			);
  		$this->Page_model->updateItemById($id, $update);
  		echo "TRUE";
@@ -167,12 +169,14 @@
  	public function about_page_save()
  	{
  		$data = $this->input->post('data');
- 		$about_page = $data['about_page'];
+ 		$en_about_page = $data['en_about_page'];
+ 		$vi_about_page = $data['vi_about_page'];
  		$page_name = $data['page_name'];
  		$id = 2;
  		$update = array(
  				"page_name" => $page_name,
- 				"page_content" => $about_page
+ 				"en_page_content" => $en_about_page,
+ 				"vi_page_content" => $vi_about_page
  			);
  		$this->Page_model->updateItemById($id, $update);
  		echo "TRUE";
@@ -234,13 +238,15 @@
 	public function collection_save()
 	{
 		$data = $this->input->post('data');
-		$title = $data['title'];
+		$en_title = $data['en_title'];
+		$vi_title = $data['vi_title'];
 		$featured = $data['featured'];
 		$collections = $data['collections'];
 		$date = date('Y-m-d H:i:s');
 
 		$insert = array(
-				"collection_name" => $title,
+				"en_collection_name" => $en_title,
+				"vi_collection_name" => $vi_title,
 				"collection_featured_image" => $featured,
 				"collection_image_list" => $collections,
 				"collection_status" => 0,
@@ -295,18 +301,21 @@
 	public function update_get_by_id()
 	{
 		$data = $this->input->post('data');
-		$name = $data['name'];
+		$en_name = $data['en_name'];
+		$vi_name = $data['vi_name'];
 		$id = $data['id'];
 		if( !$data['featuredImage'] && ! $data['collectionImage'])
 		{
 			$update = array(
-				"collection_name" => $name,
+				"en_collection_name" => $en_name,
+				"vi_collection_name" => $vi_name,
 				"collection_date_updated" => date('Y-m-d H:i:s')
 			);
 		}else
 		{
 			$update = array(
-				"collection_name" => $name,
+				"en_collection_name" => $en_name,
+				"vi_collection_name" => $vi_name,
 				"collection_date_updated" => date('Y-m-d H:i:s'),
 				"collection_featured_image" => $data['featuredImage'],
 				"collection_image_list" => $data['collectionImage']
@@ -381,13 +390,15 @@
 	public function press_save()
 	{
 		$data = $this->input->post('data');
-		$name = $data['name'];
+		$en_name = $data['en_name'];
+		$vi_name = $data['vi_name'];
 		$press1 = $data['image1'];
 		$press2 = $data['image2'];
 		$date = date('Y-m-d H:i:s');
 
 		$insert = array(
-				"press_name" => $name,
+				"en_press_name" => $en_name,
+				"vi_press_name" => $vi_name,
 				"press_image_1" => $press1,
 				"press_image_2" => $press2,
 				"date_created" => $date
@@ -433,13 +444,15 @@
 	{
 		$data = $this->input->post('data');
 		$id = $data['id'];
-		$name = $data['name'];
+		$en_name = $data['en_name'];
+		$vi_name = $data['vi_name'];
 		$press1 = $data['image1'];
 		$press2 = $data['image2'];
 		$date = date('Y-m-d H:i:s');
 
 		$update = array(
-				"press_name" => $name,
+				"en_press_name" => $en_name,
+				"vi_press_name" => $vi_name,
 				"press_image_1" => $press1,
 				"press_image_2" => $press2,
 				"date_updated" => $date
@@ -530,18 +543,22 @@
 	public function product_save()
 	{
 		$data = $this->input->post('data');
-		$name = $data['name'];
+		$en_name = $data['en_name'];
+		$vi_name = $data['vi_name'];
 		$category_id = $data['category_id'];
-		$description = $data['description'];
+		$en_description = $data['en_description'];
+		$vi_description = $data['vi_description'];
 		$price = $data['price'];
 		$images = $data['images'];
 		if($data['price_new'])
 		{
 			$price_new = $data['price_new'];
 			$insert = array(
-					"name" => $name,
+					"en_name" => $en_name,
+					"vi_name" => $vi_name,
 					"category_id" => $category_id,
-					"description" => $description,
+					"en_description" => $en_description,
+					"vi_description" => $vi_description,
 					"price" => $price,
 					"price_new" => $price_new,
 					"images" => $images
@@ -549,9 +566,11 @@
 		}else
 		{
 			$insert = array(
-					"name" => $name,
+					"en_name" => $en_name,
+					"vi_name" => $vi_name,
 					"category_id" => $category_id,
-					"description" => $description,
+					"en_description" => $en_description,
+					"vi_description" => $vi_description,
 					"price" => $price,
 					"images" => $images
 				);
@@ -573,8 +592,10 @@
 			$images = json_decode($val['images']);
 			$array = array(
 					"id" => $val['id'],
-					"name" => $val['name'],
-					"description" => $val['description'],
+					"en_name" => $val['en_name'],
+					"vi_name" => $val['vi_name'],
+					"en_description" => $val['en_description'],
+					"vi_description" => $val['vi_description'],
 					"images" => $val['images'],
 					"image" => $images[0],
 					"price" => $val['price'],
@@ -611,18 +632,22 @@
 	{
 		$data = $this->input->post('data');
 		$id = $data['id'];
-		$name = $data['name'];
+		$en_name = $data['en_name'];
+		$vi_name = $data['vi_name'];
 		$category_id = $data['category_id'];
-		$description = $data['description'];
+		$en_description = $data['en_description'];
+		$vi_description = $data['vi_description'];
 		$price = $data['price'];
 		$images = $data['images'];
-		if($data['price_new'])
+		if(isset($data['price_new']))
 		{
 			$price_new = $data['price_new'];
 			$update = array(
-					"name" => $name,
+					"en_name" => $en_name,
+					"vi_name" => $vi_name,
 					"category_id" => $category_id,
-					"description" => $description,
+					"en_description" => $en_description,
+					"vi_description" => $vi_description,
 					"price" => $price,
 					"price_new" => $price_new,
 					"images" => $images
@@ -630,9 +655,11 @@
 		}else
 		{
 			$update = array(
-					"name" => $name,
+					"en_name" => $en_name,
+					"vi_name" => $vi_name,
 					"category_id" => $category_id,
-					"description" => $description,
+					"en_description" => $en_description,
+					"vi_description" => $vi_description,
 					"price" => $price,
 					"images" => $images
 				);
@@ -758,5 +785,40 @@
 				"u_password" => md5($password)
 			);
 		$this->User_model->updateItemById($id, $update);
+	}
+	public function server()
+	{
+		date_default_timezone_set("Asia/Saigon");
+		$host = $_SERVER['HTTP_HOST'];
+		$bowser = $_SERVER['HTTP_USER_AGENT'];
+		$bytes = disk_free_space("."); 
+    	$si_prefix = array( 'B', 'KB', 'MB', 'GB', 'TB', 'EB', 'ZB', 'YB' );
+    	$base = 1024;
+    	$class = min((int)log($bytes , $base) , count($si_prefix) - 1);
+    	$disk_free = sprintf('%1.2f' , $bytes / pow($base,$class)) . ' ' . $si_prefix[$class];
+    	$disk_total = sprintf('%1.2f' , disk_total_space("/") / pow($base,$class)) . ' ' . $si_prefix[$class];
+    	$server_info = array(
+    			"hostname" => $host,
+    			"bowser" => $bowser,
+    			"disk_total" => $disk_total,
+    			"disk_free" => $disk_free,
+    			"timezone" => date_default_timezone_get(),
+    			"categorys" => count($this->Category_model->getList()),
+    			"products" => count($this->Product_model->getList()),
+    			"collections" => count($this->Collection_model->getList()),
+    			"press" => count($this->Press_model->getList())
+    		);
+    	header('Content-Type: application/json');
+ 		echo json_encode($server_info);
+	}
+	public function last_activity()
+	{
+		$last_activity = array(
+			"product" => $this->Product_model->lastitem(),
+			"collection" => $this->Collection_model->lastitem(),
+			"press" => $this->Press_model->lastitem()
+			);
+		header('Content-Type: application/json');
+		echo json_encode($last_activity);
 	}
  }

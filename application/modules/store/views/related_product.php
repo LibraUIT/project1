@@ -30,7 +30,7 @@ function hrand($min, $max){
 			if(count($pro) <= 3){
 				for($i=0; $i<count($pro); $i++){
 					$id = $pro[$i]['id'];
-					$name = $pro[$i]['name'];
+					$name = $pro[$i][$this->session->userdata('lang_page').'_name'];
 					$price = $pro[$i]['price'];
 					$price_new = $pro[$i]['price_new'];
 					$img_data = explode(",", $pro[$i]['images']);

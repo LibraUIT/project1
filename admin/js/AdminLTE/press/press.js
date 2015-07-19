@@ -117,7 +117,7 @@ configControllers.controller('PressController', ['$scope', '$rootScope','$routeP
     }
     $scope.btnPressSave = function()
     {
-    	if($scope.title == undefined )
+    	if($scope.en_title == undefined || $scope.vi_title == undefined )
     	{
     		$scope.message_error = langArray.message_error_name;
     	}else if(imageArray.length < 2)
@@ -126,7 +126,8 @@ configControllers.controller('PressController', ['$scope', '$rootScope','$routeP
     	}else
     	{
     		var data = {
-    			"name" : $scope.title,
+    			"en_name" : $scope.en_title,
+          "vi_name" : $scope.vi_title,
     			"image1" : imageArray[0],
     			"image2" : imageArray[1]
     		};
@@ -155,7 +156,7 @@ configControllers.controller('PressListController', ['$scope', '$rootScope','$ro
       $scope.text_photo = langArray.text_photo;
       $scope.comlumn_name = langArray.comlumn_name;
       $scope.comlumn_edit = langArray.comlumn_edit;
-      $scope.comlumn_date_created = langArray.comlumn_date_created;
+      $scope.comlumn_date_created = langArray.column_date_created;
       $scope.comlumn_delete = langArray.comlumn_delete;
       $scope.btn_edit = langArray.btn_edit;
       $scope.btn_delete = langArray.btn_delete;
@@ -209,7 +210,7 @@ configControllers.controller('PressListController', ['$scope', '$rootScope','$ro
                             tableHtml += '<tr>';
                             tableHtml += '<td style="text-align:center"><img style="width:150px;height:100px" src="'+baseUrl+'/'+res.data[i].press_image_1+'" ></td>';
                             tableHtml += '<td style="text-align:center"><img style="width:150px;height:100px" src="'+baseUrl+'/'+res.data[i].press_image_2+'" ></td>';
-                            tableHtml += '<td>'+res.data[i].press_name+'</td>';
+                            tableHtml += '<td>'+res.data[i].en_press_name+'<br />'+res.data[i].vi_press_name+'</td>';
                             tableHtml += '<td>'+res.data[i].date_created+'</td>';
                             tableHtml += '<td style="text-align:center"><a href="#/press/'+res.data[i].press_id+'"><button class="btn btn-primary btn-sm">'+$scope.btn_edit+'</button></</a></td>';
                             tableHtml += '<td style="text-align:center"><button ng-click="btnDelete('+res.data[i].press_id+')" class="btn btn-danger btn-sm">'+$scope.btn_delete+'</button></td>';
@@ -253,7 +254,8 @@ configControllers.controller('PressListController', ['$scope', '$rootScope','$ro
             scope.text_upload_status = langArray.text_upload_status;
             scope.text_upload_new_image = langArray.text_upload_new_image;
             scope.btn_save = langArray.btn_save;
-            scope.title = res.press_name;
+            scope.en_title = res.en_press_name;
+            scope.vi_title = res.vi_press_name;
 	    			$('#blah').attr('src', baseUrl+res.press_image_1).css({"display":"block"});
 	    			$('#blah2').attr('src', baseUrl+res.press_image_2).css({"display":"block"});
 	    			var img1 = res.press_image_1;
@@ -308,7 +310,7 @@ configControllers.controller('PressListController', ['$scope', '$rootScope','$ro
 				      }
 				    scope.btnPressUpdate = function()
 				    {
-				    	if(scope.title == 'undefined' || scope.title == '')
+				    	if(scope.en_title == 'undefined' || scope.en_title == '' || scope.vi_title == 'undefined' || scope.vi_title == '' )
 				    	{
 				    		scope.message_error = langArray.message_error_name;
 				    	}else if(scope.title != 'undefined' && scope.title != '')
@@ -317,7 +319,8 @@ configControllers.controller('PressListController', ['$scope', '$rootScope','$ro
 				    		{
 				    			var data = {
 				    				"id" : pressId,
-				    				"name" : scope.title,
+				    				"en_name" : scope.en_title,
+                    "vi_name" : scope.vi_title,
 					    			"image1" : img1,
 					    			"image2" : img2
 				    			}
@@ -326,7 +329,8 @@ configControllers.controller('PressListController', ['$scope', '$rootScope','$ro
                 {
                   var data = {
                     "id" : pressId,
-                    "name" : scope.title,
+                    "en_name" : scope.en_title,
+                    "vi_name" : scope.vi_title,
                     "image1" : imageArray[0],
                     "image2" : img2
                   }
@@ -335,7 +339,8 @@ configControllers.controller('PressListController', ['$scope', '$rootScope','$ro
                 {
                   var data = {
                     "id" : pressId,
-                    "name" : scope.title,
+                    "en_name" : scope.en_title,
+                    "vi_name" : scope.vi_title,
                     "image1" : img1,
                     "image2" : imageArray[0]
                   }
@@ -344,7 +349,8 @@ configControllers.controller('PressListController', ['$scope', '$rootScope','$ro
                 {
                   var data = {
                     "id" : pressId,
-                    "name" : scope.title,
+                    "en_name" : scope.en_title,
+                    "vi_name" : scope.vi_title,
                     "image1" : imageArray[0],
                     "image2" : imageArray[1]
                   }

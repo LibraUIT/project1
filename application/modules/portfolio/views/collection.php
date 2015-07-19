@@ -1,5 +1,5 @@
 <br />
-<h1 class="title"><?php echo $collection['collection_name']; ?></h1>
+<h1 class="title"><?php echo $collection[$this->session->userdata('lang_page').'_collection_name']; ?></h1>
 <div class="link-list show-links">
 <?php
 $replace = array("[", "]", '"');

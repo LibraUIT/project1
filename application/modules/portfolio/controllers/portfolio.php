@@ -18,6 +18,7 @@
  			$lang = $this->mylang->get_config();
  			$this->lang->load($lang[0], $lang[1]);
  		}
+ 		$this->session->set_userdata('lang_page',$lang[0]);
  		header('Content-Type: text/html; charset=utf-8');
  	}
  	public function index()
@@ -31,10 +32,10 @@
  		$collections = $this->Collection_model->getListLimit(0, 9);
  		$data['last_collection'] = $collections[0]['collection_id'];
  		$press = $this->Press_model->getList();
- 		$data['about_title'] = $about['page_name'];
- 		$data['about_content'] = $about['page_content'];
- 		$data['contact_name'] = $contact['page_name'];
- 		$data['contact_content'] = $contact['page_content'];
+ 		$data['about_title'] = $this->lang->line('about_title');
+ 		$data['about_content'] = $about[$this->session->userdata('lang_page').'_page_content'];
+ 		$data['contact_name'] = $this->lang->line('contact_name');
+ 		$data['contact_content'] = $contact[$this->session->userdata('lang_page').'_page_content'];
  		$data['link_1_title'] = $home['link_1_title'];
  		$data['link_1_small_title'] = $home['link_1_small_title'];
  		$data['link_1_url'] = $home['link_1_url'];
@@ -73,6 +74,7 @@
  	}
  	public function set_lang($id)
 	{
+		//Default , not change
 		switch ($id) {
 			case 'vi':
 				$lang = array(
@@ -108,9 +110,9 @@
  		$collections = $this->Collection_model->getListLimit(0, 9);
  		$press = $this->Press_model->getListLimit(0, 12);
  		$data['about_title'] = $about['page_name'];
- 		$data['about_content'] = $about['page_content'];
+ 		$data['about_content'] = $about[$this->session->userdata('lang_page').'_page_content'];
  		$data['contact_name'] = $contact['page_name'];
- 		$data['contact_content'] = $contact['page_content'];
+ 		$data['contact_content'] = $contact[$this->session->userdata('lang_page').'_page_content'];
  		$data['link_1_title'] = $home['link_1_title'];
  		$data['link_1_small_title'] = $home['link_1_small_title'];
  		$data['link_1_url'] = $home['link_1_url'];

@@ -127,14 +127,14 @@ configControllers.controller('ProductController', ['$scope', '$rootScope','$rout
     $scope.btnCreateProduct = function()
     {
     	$scope.message_error = '';
-      if($scope.title == undefined)
+      if($scope.en_title == undefined || $scope.vi_title == undefined )
     	{
     	   $scope.message_error = langArray.message_error_name;	
     	}else if($scope.category_id == undefined)
       {
          $scope.message_error = langArray.message_error_choose_category; 
       }
-      else if($scope.description == undefined)
+      else if($scope.en_description == undefined || $scope.vi_description == undefined)
     	{
     		 $scope.message_error = langArray.messgae_error_enter_description;  
     	}else if($scope.price == undefined)
@@ -154,18 +154,22 @@ configControllers.controller('ProductController', ['$scope', '$rootScope','$rout
          if(! $scope.price_new)
          {
             var data = {
-              "name" : $scope.title,
+              "en_name" : $scope.en_title,
+              "vi_name" : $scope.vi_title,
               "category_id" : $scope.category_id,
-              "description" : $scope.description,
+              "en_description" : $scope.en_description,
+              "vi_description" : $scope.vi_description,
               "price" : $scope.price,
               "images" : JSON.stringify(imageArray)
            };
          }else
          {
             var data = {
-              "name" : $scope.title,
+              "en_name" : $scope.en_title,
+              "vi_name" : $scope.vi_title,
               "category_id" : $scope.category_id,
-              "description" : $scope.description,
+              "en_description" : $scope.en_description,
+              "vi_description" : $scope.vi_description,
               "price" : $scope.price,
               "price_new" : $scope.price_new,
               "images" : JSON.stringify(imageArray)
@@ -243,7 +247,7 @@ configControllers.controller('ProductListController', ['$scope', '$rootScope','$
                             }
                             tableHtml += '<tr style="height:100px">';
                             tableHtml += '<td style="text-align:center"><img style="width:50px" src="'+baseUrl+'/'+res.data[i].image+'" ></td>';
-                            tableHtml += '<td>'+res.data[i].name+'</td>';
+                            tableHtml += '<td>'+res.data[i].en_name+'<br />'+res.data[i].vi_name+'</td>';
                             tableHtml += '<td>'+res.data[i].category_name+'</td>';
                             tableHtml += '<td>'+res.data[i].price+'</td>';
                             tableHtml += '<td>'+price_new+'</td>';
@@ -291,8 +295,8 @@ configControllers.controller('ProductListController', ['$scope', '$rootScope','$
         scope.text_name = langArray.text_name;
         scope.column_category = langArray.column_category;
         scope.text_description = langArray.text_description;
-        scope.price = langArray.price;
-        scope.price_new = langArray.price_new;
+        scope.text_price = langArray.price;
+        scope.text_price_new = langArray.price_new;
         scope.text_photo_gallery = langArray.text_photo_gallery;
         scope.text_click_to_remove = langArray.text_click_to_remove;
         scope.text_upload_new_image = langArray.text_upload_new_image;
@@ -305,9 +309,11 @@ configControllers.controller('ProductListController', ['$scope', '$rootScope','$
 	    		if(res)
 	    		{
 	    			scope.baseUrl = baseUrl;
-            scope.title = res.name;
+            scope.en_title = res.en_name;
+            scope.vi_title = res.vi_name;
             scope.category_id = res.category_id;
-            scope.description = res.description;
+            scope.en_description = res.en_description;
+            scope.vi_description = res.vi_description;
             scope.price = res.price;
             scope.price_new = res.price_new;
             scope.imagesProduct = JSON.parse(res.images);
@@ -359,13 +365,13 @@ configControllers.controller('ProductListController', ['$scope', '$rootScope','$
 	    	scope.btnUpdateProduct = function()
 	    	{
 		    	 scope.message_error = '';
-           if(scope.title == '')
+           if(scope.en_title == '' || scope.vi_title == '')
            {
               scope.message_error = langArray.message_error_name;
            }else if(scope.category_id == undefined)
            {
               scope.message_error = langArray.message_error_choose_category;
-           }else if(scope.description == '')
+           }else if(scope.en_description == '' || scope.vi_description == '')
            {
               scope.message_error = langArray.messgae_error_enter_description;
            }else if(scope.price == '')
@@ -386,9 +392,11 @@ configControllers.controller('ProductListController', ['$scope', '$rootScope','$
                {
                   var data = {
                     "id" : pId,
-                    "name" : scope.title,
+                    "en_name" : scope.en_title,
+                    "vi_name" : scope.vi_title,
                     "category_id" : scope.category_id,
-                    "description" : scope.description,
+                    "en_description" : scope.en_description,
+                    "vi_description" : scope.vi_description,
                     "price" : scope.price,
                     "images" : JSON.stringify(imageArray)
                  };
@@ -396,9 +404,11 @@ configControllers.controller('ProductListController', ['$scope', '$rootScope','$
                {
                   var data = {
                     "id" : pId,
-                    "name" : scope.title,
+                    "en_name" : scope.en_title,
+                    "vi_name" : scope.vi_title,
                     "category_id" : scope.category_id,
-                    "description" : scope.description,
+                    "en_description" : scope.en_description,
+                    "vi_description" : scope.vi_description,
                     "price" : scope.price,
                     "price_new" : scope.price_new,
                     "images" : JSON.stringify(imageArray)

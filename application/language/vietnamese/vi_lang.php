@@ -128,5 +128,15 @@ $lang['message_error_permission'] = 'Bạn không có quyền truy cập. Vui l�
 $lang['comlumn_email'] = 'Email';
 $lang['edit_user'] = 'Chỉnh Sửa Thành Viên';
 $lang['text_related_products'] = 'Sản Phẩm Liên Quan';
-
+$lang['text_all'] = 'Tất Cả';
+$lang['about_title'] = 'TIỂU SỬ';
+$lang['contact_name'] = 'LIÊN HỆ';
+$lang['text_products'] = 'SẢN PHẨM';
+$lang['text_collections'] = 'BỘ SƯU TẬP';
+$lang['text_press'] = 'PRESS';
+$lang['text_categorys'] = 'DANH MỤC';
+$lang['text_more_info'] = 'Xem Chi Tiết';
+$lang['text_new_product'] = 'Sản Phẩm Mới';
+$lang['text_new_collection'] = 'Bộ Sưu Tập Mới';
+$lang['text_new_press'] = 'Press Mới';
 

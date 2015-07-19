@@ -11,7 +11,7 @@ if($count > 0)
         $img_url[$key] = rtrim(ltrim($value,'["'),'"]');
     }
     
-    $product_name =  $pro[$i]['name'];
+    $product_name =  $pro[$i][$this->session->userdata('lang_page').'_name'];
     $price = $pro[$i]['price'];
     echo "<li id='".$pro[$i]['id']."' class='product'>";
     echo "<a href=".base_url()."store/viewProduct/".$id."/".$this->rewrite->make($product_name).".html"." title='".$product_name."'>";

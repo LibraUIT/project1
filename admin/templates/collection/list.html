@@ -31,7 +31,7 @@
 
                                             <tr ng-repeat="item in table">
                                                 <td style="text-align:center;height:260px"><img style="width:50px" src="{{baseUrl}}/{{item.collection_featured_image}}" ></td>
-                                                <td>{{item.collection_name}}</td>
+                                                <td>{{item.en_collection_name}} <br /> {{item.vi_collection_name}}</td>
                                                 <td>{{item.collection_date_created}}</td>
                                                 <td style="text-align:center"><a href="#/collection/{{item.collection_id}}"><button class="btn btn-primary btn-sm">{{btn_edit}}</button></</a></td>
                                                <td style="text-align:center"><button ng-click="btnDelete(item.collection_id)" class="btn btn-danger btn-sm">{{btn_delete}}</button></td>

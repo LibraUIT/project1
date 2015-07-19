@@ -13,7 +13,12 @@ configApp.factory("HeaderService", function($http) {
     },
     server : function()
     {
-      var urlConfig = [baseUrl, 'server'].join('/');
+      var urlConfig = [baseUrl, 'admin','server'].join('/');
+      return $http.get(urlConfig);
+    },
+    lastActivity : function()
+    {
+      var urlConfig = [baseUrl, 'admin','last_activity'].join('/');
       return $http.get(urlConfig);
     },
     changePass : function(sendData)
@@ -51,6 +56,45 @@ configControllers.controller('headerController', ['$scope', '$rootScope','$route
         }
 
 	  	 });
+       HeaderService.server().success(function(res){
+          if(res)
+          {
+            $scope.categorys = res.categorys;
+            $scope.collections = res.collections;
+            $scope.disk_free = res.disk_free;
+            $scope.disk_total = res.disk_total;
+            $scope.hostname = res.hostname;
+            $scope.press = res.press;
+            $scope.products = res.products;
+            $scope.timezone = res.timezone;
+            $scope.text_products= langArray.text_products;
+            $scope.text_collections = langArray.text_collections;
+            $scope.text_press = langArray.text_press;
+            $scope.text_categorys = langArray.text_categorys;
+            $scope.text_more_info = langArray.text_more_info;
+          }
+       });
+       HeaderService.lastActivity().success(function(res){
+          if(res)
+          {
+            $scope.base_url = baseUrl;
+            $scope.last_product_image = baseUrl + JSON.parse(res.product.images)[0];
+            $scope.last_product_en_name = res.product.en_name;
+            $scope.last_product_vi_name = res.product.vi_name;
+            $scope.last_product_id = res.product.id
+            $scope.text_new_product = langArray.text_new_product
+            $scope.last_collection_image = baseUrl + res.collection.collection_featured_image;
+            $scope.last_collection_en_name = res.collection.en_collection_name;
+            $scope.last_collection_vi_name = res.collection.vi_collection_name;
+            $scope.last_collection_id = res.collection.collection_id;
+            $scope.text_new_collection = langArray.text_new_collection
+            $scope.text_new_press = langArray.text_new_press
+            $scope.last_new_press_image = baseUrl + res.press.press_image_1;
+            $scope.last_new_press_en_name = res.press.en_press_name;
+            $scope.last_new_press_vi_name = res.press.vi_press_name;
+            $scope.last_new_press_id = res.press.press_id;
+          }
+       });
 	     $scope.SignOut = function()
 	     {
 	     	//localStorage.removeItem("isAdminLogin");
